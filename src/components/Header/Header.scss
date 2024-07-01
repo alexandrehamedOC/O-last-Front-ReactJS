@@ -1,0 +1,89 @@
+//import variables css
+@import '../../styles/variables';
+
+.header {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: $color-bg;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo__img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .logo__text {
+      font-size: 1em;
+      font-family: 'Press Start 2P';
+      white-space: nowrap;
+      color: $color-NeonPink;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-ElectricCyan;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: $color-ElectricCyan;
+
+    .nav__list {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      margin: 0 60px 0 60px;
+      font-size: 1.2em;
+
+      .nav__link {
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: $color-NeonPink;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 975px) {
+  .header {
+    display: block;
+    text-align: center;
+  }
+
+  .header__logo {
+    margin-bottom: 20px;
+  }
+
+  .header__nav {
+    display: inline-block;
+  }
+  .header__nav .nav__list {
+    display: flex;
+    margin: 0 60px 0 60px;
+    font-size: 1.2em;
+    justify-content: space-around;
+    margin-top: 25px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+}

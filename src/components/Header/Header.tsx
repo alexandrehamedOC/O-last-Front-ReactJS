@@ -1,7 +1,34 @@
+//import Link from react router
+import { Link } from 'react-router-dom';
+import './Header.scss';
+
 function Header() {
   return (
-    <header>
-      <p>HEADER</p>
+    <header className="header">
+      <Link to="#">
+        <figure className="header__logo">
+          <img src="" alt="logo-du-site" className="logo__img" />
+          <figcaption className="logo__text">Press To Start</figcaption>
+        </figure>
+      </Link>
+      <nav className="header__nav">
+        <ul className="nav__list">
+          <li className="nav__link">
+            <Link to="#">Accueil</Link>
+          </li>
+          <li className="nav__link">
+            <Link to="#">Joueurs</Link>
+          </li>
+        </ul>
+        <ul className="nav__list">
+          <li className="nav__link">
+            <Link to="#">Connexion</Link>
+          </li>
+          <li className="nav__link">
+            <Link to="#">Inscription</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
