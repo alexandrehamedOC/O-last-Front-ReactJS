@@ -14,7 +14,7 @@ git commit -m 'my commit'
 
 ## 3
 
-git flow feature finish 'my-feature'
+git flow feature finish 'feature'
 
 ## 4
 
