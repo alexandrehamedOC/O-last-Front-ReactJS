@@ -14,10 +14,10 @@ function Header() {
       <nav className="header__nav">
         <ul className="nav__list">
           <li className="nav__link">
-            <Link to="#">Accueil</Link>
+            <Link to="/">Accueil</Link>
           </li>
           <li className="nav__link">
-            <Link to="#">Joueurs</Link>
+            <Link to="/Annonce">Joueurs</Link>
           </li>
         </ul>
         <ul className="nav__list">

@@ -18,3 +18,4 @@ git flow feature finish 'my-feature'
 
 ## 4
 
+git push --set-upstream origin develop 
