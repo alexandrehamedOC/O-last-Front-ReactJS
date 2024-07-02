@@ -8,16 +8,16 @@
   background: $color-bg;
   padding: 20px;
   color: $color-ElectricCyan;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  // position: fixed;
+  // bottom: 0;
+  // left: 0;
   width: 100%;
 
   &__logo {
     font-size: 2rem;
-    font-weight: bold;;
+    font-weight: bold;
     font-family: 'Press Start 2P';
-    color: $color-ElectricCyan
+    color: $color-ElectricCyan;
   }
 
   &__social {
