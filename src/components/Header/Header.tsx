@@ -22,7 +22,7 @@ function Header() {
         </ul>
         <ul className="nav__list">
           <li className="nav__link">
-            <Link to="#">Connexion</Link>
+            <Link to="/connexion">Connexion</Link>
           </li>
           <li className="nav__link">
             <Link to="#">Inscription</Link>

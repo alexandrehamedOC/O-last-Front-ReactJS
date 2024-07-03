@@ -180,10 +180,6 @@
   }
 }
 
-// (max-width: 975px)
-// (max-width: 700px)
-// (max-width: 375px)
-
 @media screen and (max-width: 975px) {
   .app__searchbar {
     display: flex;
@@ -195,6 +191,20 @@
   .app__games {
     max-width: 800px;
     margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app__games-images-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .app__games-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .app__step {
@@ -209,6 +219,9 @@
   .app__reviews {
     max-width: 800px;
     margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .app__annonce {
@@ -219,38 +232,11 @@
   }
 }
 
-@media screen and (max-width: 700px) {
-}
+// @media screen and (max-width: 700px) {
+// }
 
 @media screen and (max-width: 300px) {
   .app__games-images-container {
     display: none;
-  }
-}
-@media screen and (max-width: 975px) {
-  .app__games {
-      max-width: 800px;
-      margin: 50px auto;
-      display: flex;
-      flex-direction: column;
-  }
-}
-@media screen and (max-width: 975px) {
-  .app__reviews {
-      max-width: 800px;
-      margin: 50px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-  .app__games-images-container{
-    display: flex;
-    justify-content: center;
-  }
-  .app__games-container{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }

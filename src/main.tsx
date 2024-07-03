@@ -9,8 +9,11 @@ import {
 
 import App from './components/App/App';
 import Root from './pages/Root';
+
 import Annonce from './components/Annonce/Annonce'
 import Profil from './components/Profil/Profil'
+import Login from './components/Login/Login';
+
 
 import './styles/index.scss';
 
@@ -25,6 +28,7 @@ const router = createBrowserRouter(
         <Route index element={<App />} />
           <Route path="/annonce" element={<Annonce />} />
           <Route path="/profile/:id" element={<Profil />} />
+          <Route path="/connexion" element={<Login />} />
       </Route>
     </>
   )

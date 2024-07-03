@@ -20,7 +20,7 @@ function App() {
         <div className="app__games-images-container">
           <figure className="app__games-figure">
             <img
-              className="app_-games-image"
+              className="app_games-image"
               src={logoValorant}
               alt="logo Valorant"
             />
