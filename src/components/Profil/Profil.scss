@@ -1,0 +1,85 @@
+@import '../../styles/variables';
+
+.profile_container {
+  display: flex;
+  font-family: "Roboto", sans-serif;
+}
+
+.profile_sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 20%;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.profile_picture {
+  width: 100px;
+  height: 100px;
+  background-color: $color-bg;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile_sidebar p {
+  margin: 10px 0;
+}
+
+.profile_sidebar button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: $color-bg;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.profile_main {
+  width: 75%;
+  padding: 20px;
+}
+
+.games {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+  }
+
+  .games_list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 10px;
+  }
+}
+
+.ranks {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin-right: 10px;
+  }
+}
+
+.description {
+  h1 {
+    text-align: center;
+  }
+
+  .description_text {
+    padding: 10px;
+    background-color: #f4f4f4;
+  }
+}
+
+.review_annonce {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}

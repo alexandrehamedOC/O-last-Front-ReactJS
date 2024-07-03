@@ -1,13 +1,13 @@
 @import '../../styles/variables';
 
 .footer {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: $color-bg;
+  background: #1a1a1a;
   padding: 20px;
-  color: $color-ElectricCyan;
+  color: #00ffff;
   width: 100%;
 
   &__logo {

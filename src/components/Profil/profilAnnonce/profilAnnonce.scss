@@ -1,0 +1,59 @@
+@import '../../../styles/variables';
+
+.profilAnnonce_container{
+  font-family: "Roboto", sans-serif;
+  max-width: 100%;
+  margin:10px;
+  padding:10px;
+  background-color: #f4f4f4;
+  display: flex;
+  overflow-x: auto;
+}
+
+.profilAnnonce_title{
+  color: $color-bg;
+  display: flex;
+  justify-content: center;
+}
+
+.profilAnnonce_games{
+  display: flex;
+  font-size: 1.2rem;
+  gap: 50px;
+  margin: 30px;
+  color: $color-bg;
+}
+.profilAnnonce_description{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  background-color: #f4f4f4;
+
+   p {
+    margin: 25px;
+    }
+}
+
+.profilAnnonce_rank{
+  display: flex;
+  gap: 50px;
+  margin: 30px;
+  color: $color-bg;
+  font-size: 1.2rem;
+}
+
+.profilAnnonce_schedule-status{
+  color: $color-bg;
+  margin: 30px;
+  font-size: 1,2rem;
+  display: flex;
+  justify-content: space-between;
+
+      .profilAnnonce_status{
+        background-color: red;
+        color: $color-bg;
+        margin: 15px;
+        padding: 10px;
+  }
+}

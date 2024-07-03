@@ -10,6 +10,7 @@ import {
 import App from './components/App/App';
 import Root from './pages/Root';
 import Annonce from './components/Annonce/Annonce'
+import Profil from './components/Profil/Profil'
 
 import './styles/index.scss';
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Root />}>
         <Route index element={<App />} />
           <Route path="/annonce" element={<Annonce />} />
+          <Route path="/profile/:id" element={<Profil />} />
       </Route>
     </>
   )
