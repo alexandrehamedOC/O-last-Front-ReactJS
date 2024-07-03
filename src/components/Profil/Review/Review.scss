@@ -1,0 +1,45 @@
+@import '../../../styles/variables';
+
+.review_container {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  margin:10px;
+  padding:10px;
+  background-color: #f4f4f4;
+
+  overflow-y: auto;
+}
+
+.review_title {
+  display: flex;
+  color: $color-bg;
+  justify-content: space-around;
+
+   button {
+    background-color: $color-bg;
+    color: #f4f4f4;
+   }
+}
+.review_rate-container{
+  margin:10px;
+  padding:10px;
+}
+.review_rate {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 10px;
+  color: $color-bg;
+}
+
+.review_rate-description{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  background-color: $color-bg;
+  color: #f4f4f4;
+
+   p {
+    margin: 25px;
+   }
+}
