@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import { useEffect, useState } from 'react';
-
+import axios from 'axios';
 
 function Login() {
-
   // Déclaration des states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +12,7 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetchdata();
+    const response = await fetchpost();
 
     if (!response) {
       console.log('Erreur de connexion');
@@ -21,67 +20,68 @@ function Login() {
       console.log('Connexion réussie');
       console.log(response);
     }
-  }
+  };
 
-
-
-  // Fonction pour récupérer les données de l'API
-  const fetchdata = async () => {
-
+  // TEST API GAMES - METHOD GET
+  const fetchget = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/login`, {
-        method: 'POST',
+      const response = await axios.get('http://localhost:3000/api/v1/games', {
         headers: {
           'Content-Type': 'application/json',
-          // Ajoutez d'autres en-têtes ici si nécessaire, comme un en-tête d'autorisation
-          credentials: 'include'
         },
-        mode: 'cors',
-        body: JSON.stringify({email, password})
       });
-      const data = await response.json();
-      console.log(data);
-      return data;
-      
+      console.log(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
-  useEffect(() => {
-    fetchdata();
-  }, [])
-
-
-  // Fonction pour récupérer les données de l'API
-  const fetchget = async () => { 
-    try {
-      const response = await fetch(`http://localhost:3000/api/v1/games`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Ajoutez d'autres en-têtes ici si nécessaire, comme un en-tête d'autorisation
-          credentials: 'include'
-        },
-        mode: 'cors',
-      });
-      const data = await response.json();
-      console.log(data);
-      return data;
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  };
 
   useEffect(() => {
     fetchget();
-  }, [])
+  }, []);
 
+  // TEST API LOGIN - METHOD POST
+  const fetchpost = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/login`,
+        {
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    fetchpost();
+  }, []);
 
+  // // TEST API CHUCK NORRIS OK
+  // const fetchJoke = async () => {
+  //   try {
+  //     const chuckResponse = await axios.get(
+  //       'https://api.chucknorris.io/jokes/random'
+  //     );
+  //     console.log(chuckResponse.data.value);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
+  // useEffect(() => {
+  //   fetchJoke();
+  // }, []);
 
   return (
     <div className="login">
@@ -112,7 +112,7 @@ function Login() {
               placeholder="password"
               name="password"
               value={password}
-              onChange = {(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit" className="login__button__style">
               Connexion
