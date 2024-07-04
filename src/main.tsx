@@ -13,6 +13,7 @@ import Root from './pages/Root';
 import Annonce from './components/Annonce/Annonce'
 import Profil from './components/Profil/Profil'
 import Login from './components/Login/Login';
+import SignIn from './components/SignIn/SignIn'
 
 
 import './styles/index.scss';
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
           <Route path="/annonce" element={<Annonce />} />
           <Route path="/profile/:id" element={<Profil />} />
           <Route path="/connexion" element={<Login />} />
+          <Route path="/inscription" element={<SignIn />} />
       </Route>
     </>
   )

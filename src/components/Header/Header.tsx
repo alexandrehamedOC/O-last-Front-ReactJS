@@ -25,7 +25,7 @@ function Header() {
             <Link to="/connexion">Connexion</Link>
           </li>
           <li className="nav__link">
-            <Link to="#">Inscription</Link>
+            <Link to="/inscription">Inscription</Link>
           </li>
         </ul>
       </nav>
