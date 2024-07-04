@@ -140,7 +140,9 @@ function Login() {
               Créez un compte en quelques clics !
             </p>
           </figcaption>
-          <button className="login__figure-button">Créer un compte</button>
+          <Link to="/inscription">
+            <button  className="login__figure-button">Créer un compte</button>
+          </Link>
         </figure>
       </section>
     </div>
