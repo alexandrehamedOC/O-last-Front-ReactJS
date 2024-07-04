@@ -4,7 +4,9 @@ import logoLol from '../../assets/img/games-logo/Lol-logo.png';
 import leftarrow from '../../assets/img/fleche-gauche.png';
 import rightarrow from '../../assets/img/fleche-droite.png';
 
+
 function App() {
+
   return (
     <div className="app">
       <section className="app__searchbar">
