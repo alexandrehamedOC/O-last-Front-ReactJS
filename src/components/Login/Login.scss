@@ -43,7 +43,11 @@
       }
     }
 
-    .login__button {
+    .login__button__style{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
       padding: 10px 20px;
       background-color: $color-DeepPurple;
       color: $color-bg;
@@ -51,6 +55,7 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
 
     .login__forgot-password {
       margin-top: 20px;
