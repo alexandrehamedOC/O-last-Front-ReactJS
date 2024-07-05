@@ -66,9 +66,10 @@ const Annonce: React.FC = () => {
   const fetchlisting = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/profil`);
-      console.log(response.data);
-      setAnnonce(response.data);
-      console.log(annonce);
+      const annonces = response.data.data;
+      console.log(annonces);
+
+      setAnnonce(annonces);
     } catch (error) {
       console.error(error);
     }
