@@ -1,63 +1,38 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
+import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 function Login() {
   // Déclaration des states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState('');
-  const navigate = useNavigate();
 
-  // Fonction pour gérer le submit du formulaire - l'identifiant et le mot de passe sont envoyés à l'API
+  const navigate = useNavigate();
+  // Récupérer la fonction login du contexte d'authentification pour se connecter
+  const { login } = useAuth();
+
+  // Fonction pour gérer la soumission du formulaire et se connecter
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const response = await login();
-
-    if (!response) {
-      console.log('Connexion réussie');
-      setUser(user);
-      console.log(document.cookie);
-      navigate('/');
-    } else {
-      console.log('Erreur de connexion');
-    }
-  };
-
-  // API LOGIN - METHOD POST
-  const login = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:3000/api/v1/login`,
-        {
-          email: email,
-          password: password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log('Connexion réussie', response.data);
-        const user = response.data.email;
-        return user;
-      }
-      return true;
+      const response = await axios.post('http://localhost:3000/api/v1/login', {
+        email,
+        password,
+      });
+      // Récupérer le token de la réponse et se connecter
+      const { token } = response.data;
+      // Appeler la fonction login du contexte d'authentification
+      login(token);
+      console.log('Login success:', response.data);
+      navigate('/');
     } catch (error) {
-      console.log(error);
-      setEmail('');
-      setPassword('');
+      // Afficher une erreur si la connexion échoue
+      console.error('erreur de connexion');
     }
   };
-
-  useEffect(() => {
-    login();
-  }, []);
 
   return (
     <div className="login">

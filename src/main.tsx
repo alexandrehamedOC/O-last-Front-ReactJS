@@ -10,13 +10,13 @@ import {
 import App from './components/App/App';
 import Root from './pages/Root';
 
-import Annonce from './components/Annonce/Annonce'
-import Profil from './components/Profil/Profil'
+import Annonce from './components/Annonce/Annonce';
+import Profil from './components/Profil/Profil';
 import Login from './components/Login/Login';
-import SignIn from './components/SignIn/SignIn'
-
+import SignIn from './components/SignIn/SignIn';
 
 import './styles/index.scss';
+import { AuthProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,13 +27,17 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Root />}>
         <Route index element={<App />} />
-          <Route path="/annonce" element={<Annonce />} />
-          <Route path="/profile/:id" element={<Profil />} />
-          <Route path="/connexion" element={<Login />} />
-          <Route path="/inscription" element={<SignIn />} />
+        <Route path="/annonce" element={<Annonce />} />
+        <Route path="/profile/:id" element={<Profil />} />
+        <Route path="/connexion" element={<Login />} />
+        <Route path="/inscription" element={<SignIn />} />
       </Route>
     </>
   )
 );
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
+);

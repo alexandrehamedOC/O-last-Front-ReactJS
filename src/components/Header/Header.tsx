@@ -1,8 +1,15 @@
 //import Link from react router
 import { Link } from 'react-router-dom';
 import './Header.scss';
+import { useAuth } from '../../context/AuthContext';
 
 function Header() {
+  const { token, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <header className="header">
       <Link to="#">
@@ -21,12 +28,32 @@ function Header() {
           </li>
         </ul>
         <ul className="nav__list">
-          <li className="nav__link">
+          {/* <li className="nav__link">
             <Link to="/connexion">Connexion</Link>
-          </li>
-          <li className="nav__link">
+          </li> */}
+          {/* <li className="nav__link">
             <Link to="/inscription">Inscription</Link>
-          </li>
+          </li> */}
+          {/* <li className="nav__link">
+            <Link to="#">Deconnexion</Link>
+          </li> */}
+          {token ? (
+            <li className="nav__link">
+              <Link to="#" onClick={handleLogout}>
+                Deconnexion
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li className="nav__link">
+                <Link to="/connexion">Connexion</Link>
+              </li>
+
+              <li className="nav__link">
+                <Link to="/inscription">Inscription</Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
