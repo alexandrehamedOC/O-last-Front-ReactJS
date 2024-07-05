@@ -1,11 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import FormAnnonce from './FormAnnonce/FormAnnonce';
+import axios from 'axios';
 
 import './Annonce.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 Modal.setAppElement('#root');
+
+interface Player {
+  id: number;
+  name: string;
+  description: string;
+  rank: string;
+  level: number;
+}
 
 const Annonce: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,7 +32,7 @@ const Annonce: React.FC = () => {
     console.log('Recherche effectuée');
   };
 
-  const players = [
+  /*   const players = [
     { id: 1, playerName: 'Joueur 1', imageUrl: 'path_to_image1' },
     { id: 2, playerName: 'Joueur 2', imageUrl: 'path_to_image2' },
     { id: 3, playerName: 'Joueur 3', imageUrl: 'path_to_image3' },
@@ -43,7 +53,7 @@ const Annonce: React.FC = () => {
     { id: 18, playerName: 'Joueur 18', imageUrl: 'path_to_image10' },
     { id: 19, playerName: 'Joueur 19', imageUrl: 'path_to_image10' },
     { id: 20, playerName: 'Joueur 20', imageUrl: 'path_to_image10' },
-  ];
+  ]; */
 
   const navigate = useNavigate();
 
@@ -51,11 +61,30 @@ const Annonce: React.FC = () => {
     navigate(`/profile/${playerId}`);
   };
 
+  const [annonce, setAnnonce] = useState<Player[]>([]);
+
+  const fetchlisting = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/profil`);
+      console.log(response.data);
+      setAnnonce(response.data);
+      console.log(annonce);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchlisting();
+  }, []);
+
   return (
     <div className="annonce">
       <div className="create_annonce">
-        <img src="/AnnonceBG.jpg" alt="" className='image' />
-        <button className="create_ad_button" onClick={openModal}>Créer ton annonce</button>
+        <img src="/AnnonceBG.jpg" alt="" className="image" />
+        <button className="create_ad_button" onClick={openModal}>
+          Créer ton annonce
+        </button>
       </div>
       <div className="main_content">
         <div className="filters">
@@ -85,14 +114,31 @@ const Annonce: React.FC = () => {
             <option value="switch">Nintendo Switch</option>
             <option value="mobile">Mobile</option>
           </select>
-          
-          <button className="search_button" onClick={handleSearch}>Search</button>
+
+          <button className="search_button" onClick={handleSearch}>
+            Search
+          </button>
         </div>
         <div className="grid">
-          {players.map((player) => (
-            <div key={player.id} className="player_card" onClick={() => handleCardClick(player.id)}>
-              <img src={player.imageUrl} alt={`Image de ${player.playerName}`} />
+          {/* {players.map((player) => (
+            <div
+              key={player.id}
+              className="player_card"
+              onClick={() => handleCardClick(player.id)}
+            >
+              <img
+                src={player.imageUrl}
+                alt={`Image de ${player.playerName}`}
+              />
               <p>{player.playerName}</p>
+            </div>
+          ))} */}
+          {annonce.map((player) => (
+            <div key={player.id}>
+              <p>{player.name}</p>
+              <p>{player.description}</p>
+              <p>{player.rank}</p>
+              <p>{player.level}</p>
             </div>
           ))}
         </div>
@@ -105,7 +151,9 @@ const Annonce: React.FC = () => {
         className="modal"
         overlayClassName="overlay"
       >
-        <button onClick={closeModal} className="close_button">X</button>
+        <button onClick={closeModal} className="close_button">
+          X
+        </button>
         <FormAnnonce />
       </Modal>
     </div>

@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Fonction pour gérer le submit du formulaire
+  // Fonction pour gérer le submit du formulaire - l'identifiant et le mot de passe sont envoyés à l'API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -16,6 +16,9 @@ function Login() {
 
     if (!response) {
       console.log('Erreur de connexion');
+      // Reset des states - Vider les champs du formulaire au clic sur le bouton
+      setEmail('');
+      setPassword('');
     } else {
       console.log('Connexion réussie');
       console.log(response);
@@ -141,7 +144,7 @@ function Login() {
             </p>
           </figcaption>
           <Link to="/inscription">
-            <button  className="login__figure-button">Créer un compte</button>
+            <button className="login__figure-button">Créer un compte</button>
           </Link>
         </figure>
       </section>
