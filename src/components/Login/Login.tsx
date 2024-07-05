@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -7,44 +7,27 @@ function Login() {
   // Déclaration des states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState('');
+  const navigate = useNavigate();
 
   // Fonction pour gérer le submit du formulaire - l'identifiant et le mot de passe sont envoyés à l'API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetchpost();
+    const response = await login();
 
     if (!response) {
-      console.log('Erreur de connexion');
-      // Reset des states - Vider les champs du formulaire au clic sur le bouton
-      setEmail('');
-      setPassword('');
-    } else {
       console.log('Connexion réussie');
-      console.log(response);
+      setUser(user);
+      console.log(document.cookie);
+      navigate('/');
+    } else {
+      console.log('Erreur de connexion');
     }
   };
 
-  // TEST API GAMES - METHOD GET
-  const fetchget = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/api/v1/games', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchget();
-  }, []);
-
-  // TEST API LOGIN - METHOD POST
-  const fetchpost = async () => {
+  // API LOGIN - METHOD POST
+  const login = async () => {
     try {
       const response = await axios.post(
         `http://localhost:3000/api/v1/login`,
@@ -59,32 +42,22 @@ function Login() {
         }
       );
 
-      console.log(response.data);
-      return response.data;
+      if (response.status === 200) {
+        console.log('Connexion réussie', response.data);
+        const user = response.data.email;
+        return user;
+      }
+      return true;
     } catch (error) {
       console.log(error);
+      setEmail('');
+      setPassword('');
     }
   };
 
   useEffect(() => {
-    fetchpost();
+    login();
   }, []);
-
-  // // TEST API CHUCK NORRIS OK
-  // const fetchJoke = async () => {
-  //   try {
-  //     const chuckResponse = await axios.get(
-  //       'https://api.chucknorris.io/jokes/random'
-  //     );
-  //     console.log(chuckResponse.data.value);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchJoke();
-  // }, []);
 
   return (
     <div className="login">

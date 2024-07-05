@@ -4,8 +4,9 @@ import logoLol from '../../assets/img/games-logo/Lol-logo.png';
 import leftarrow from '../../assets/img/fleche-gauche.png';
 import rightarrow from '../../assets/img/fleche-droite.png';
 
-
 function App() {
+  const user = localStorage.getItem('user');
+  console.log(user);
 
   return (
     <div className="app">
