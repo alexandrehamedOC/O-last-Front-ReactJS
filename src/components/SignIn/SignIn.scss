@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+
+.SignIn {
+  display: flex;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 100px;
+  justify-content: center;
+}
+
+.SignIn__img {
+  width: 25%;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+}
+
+.SignIn__img img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.SignIn__form {
+  width: 25%;
+  padding: 0 20px;
+}
+
+.SignIn__form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  color: $color-bg;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  background-color: $color-bg;
+  color: $color-ElectricCyan;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  color: $color-DeepPurple;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+}
