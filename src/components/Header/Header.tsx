@@ -20,12 +20,34 @@ function Header() {
       </Link>
       <nav className="header__nav">
         <ul className="nav__list">
-          <li className="nav__link">
+          {/* <li className="nav__link">
             <Link to="/">Accueil</Link>
           </li>
           <li className="nav__link">
             <Link to="/Annonce">Joueurs</Link>
-          </li>
+          </li> */}
+          {token ? (
+            <>
+              <li className="nav__link">
+                <Link to="/">Accueil</Link>
+              </li>
+              <li className="nav__link">
+                <Link to="/Annonce">Joueurs</Link>
+              </li>
+              <li className="nav__link">
+                <Link to="/profile/:id">Mon profil</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav__link">
+                <Link to="/">Accueil</Link>
+              </li>
+              <li className="nav__link">
+                <Link to="/Annonce">Joueurs</Link>
+              </li>
+            </>
+          )}
         </ul>
         <ul className="nav__list">
           {/* <li className="nav__link">

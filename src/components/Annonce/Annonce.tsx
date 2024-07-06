@@ -100,7 +100,7 @@ const Annonce: React.FC = () => {
         </div>
         <div className="grid">
           {annonce.map((player) => (
-            <div key={player.id}>
+            <div key={player.id} onClick={() => handleCardClick(player.id)}>
               <p>{player.title}</p>
               <p>{player.platform}</p>
               <p>{player.description}</p>
