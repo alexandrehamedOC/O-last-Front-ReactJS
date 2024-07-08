@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Profil.scss';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ import Annonce from './profilAnnonce/profilAnnonce';
 import { useEffect, useState } from 'react';
 
 interface User {
+  id: number;
   firstname: string;
   lastname: string;
   city: string;
@@ -53,6 +54,10 @@ function Profil() {
         <p>{user.city}</p>
         <p>{user.discord_username}</p>
         <button>Contact Player</button>
+        <Link to={`/EditProfil/${user.id}`}>
+          <button>Edit Profil</button>
+        </Link>
+        <button>Edit Annonce</button>
       </div>
       <div className="profile_main">
         <div className="games">

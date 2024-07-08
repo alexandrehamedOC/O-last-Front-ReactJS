@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './formAnnonce.scss';
+import axios from 'axios';
 
 const FormAnnonce: React.FC = () => {
+  // const [title, setTitle] = useState<string>('');
+  // const [profil, setProfil] = useState<string>('profile1');
+  // const [description, setDescription] = useState<string>('');
+  // const [start, setStart] = useState<number>(0);
+  // const [end, setEnd] = useState<number>(0);
+
+  // const fetchcreate = async () => {
+  //   try {
+  //     const response = await axios.post(`http://localhost:3000/api/v1/posts/`);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   return (
     <div className="form_annonce">
       <div className="form_group">

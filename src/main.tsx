@@ -17,6 +17,7 @@ import SignIn from './components/SignIn/SignIn';
 
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
+import EditProfil from './components/Profil/EditProfil/EditProfil';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route index element={<App />} />
         <Route path="/annonce" element={<Annonce />} />
         <Route path="/profile/:id" element={<Profil />} />
+        <Route path="/editprofil/:id" element={<EditProfil />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<SignIn />} />
       </Route>
