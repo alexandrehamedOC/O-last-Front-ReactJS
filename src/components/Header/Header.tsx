@@ -4,7 +4,7 @@ import './Header.scss';
 import { useAuth } from '../../context/AuthContext';
 
 function Header() {
-  const { token, logout } = useAuth();
+  const { userId, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -26,7 +26,7 @@ function Header() {
           <li className="nav__link">
             <Link to="/Annonce">Joueurs</Link>
           </li> */}
-          {token ? (
+          {userId ? (
             <>
               <li className="nav__link">
                 <Link to="/">Accueil</Link>
@@ -59,7 +59,7 @@ function Header() {
           {/* <li className="nav__link">
             <Link to="#">Deconnexion</Link>
           </li> */}
-          {token ? (
+          {userId ? (
             <li className="nav__link">
               <Link to="#" onClick={handleLogout}>
                 Deconnexion

@@ -29,7 +29,7 @@ function Profil() {
         `http://localhost:3000/api/v1/users/${id}`
       );
       console.log(response.data);
-      setUser(response.data.data);
+      setUser(response.data);
     } catch (error) {
       console.error(error);
     }

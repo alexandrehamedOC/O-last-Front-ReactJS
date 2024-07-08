@@ -5,11 +5,6 @@ import leftarrow from '../../assets/img/fleche-gauche.png';
 import rightarrow from '../../assets/img/fleche-droite.png';
 
 function App() {
-  // voir le token dans le local storage lorsque je suis connecté
-  console.log(localStorage.getItem('token'));
-  // me deconnecter
-  // localStorage.removeItem('token');
-
   return (
     <div className="app">
       <section className="app__searchbar">

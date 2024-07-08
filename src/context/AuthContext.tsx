@@ -3,8 +3,8 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 // Définir le type du contexte
 interface AuthContextType {
-  token: string | null;
-  login: (token: string) => void;
+  userId: string | null;
+  login: (userId: string) => void;
   logout: () => void;
 }
 
@@ -16,34 +16,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   // Récupérer le token dans le localStorage
-  const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem('token') || null;
+  const [userId, setUserId] = useState<string | null>(() => {
+    return localStorage.getItem('userId') || null;
   });
 
   // Fonction pour se connecter
-  const login = (token: string) => {
-    setToken(token);
-    localStorage.setItem('token', token);
+  const login = (userId: string) => {
+    setUserId(userId);
+    localStorage.setItem('userId', userId);
   };
 
   // Fonction pour se déconnecter
   const logout = () => {
-    setToken(null);
-    localStorage.removeItem('token');
+    setUserId(null);
+    localStorage.removeItem('userId');
   };
 
   // Vérifier si un token est présent dans le localStorage et le récupérer pour initialiser l'état
   // de l'authentification lors du chargement du composant AuthProvider
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
+    const storeduserId = localStorage.getItem('userId');
+    if (storeduserId) {
+      setUserId(storeduserId);
     }
   }, []);
 
   // Rendre le contexte accessible aux composants enfants
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ userId, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

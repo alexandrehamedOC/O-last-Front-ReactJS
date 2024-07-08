@@ -44,7 +44,7 @@ const Annonce: React.FC = () => {
   const fetchlisting = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/posts/`);
-      const annonces = response.data.data;
+      const annonces = response.data;
       console.log(annonces);
 
       setAnnonce(annonces);
