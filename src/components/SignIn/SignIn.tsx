@@ -34,6 +34,8 @@ function SignIn() {
   // Fonction pour envoyer les données du formulaire à l'API
   const fetchcreate = async () => {
     try {
+      console.log('bonjour');
+
       const response = await axios.post(`http://localhost:3000/api/v1/users`, {
         firstname,
         lastname,
