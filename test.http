@@ -1,0 +1,26 @@
+GET https://o-last-back.vercel.app/api/v1/games
+
+
+### Test login user
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "hashed_password1"
+}
+
+
+### Test login user
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "frfr@frfr",
+  "password": "frfr"
+}
+
+### delete user
+DELETE http://localhost:3000/api/v1/rates/2
+Authorization: cookie
+
