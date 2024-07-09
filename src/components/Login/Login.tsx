@@ -22,11 +22,12 @@ function Login() {
         email,
         password,
       });
+
       // Récupérer le token de la réponse et se connecter
-      const { token } = response.data;
+      const userId = response.data;
       // Appeler la fonction login du contexte d'authentification
-      login(token);
-      console.log('Login success:', response.data);
+      login(userId);
+      console.log('Login success for user:', userId);
       navigate('/');
     } catch (error) {
       // Afficher une erreur si la connexion échoue
