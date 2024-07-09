@@ -18,7 +18,10 @@ interface Player {
   schedule_end: number;
 }
 
-interface Game{};
+interface Game {
+  id: number;
+  name: string;
+}
 
 const Annonce: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -42,20 +45,20 @@ const Annonce: React.FC = () => {
   };
 
   const [annonce, setAnnonce] = useState<Player[]>([]);
-  
+
   const fetchlisting = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/posts/`);
       const annonces = response.data;
       console.log(annonces);
-      
+
       setAnnonce(annonces);
     } catch (error) {
       console.error(error);
     }
   };
-  
-  const [games, setGames] = useState<any[]>([]);
+
+  const [games, setGames] = useState<Game[]>([]);
 
   const fetchGames = async () => {
     try {
@@ -91,15 +94,13 @@ const Annonce: React.FC = () => {
           </select>
 
           <div className="form_group">
-        <label htmlFor="games">Jeux</label>
-        <select id="games">
-          {games.map((game) => (
-            <option>
-              {game.name}
-            </option>
-          ))}
-        </select>
-      </div>
+            <label htmlFor="games">Jeux</label>
+            <select id="games">
+              {games.map((game) => (
+                <option key={game.id}>{game.name}</option>
+              ))}
+            </select>
+          </div>
 
           <label htmlFor="platform">Plateforme</label>
           <select id="platform">
