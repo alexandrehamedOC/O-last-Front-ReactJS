@@ -18,6 +18,8 @@ interface Player {
   schedule_end: number;
 }
 
+interface Game{};
+
 const Annonce: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -40,21 +42,33 @@ const Annonce: React.FC = () => {
   };
 
   const [annonce, setAnnonce] = useState<Player[]>([]);
-
+  
   const fetchlisting = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/posts/`);
       const annonces = response.data;
       console.log(annonces);
-
+      
       setAnnonce(annonces);
     } catch (error) {
       console.error(error);
     }
   };
+  
+  const [games, setGames] = useState<any[]>([]);
+
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/v1/games');
+      setGames(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des jeux :', error);
+    }
+  };
 
   useEffect(() => {
     fetchlisting();
+    fetchGames();
   }, []);
 
   return (
@@ -76,14 +90,16 @@ const Annonce: React.FC = () => {
             <option value="china">Chine</option>
           </select>
 
-          <label htmlFor="games">Jeux</label>
-          <select id="games">
-            <option value="Counter-Strike">Counter-Strike</option>
-            <option value="League Of Legends">League Of Legends</option>
-            <option value="Minecraft">Minecraft</option>
-            <option value="Fornite">Fornite</option>
-            <option value="Valorant">Valorant</option>
-          </select>
+          <div className="form_group">
+        <label htmlFor="games">Jeux</label>
+        <select id="games">
+          {games.map((game) => (
+            <option>
+              {game.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
           <label htmlFor="platform">Plateforme</label>
           <select id="platform">
