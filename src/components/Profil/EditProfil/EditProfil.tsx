@@ -34,9 +34,18 @@ function EditProfil() {
   const [description, setDescription] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       const id = localStorage.getItem('userId');
+
+      console.log({
+        name,
+        game_id: game,
+        rank,
+        level,
+        description,
+        user_id: id,
+      });
 
       const response = await axios.post(
         `http://localhost:3000/api/v1/profil/`,
@@ -49,6 +58,7 @@ function EditProfil() {
           user_id: id,
         }
       );
+
       console.log(response.data);
       setName('');
       setGame('');

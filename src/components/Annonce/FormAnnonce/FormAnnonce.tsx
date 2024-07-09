@@ -14,6 +14,12 @@ interface Game {
   updated_at: string | null;
 }
 
+interface Profil {
+  id: number;
+  name: string;
+  game_name: string;
+}
+
 const FormAnnonce: React.FC = () => {
   const { userId } = useAuth();
   const [title, setTitle] = useState<string>('');
@@ -26,6 +32,8 @@ const FormAnnonce: React.FC = () => {
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
   const [games, setGames] = useState<Game[]>([]);
 
+  const [profil, setProfil] = useState<Profil[]>([]);
+
   useEffect(() => {
     const fetchGames = async () => {
       try {
@@ -36,6 +44,19 @@ const FormAnnonce: React.FC = () => {
       }
     };
 
+    const fetchprofil = async () => {
+      const userId = localStorage.getItem('userId');
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/profil/details/${userId}`
+        );
+        console.log(response.data);
+        setProfil(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchprofil();
     fetchGames();
   }, []);
 
@@ -47,18 +68,14 @@ const FormAnnonce: React.FC = () => {
         description,
         schedule_start: new Date(schedule.start).toISOString(),
         schedule_end: new Date(schedule.end).toISOString(),
-        user_id: userId.userId,
+        user_id: userId,
         status: true,
         game_id: selectedGameId,
       });
 
       return response;
     } catch (error) {
-      console.error(
-        'Error creating ad:',
-        error.response?.data || error.message
-      );
-      return null;
+      console.error(error);
     }
   };
 
@@ -92,6 +109,17 @@ const FormAnnonce: React.FC = () => {
       </div>
 
       <div className="form_group">
+        <label htmlFor="platform">Platform</label>
+        <input
+          type="text"
+          id="platform"
+          placeholder="Platform"
+          value={platform}
+          onChange={(e) => setPlatform(e.target.value)}
+        />
+      </div>
+
+      {/* <div className="form_group">
         <label htmlFor="games">Games</label>
         <select
           id="games"
@@ -105,17 +133,18 @@ const FormAnnonce: React.FC = () => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div className="form_group">
-        <label htmlFor="platform">Platform</label>
-        <input
-          type="text"
-          id="platform"
-          placeholder="Platform"
-          value={platform}
-          onChange={(e) => setPlatform(e.target.value)}
-        />
+        <label htmlFor="profil">Profil</label>
+        <select name="profil" id="profil">
+          <option value="">Select a profil</option>
+          {profil.map((profils) => (
+            <option key={profils.id} value={profils.id}>
+              {profils.name} : {profils.game_name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="form_group">
