@@ -35,7 +35,7 @@ function Header() {
                 <Link to="/Annonce">Joueurs</Link>
               </li>
               <li className="nav__link">
-                <Link to="/profile/:id">Mon profil</Link>
+                <Link to={`/profile/${userId}`}>Mon profil</Link>
               </li>
             </>
           ) : (

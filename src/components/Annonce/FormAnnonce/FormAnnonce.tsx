@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useAuth } from '../../../context/AuthContext';
 
 import './formAnnonce.scss';
-import axios from 'axios';
 
 interface Game {
   id: number;
@@ -16,7 +15,6 @@ interface Game {
 }
 
 const FormAnnonce: React.FC = () => {
-
   const { userId } = useAuth();
   const [title, setTitle] = useState<string>('');
   const [platform, setPlatform] = useState<string>('');
@@ -79,7 +77,6 @@ const FormAnnonce: React.FC = () => {
       console.log('Error creating your ad');
     }
   };
-
 
   return (
     <form className="form_annonce" onSubmit={handleSubmit}>
