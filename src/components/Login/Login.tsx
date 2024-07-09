@@ -25,6 +25,8 @@ function Login() {
 
       // Récupérer le token de la réponse et se connecter
       const userId = response.data;
+      console.log(userId);
+
       // Appeler la fonction login du contexte d'authentification
       login(userId);
       console.log('Login success for user:', userId);

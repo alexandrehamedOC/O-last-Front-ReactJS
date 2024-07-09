@@ -2,20 +2,29 @@ import { useParams } from 'react-router-dom';
 import './EditProfil.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 interface Profil {
   id: number;
   name: string;
-  game_name: string;
+  game: number;
   rank: string;
   level: number;
   description: string;
 }
 
+interface Game {
+  name: string;
+  id: number;
+}
+
 function EditProfil() {
   const { id } = useParams();
 
+  // const [deleteProfil, setDeleteProfil] = useState<Delete[]>([]);
+
   const [profil, setProfil] = useState<Profil[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
 
   //Préparation création de profil
   const [name, setName] = useState('');
@@ -25,15 +34,21 @@ function EditProfil() {
   const [description, setDescription] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/profil', {
-        name,
-        game_name: game,
-        rank,
-        level,
-        description,
-      });
+      const id = localStorage.getItem('userId');
+
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/profil/`,
+        {
+          name,
+          game_id: game,
+          rank,
+          level,
+          description,
+          user_id: id,
+        }
+      );
       console.log(response.data);
       setName('');
       setGame('');
@@ -48,6 +63,10 @@ function EditProfil() {
 
   const fecthprofil = async () => {
     try {
+      const games = await axios.get(`http://localhost:3000/api/v1/games/`);
+      console.log(games);
+      setGames(games.data);
+
       const response = await axios.get(
         `http://localhost:3000/api/v1/profil/details/${id}`
       );
@@ -62,9 +81,21 @@ function EditProfil() {
     fecthprofil();
   }, [id]);
 
-  // if (!profil) {
-  //   return <div>Erreur 404</div>;
-  // }
+  //delete  profil
+  const handleDelete = async (id: number) => {
+    // e.preventDefault();
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/v1/profil/${id}`
+      );
+      console.log('deleted post wit ID :' + response.data);
+      console.log(id);
+
+      fecthprofil();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="edit">
@@ -74,11 +105,16 @@ function EditProfil() {
             <header className="edit__profile-card-header">
               <h2 className="edit__profile-card-title">{profils.name}</h2>
               <button className="edit__profile-card-button">Update</button>
-              <button className="edit__profile-card-button">Delete</button>
+              <button
+                className="edit__profile-card-button"
+                onClick={() => handleDelete(profils.id)}
+              >
+                Delete
+              </button>
             </header>
             <section className="edit__profile-card-body">
               <h3 className="edit__profile-card-description-title">
-                {profils.game_name}
+                {profils.game}
               </h3>
               <p className="edit__profile-card-description-text">
                 {profils.description}
@@ -140,67 +176,88 @@ function EditProfil() {
       ))}
       ;
       <section className="edit__form">
-        <div className="edit__form-main">
-          <div className="edit__form-group">
-            <label htmlFor="name" className="edit__form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="edit__form-input"
-              placeholder="Name"
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="edit__form-main">
+            <div className="edit__form-group">
+              <label htmlFor="name" className="edit__form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="edit__form-input"
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="edit__form-group">
+              <label htmlFor="game" className="edit__form-label">
+                Game
+              </label>
+              <select
+                name="game"
+                id="game"
+                className="edit__form-select"
+                onChange={(e) => setGame(e.target.value)}
+              >
+                <option value="">Select a game</option>
+                {games.map((game) => (
+                  <option key={game.name} value={game.id}>
+                    {game.name}
+                  </option>
+                ))}
+                {/* <option value="1">League of Legends</option>
+                <option value="2">Fortnite</option>
+                <option value="3">Minecraft</option>
+                <option value="4">Call of Duty</option> */}
+              </select>
+            </div>
+
+            <div className="edit__form-group">
+              <label htmlFor="rank" className="edit__form-label">
+                Rank
+              </label>
+              <input
+                type="text"
+                id="rank"
+                className="edit__form-input"
+                placeholder="Rank"
+                onChange={(e) => setRank(e.target.value)}
+              />
+            </div>
+
+            <div className="edit__form-group">
+              <label htmlFor="level" className="edit__form-label">
+                Level
+              </label>
+              <input
+                type="text"
+                id="level"
+                className="edit__form-input"
+                placeholder="Level"
+                onChange={(e) => setLevel(e.target.value)}
+              />
+            </div>
           </div>
 
-          <div className="edit__form-group">
-            <label htmlFor="game" className="edit__form-label">
-              Game
-            </label>
-            <select name="game" id="game" className="edit__form-select">
-              <option value="fortnite">Fortnite</option>
-              <option value="counter-strike">Counter-Strike</option>
-              <option value="valorant">Valorant</option>
-            </select>
+          <div className="edit__form-side">
+            <div className="edit__form-group">
+              <label htmlFor="description" className="edit__form-label">
+                Description
+              </label>
+              <textarea
+                id="description"
+                className="edit__form-textarea"
+                placeholder="Description"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+              <button className="edit__form-button" type="submit">
+                Create/ Update Profil
+              </button>
+            </div>
           </div>
-
-          <div className="edit__form-group">
-            <label htmlFor="rank" className="edit__form-label">
-              Rank
-            </label>
-            <input
-              type="text"
-              id="rank"
-              className="edit__form-input"
-              placeholder="Rank"
-            />
-          </div>
-
-          <div className="edit__form-group">
-            <label htmlFor="level" className="edit__form-label">
-              Level
-            </label>
-            <input
-              type="text"
-              id="level"
-              className="edit__form-input"
-              placeholder="Level"
-            />
-          </div>
-        </div>
-
-        <div className="edit__form-side">
-          <div className="edit__form-group">
-            <label htmlFor="description" className="edit__form-label">
-              Description
-            </label>
-            <textarea
-              id="description"
-              className="edit__form-textarea"
-            ></textarea>
-            <button className="edit__form-button">Create/ Update Profil</button>
-          </div>
-        </div>
+        </form>
       </section>
     </div>
   );
