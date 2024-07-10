@@ -15,6 +15,8 @@ interface User {
 }
 
 function Profil() {
+  const userId = Number(localStorage.getItem('userId'));
+
   // variable id pour récupérer l'id du joueur lors du clic sur le profil
   const { id } = useParams();
   // console.log(id);
@@ -53,11 +55,18 @@ function Profil() {
         <p>{user.lastname}</p>
         <p>{user.city}</p>
         <p>{user.discord_username}</p>
-        <button>Contact Player</button>
-        <Link to={`/EditProfil/${user.id}`}>
-          <button>Edit Profil</button>
-        </Link>
-        <button>Edit Annonce</button>
+
+        {userId === user.id ? (
+          <>
+            <button>Contact Player</button>
+            <Link to={`/EditProfil/${user.id}`}>
+              <button>Edit Profil</button>
+            </Link>
+            <button>Edit Annonce</button>
+          </>
+        ) : (
+          <button>Contact Player</button>
+        )}
       </div>
       <div className="profile_main">
         <div className="games">

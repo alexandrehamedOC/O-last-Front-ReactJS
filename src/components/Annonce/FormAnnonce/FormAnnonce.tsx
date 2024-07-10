@@ -62,17 +62,23 @@ const FormAnnonce: React.FC = () => {
 
   const fetchCreate = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/posts', {
-        title,
-        platform,
-        description,
-        schedule_start: new Date(schedule.start).toISOString(),
-        schedule_end: new Date(schedule.end).toISOString(),
-        user_id: userId,
-        status: true,
-        game_id: selectedGameId,
-      });
+      console.log(profil);
 
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/posts/`,
+        {
+          title,
+          platform,
+          description,
+          schedule_start: new Date(schedule.start).toISOString(),
+          schedule_end: new Date(schedule.end).toISOString(),
+          profil_id: profil,
+          status: true,
+          game_id: selectedGameId,
+        },
+        { withCredentials: true }
+      );
+      console.log('poste créée avec succées');
       return response;
     } catch (error) {
       console.error(error);
@@ -80,7 +86,7 @@ const FormAnnonce: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     const response = await fetchCreate();
 
     if (response) {
