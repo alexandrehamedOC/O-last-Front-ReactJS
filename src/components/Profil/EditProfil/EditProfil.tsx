@@ -110,6 +110,22 @@ function EditProfil() {
     }
   };
 
+  // const handleUpdate = async (id: number) => {
+  //   // e.preventDefault();
+  //   try {
+  //     const response = await axios.patch(
+  //       `http://localhost:3000/api/v1/profil/${id}`,
+  //       { withCredentials: true }
+  //     );
+  //     console.log('updated post wit ID :' + response.data);
+  //     console.log(id);
+
+  //     fecthprofil();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   return (
     <div className="edit">
       {profil.map((profils) => (

@@ -18,6 +18,7 @@ interface Profil {
   id: number;
   name: string;
   game_name: string;
+  game_id: number;
 }
 
 const FormAnnonce: React.FC = () => {
@@ -29,20 +30,21 @@ const FormAnnonce: React.FC = () => {
     start: '',
     end: '',
   });
-  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  const [games, setGames] = useState<Game[]>([]);
+  // const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  // const [games, setGames] = useState<Game[]>([]);
 
-  const [profil, setProfil] = useState<Profil[]>([]);
+  const [profils, setProfils] = useState<Profil[]>([]);
+  const [profil, setProfil] = useState('');
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/v1/games');
-        setGames(response.data);
-      } catch (error) {
-        console.error('Error fetching games:', error);
-      }
-    };
+    // const fetchGames = async () => {
+    //   try {
+    //     const response = await axios.get('http://localhost:3000/api/v1/games');
+    //     setGames(response.data);
+    //   } catch (error) {
+    //     console.error('Error fetching games:', error);
+    //   }
+    // };
 
     const fetchprofil = async () => {
       const userId = localStorage.getItem('userId');
@@ -51,19 +53,27 @@ const FormAnnonce: React.FC = () => {
           `http://localhost:3000/api/v1/profil/details/${userId}`
         );
         console.log(response.data);
-        setProfil(response.data);
+        setProfils(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchprofil();
-    fetchGames();
+    // fetchGames();
   }, []);
 
   const fetchCreate = async () => {
     try {
-      console.log(profil);
-
+      console.log({
+        title,
+        platform,
+        description,
+        schedule_start: new Date(schedule.start).toISOString(),
+        schedule_end: new Date(schedule.end).toISOString(),
+        profil_id: Number(profil.split(',')[0]),
+        status: true,
+        game_id: Number(profil.split(',')[1]),
+      });
       const response = await axios.post(
         `http://localhost:3000/api/v1/posts/`,
         {
@@ -72,9 +82,10 @@ const FormAnnonce: React.FC = () => {
           description,
           schedule_start: new Date(schedule.start).toISOString(),
           schedule_end: new Date(schedule.end).toISOString(),
-          profil_id: profil,
+          profil_id: Number(profil.split(',')[0]),
           status: true,
-          game_id: selectedGameId,
+          game_id: Number(profil.split(',')[1]),
+          // game_id: selectedGameId,
         },
         { withCredentials: true }
       );
@@ -86,7 +97,7 @@ const FormAnnonce: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
     const response = await fetchCreate();
 
     if (response) {
@@ -94,7 +105,7 @@ const FormAnnonce: React.FC = () => {
       setPlatform('');
       setDescription('');
       setSchedule({ start: '', end: '' });
-      setSelectedGameId(null);
+      // setSelectedGameId(null);
       window.location.reload();
     } else {
       console.log('Error creating your ad');
@@ -143,11 +154,15 @@ const FormAnnonce: React.FC = () => {
 
       <div className="form_group">
         <label htmlFor="profil">Profil</label>
-        <select name="profil" id="profil">
+        <select
+          name="profil"
+          id="profil"
+          onChange={(e) => setProfil(e.target.value)}
+        >
           <option value="">Select a profil</option>
-          {profil.map((profils) => (
-            <option key={profils.id} value={profils.id}>
-              {profils.name} : {profils.game_name}
+          {profils.map((profil) => (
+            <option key={profil.id} value={profil.id + ',' + profil.game_id}>
+              {profil.name} : {profil.game_name}
             </option>
           ))}
         </select>

@@ -58,7 +58,6 @@ function Profil() {
 
         {userId === user.id ? (
           <>
-            <button>Contact Player</button>
             <Link to={`/EditProfil/${user.id}`}>
               <button>Edit Profil</button>
             </Link>
