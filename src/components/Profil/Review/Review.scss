@@ -1,10 +1,14 @@
 @import '../../../styles/variables';
+.review_annonce {
+  width: 100%;
+  max-height: 500px;
+}
 
 .review_container {
-  font-family: "Roboto", sans-serif;
-  width: 100%;
-  margin:10px;
-  padding:10px;
+  font-family: 'Roboto', sans-serif;
+  width: 35%;
+  margin: 10px;
+  padding: 10px;
   background-color: #f4f4f4;
 
   overflow-y: auto;
@@ -15,14 +19,14 @@
   color: $color-bg;
   justify-content: space-around;
 
-   button {
+  button {
     background-color: $color-bg;
     color: #f4f4f4;
-   }
+  }
 }
-.review_rate-container{
-  margin:10px;
-  padding:10px;
+.review_rate-container {
+  margin: 10px;
+  padding: 10px;
 }
 .review_rate {
   display: flex;
@@ -32,14 +36,27 @@
   color: $color-bg;
 }
 
-.review_rate-description{
+.review_rate-description {
   display: flex;
   justify-content: center;
   margin-top: 5px;
   background-color: $color-bg;
   color: #f4f4f4;
 
-   p {
+  p {
     margin: 25px;
-   }
+  }
+}
+
+.review_stars {
+  justify-content: flex-start;
+}
+
+.review_stars span {
+  margin-inline: 5px;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+  max-height: 500px;
 }
