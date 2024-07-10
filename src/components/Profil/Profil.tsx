@@ -1,10 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import './Profil.scss';
+
 import axios from 'axios';
+import Modal from './Review/Modal/Modal';
 
 import Review from './Review/Review';
 import Annonce from './profilAnnonce/profilAnnonce';
 import { useEffect, useState } from 'react';
+import Contact from './Contact/Contact';
 
 interface User {
   id: number;
@@ -14,15 +17,15 @@ interface User {
   discord_username: string;
 }
 
-interface Game {
-  id: number;
-  name: string;
-  pegi: number;
-  category: number;
-  description: string;
-  created_at: string;
-  updated_at: string | null;
-}
+// interface Game {
+//   id: number;
+//   name: string;
+//   pegi: number;
+//   category: number;
+//   description: string;
+//   created_at: string;
+//   updated_at: string | null;
+// }
 
 interface Profil {
   id: number;
@@ -40,9 +43,20 @@ function Profil() {
   const { id } = useParams();
   // console.log(id);
   const [user, setUser] = useState<User | null>(null);
-  const [profil, setProfil] = useState('');
+  // const [profil, setProfil] = useState('');
   const [profils, setProfils] = useState<Profil[]>([]);
   const [games, setGames] = useState<string[]>([]);
+
+  //Use state de la modal
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   // console.log(localStorage.getItem('token'));
 
@@ -109,7 +123,12 @@ function Profil() {
             </Link>
           </>
         ) : (
-          <button>Contact Player</button>
+          <>
+            <button onClick={openModal}>Contact Player</button>
+            <Modal show={showModal} onClose={closeModal}>
+              <Contact user={user} />
+            </Modal>
+          </>
         )}
       </div>
       <div className="profile_main">
