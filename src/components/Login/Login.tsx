@@ -18,10 +18,14 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'http://localhost:3000/api/v1/login',
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       // Récupérer le token de la réponse et se connecter
       const userId = response.data;

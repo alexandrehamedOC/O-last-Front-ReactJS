@@ -14,6 +14,13 @@ interface Game {
   updated_at: string | null;
 }
 
+interface Profil {
+  id: number;
+  name: string;
+  game_name: string;
+  game_id: number;
+}
+
 const FormAnnonce: React.FC = () => {
   const { userId } = useAuth();
   const [title, setTitle] = useState<string>('');
@@ -23,42 +30,69 @@ const FormAnnonce: React.FC = () => {
     start: '',
     end: '',
   });
-  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  const [games, setGames] = useState<Game[]>([]);
+  // const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  // const [games, setGames] = useState<Game[]>([]);
+
+  const [profils, setProfils] = useState<Profil[]>([]);
+  const [profil, setProfil] = useState('');
 
   useEffect(() => {
-    const fetchGames = async () => {
+    // const fetchGames = async () => {
+    //   try {
+    //     const response = await axios.get('http://localhost:3000/api/v1/games');
+    //     setGames(response.data);
+    //   } catch (error) {
+    //     console.error('Error fetching games:', error);
+    //   }
+    // };
+
+    const fetchprofil = async () => {
+      const userId = localStorage.getItem('userId');
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/games');
-        setGames(response.data);
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/profil/details/${userId}`
+        );
+        console.log(response.data);
+        setProfils(response.data);
       } catch (error) {
-        console.error('Error fetching games:', error);
+        console.log(error);
       }
     };
-
-    fetchGames();
+    fetchprofil();
+    // fetchGames();
   }, []);
 
   const fetchCreate = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/posts', {
+      console.log({
         title,
         platform,
         description,
         schedule_start: new Date(schedule.start).toISOString(),
         schedule_end: new Date(schedule.end).toISOString(),
-        user_id: userId.userId,
+        profil_id: Number(profil.split(',')[0]),
         status: true,
-        game_id: selectedGameId,
+        game_id: Number(profil.split(',')[1]),
       });
-
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/posts/`,
+        {
+          title,
+          platform,
+          description,
+          schedule_start: new Date(schedule.start).toISOString(),
+          schedule_end: new Date(schedule.end).toISOString(),
+          profil_id: Number(profil.split(',')[0]),
+          status: true,
+          game_id: Number(profil.split(',')[1]),
+          // game_id: selectedGameId,
+        },
+        { withCredentials: true }
+      );
+      console.log('poste créée avec succées');
       return response;
     } catch (error) {
-      console.error(
-        'Error creating ad:',
-        error.response?.data || error.message
-      );
-      return null;
+      console.error(error);
     }
   };
 
@@ -71,7 +105,7 @@ const FormAnnonce: React.FC = () => {
       setPlatform('');
       setDescription('');
       setSchedule({ start: '', end: '' });
-      setSelectedGameId(null);
+      // setSelectedGameId(null);
       window.location.reload();
     } else {
       console.log('Error creating your ad');
@@ -92,6 +126,17 @@ const FormAnnonce: React.FC = () => {
       </div>
 
       <div className="form_group">
+        <label htmlFor="platform">Platform</label>
+        <input
+          type="text"
+          id="platform"
+          placeholder="Platform"
+          value={platform}
+          onChange={(e) => setPlatform(e.target.value)}
+        />
+      </div>
+
+      {/* <div className="form_group">
         <label htmlFor="games">Games</label>
         <select
           id="games"
@@ -105,17 +150,22 @@ const FormAnnonce: React.FC = () => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div className="form_group">
-        <label htmlFor="platform">Platform</label>
-        <input
-          type="text"
-          id="platform"
-          placeholder="Platform"
-          value={platform}
-          onChange={(e) => setPlatform(e.target.value)}
-        />
+        <label htmlFor="profil">Profil</label>
+        <select
+          name="profil"
+          id="profil"
+          onChange={(e) => setProfil(e.target.value)}
+        >
+          <option value="">Select a profil</option>
+          {profils.map((profil) => (
+            <option key={profil.id} value={profil.id + ',' + profil.game_id}>
+              {profil.name} : {profil.game_name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="form_group">

@@ -36,7 +36,17 @@ function EditProfil() {
   const handleSubmit = async (e: React.FormEvent) => {
     // e.preventDefault();
     try {
+      // stockage du token dans le local storage
       const id = localStorage.getItem('userId');
+
+      console.log({
+        name,
+        game_id: game,
+        rank,
+        level,
+        description,
+        user_id: id,
+      });
 
       const response = await axios.post(
         `http://localhost:3000/api/v1/profil/`,
@@ -47,8 +57,10 @@ function EditProfil() {
           level,
           description,
           user_id: id,
-        }
+        },
+        { withCredentials: true }
       );
+
       console.log(response.data);
       setName('');
       setGame('');
@@ -86,7 +98,8 @@ function EditProfil() {
     // e.preventDefault();
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/profil/${id}`
+        `http://localhost:3000/api/v1/profil/${id}`,
+        { withCredentials: true }
       );
       console.log('deleted post wit ID :' + response.data);
       console.log(id);
@@ -96,6 +109,22 @@ function EditProfil() {
       console.log(error);
     }
   };
+
+  // const handleUpdate = async (id: number) => {
+  //   // e.preventDefault();
+  //   try {
+  //     const response = await axios.patch(
+  //       `http://localhost:3000/api/v1/profil/${id}`,
+  //       { withCredentials: true }
+  //     );
+  //     console.log('updated post wit ID :' + response.data);
+  //     console.log(id);
+
+  //     fecthprofil();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="edit">
@@ -129,49 +158,6 @@ function EditProfil() {
               </div>
             </section>
           </article>
-
-          {/* 
-        <article className="edit__profile-card">
-          <header className="edit__profile-card-header">
-            <h2 className="edit__profile-card-title">Profile 1</h2>
-            <button className="edit__profile-card-button">Update</button>
-            <button className="edit__profile-card-button">Delete</button>
-          </header>
-          <section className="edit__profile-card-body">
-            <h3 className="edit__profile-card-description-title">
-              Description
-            </h3>
-            <p className="edit__profile-card-description-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem ipsa
-              explicabo necessitatibus laboriosam et dolore.
-            </p>
-            <div className="edit__profile-card-info">
-              <span className="edit__profile-card-info-rank">Rank :</span>
-              <span className="edit__profile-card-info-level">Level :</span>
-            </div>
-          </section>
-        </article>
-
-        <article className="edit__profile-card">
-          <header className="edit__profile-card-header">
-            <h2 className="edit__profile-card-title">Profile 1</h2>
-            <button className="edit__profile-card-button">Update</button>
-            <button className="edit__profile-card-button">Delete</button>
-          </header>
-          <section className="edit__profile-card-body">
-            <h3 className="edit__profile-card-description-title">
-              Description
-            </h3>
-            <p className="edit__profile-card-description-text">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem ipsa
-              explicabo necessitatibus laboriosam et dolore.
-            </p>
-            <div className="edit__profile-card-info">
-              <span className="edit__profile-card-info-rank">Rank :</span>
-              <span className="edit__profile-card-info-level">Level :</span>
-            </div>
-          </section>
-        </article> */}
         </section>
       ))}
       ;
@@ -207,10 +193,6 @@ function EditProfil() {
                     {game.name}
                   </option>
                 ))}
-                {/* <option value="1">League of Legends</option>
-                <option value="2">Fortnite</option>
-                <option value="3">Minecraft</option>
-                <option value="4">Call of Duty</option> */}
               </select>
             </div>
 

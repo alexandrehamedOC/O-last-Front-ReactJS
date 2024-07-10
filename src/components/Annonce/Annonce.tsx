@@ -5,17 +5,22 @@ import axios from 'axios';
 
 import './Annonce.scss';
 import { useEffect, useState } from 'react';
-import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 Modal.setAppElement('#root');
 
 interface Player {
   id: number;
-  title: string;
-  platform: string;
-  description: string;
-  schedule_start: number;
-  schedule_end: number;
+  user_id: number;
+  post_id: number;
+  post_title: string;
+  post_platform: string;
+  post_description: string;
+  post_schedule_start: number;
+  post_schedule_end: number;
+  profil_rank: string;
+  profil_level: number;
+  profil_id: number;
+  game_id: number;
 }
 
 interface Game {
@@ -40,8 +45,8 @@ const Annonce: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleCardClick = (playerId: number) => {
-    navigate(`/profile/${playerId}`);
+  const handleCardClick = (user_id: number) => {
+    navigate(`/profile/${user_id}`);
   };
 
   const [annonce, setAnnonce] = useState<Player[]>([]);
@@ -117,13 +122,28 @@ const Annonce: React.FC = () => {
         </div>
         <div className="grid">
           {annonce.map((player) => (
-            <div key={player.id} onClick={() => handleCardClick(player.id)}>
-              <p>{player.title}</p>
-              <p>{player.platform}</p>
-              <p>{player.description}</p>
-              <p>{player.schedule_start}</p>
-              <p>{player.schedule_end}</p>
+            <div
+              key={player.post_id}
+              onClick={() => handleCardClick(player.user_id)}
+            >
+              <p>{player.post_title}</p>
+              <p>{player.post_platform}</p>
+              <p>{player.post_description}</p>
+              <p>{player.profil_rank}</p>
+              <p>{player.profil_level}</p>
+              <p>{player.post_schedule_start}</p>
+              <p>{player.post_schedule_end}</p>
             </div>
+            // <div>
+            //   <p>{player.title}</p>
+            //   <p>{player.platform}</p>
+            //   <p>{player.game}</p>
+            //   <p>{player.description}</p>
+            //   <p>{player.rank}</p>
+            //   <p>{player.level}</p>
+            //   <p>{player.schedule_start}</p>
+            //   <p>{player.schedule_end}</p>
+            // </div>
           ))}
         </div>
       </div>
