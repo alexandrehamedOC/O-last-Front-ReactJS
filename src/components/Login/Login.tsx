@@ -81,9 +81,10 @@ function Login() {
         <p className="login__forgot-password">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
           consectetur incidunt -
-          <Link to="#" className="login__forgot-password-link">
+          <Link to="/mot-de-passe-oublie" className="login__forgot-password-link">
             forgot password
           </Link>
+
         </p>
       </section>
       <section className="login__inscription">
