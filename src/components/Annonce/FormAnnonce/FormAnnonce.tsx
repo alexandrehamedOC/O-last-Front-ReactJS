@@ -4,15 +4,15 @@ import { useAuth } from '../../../context/AuthContext';
 
 import './formAnnonce.scss';
 
-interface Game {
-  id: number;
-  name: string;
-  pegi: number;
-  category: number;
-  description: string;
-  created_at: string;
-  updated_at: string | null;
-}
+// interface Game {
+//   id: number;
+//   name: string;
+//   pegi: number;
+//   category: number;
+//   description: string;
+//   created_at: string;
+//   updated_at: string | null;
+// }
 
 interface Profil {
   id: number;
@@ -37,15 +37,6 @@ const FormAnnonce: React.FC = () => {
   const [profil, setProfil] = useState('');
 
   useEffect(() => {
-    // const fetchGames = async () => {
-    //   try {
-    //     const response = await axios.get('http://localhost:3000/api/v1/games');
-    //     setGames(response.data);
-    //   } catch (error) {
-    //     console.error('Error fetching games:', error);
-    //   }
-    // };
-
     const fetchprofil = async () => {
       const userId = localStorage.getItem('userId');
       try {
@@ -64,16 +55,6 @@ const FormAnnonce: React.FC = () => {
 
   const fetchCreate = async () => {
     try {
-      console.log({
-        title,
-        platform,
-        description,
-        schedule_start: new Date(schedule.start).toISOString(),
-        schedule_end: new Date(schedule.end).toISOString(),
-        profil_id: Number(profil.split(',')[0]),
-        status: true,
-        game_id: Number(profil.split(',')[1]),
-      });
       const response = await axios.post(
         `http://localhost:3000/api/v1/posts/`,
         {
@@ -135,22 +116,6 @@ const FormAnnonce: React.FC = () => {
           onChange={(e) => setPlatform(e.target.value)}
         />
       </div>
-
-      {/* <div className="form_group">
-        <label htmlFor="games">Games</label>
-        <select
-          id="games"
-          value={selectedGameId ?? ''}
-          onChange={(e) => setSelectedGameId(Number(e.target.value))}
-        >
-          <option value="">Select a game</option>
-          {games.map((game) => (
-            <option key={game.id} value={game.id}>
-              {game.name}
-            </option>
-          ))}
-        </select>
-      </div> */}
 
       <div className="form_group">
         <label htmlFor="profil">Profil</label>

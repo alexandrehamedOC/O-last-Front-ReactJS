@@ -61,7 +61,9 @@ function Profil() {
             <Link to={`/EditProfil/${user.id}`}>
               <button>Edit Profil</button>
             </Link>
-            <button>Edit Annonce</button>
+            <Link to={`/EditAnnonce/${user.id}`}>
+              <button>Edit Annonce</button>
+            </Link>
           </>
         ) : (
           <button>Contact Player</button>
