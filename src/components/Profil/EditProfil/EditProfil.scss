@@ -1,0 +1,28 @@
+.edit {
+  border: 2px solid pink;
+  gap: 100px;
+
+  &__card {
+    display: flex;
+    justify-content: end;
+    gap: 100px;
+
+    .edit__profile-card {
+      border: 2px solid purple;
+      display: flex;
+      width: 50vh;
+    }
+  }
+
+  &__form {
+    border: 2px solid blue;
+    display: flex;
+    justify-content: end;
+    gap: 25px;
+    margin-top: 25px;
+
+    .edit__form-label {
+      color: black;
+    }
+  }
+}
