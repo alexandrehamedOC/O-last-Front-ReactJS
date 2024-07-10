@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Modal from './Modal/Modal';
+import Modal from '../../Modal/Modal';
 import axios from 'axios';
 import './Review.scss';
 
@@ -8,6 +8,7 @@ interface Rate {
   rate_id: number;
   note: number;
   rate_description: string;
+  game_name: string;
 }
 
 interface Profil {
@@ -33,11 +34,11 @@ function Review() {
   };
 
   const { id } = useParams();
+  const userId = Number(localStorage.getItem('userId'));
   const [rates, setRates] = useState<Rate[]>([]);
 
   const fetchRates = async (items: number) => {
     try {
-      //todo: affiner pour la pagination
       const response = await axios.get(
         `http://localhost:3000/api/v1/rates/user/${id}?itemsByPage=${items}`
       );
@@ -49,10 +50,9 @@ function Review() {
   };
 
   const fetchprofil = async () => {
-    const userId = localStorage.getItem('userId');
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/profil/details/${userId}`
+        `http://localhost:3000/api/v1/profil/details/${id}`
       );
       console.log(response.data);
       setProfils(response.data);
@@ -110,7 +110,9 @@ function Review() {
     <div className="review_container">
       <div className="review_title">
         <h1>Review</h1>
-        <button onClick={openModal}>Add review</button>
+        {userId !== Number(id) ? (
+          <button onClick={openModal}>Add review</button>
+        ) : null}
         <Modal show={showModal} onClose={closeModal}>
           <h2>Add a review</h2>
           <form className="form_rate" onSubmit={handleSubmit}>
@@ -151,21 +153,28 @@ function Review() {
           </form>
         </Modal>
       </div>
-      {rates.map((rate) => (
-        <div className="review_rate-container" key={rate.rate_id}>
-          <div className="review_rate">
-            <div className="review_stars">
-              {Array.from({ length: rate.note }, (_, index) => (
-                <span key={index}>⭐</span>
-              ))}
+      <div className="rate_container">
+        {rates.map((rate) => (
+          <div className="review_rate-container" key={rate.rate_id}>
+            <div className="review_rate">
+              <div className="review_stars">
+                {Array.from({ length: rate.note }, (_, index) => (
+                  <span key={index}>⭐</span>
+                ))}
+              </div>
+              <div className="review_game">
+                <p>{rate.game_name}</p>
+              </div>
+            </div>
+            <div className="review_rate-description">
+              <p>{rate.rate_description}</p>
             </div>
           </div>
-          <div className="review_rate-description">
-            <p>{rate.rate_description}</p>
-          </div>
-        </div>
-      ))}
-      <button onClick={handleButtonClick}>See all reviews</button>
+        ))}
+        <button onClick={handleButtonClick} className="review-see-all-button">
+          See all reviews
+        </button>
+      </div>
     </div>
   );
 }
