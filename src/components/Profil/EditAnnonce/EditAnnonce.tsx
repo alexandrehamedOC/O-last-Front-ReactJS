@@ -36,22 +36,23 @@ function EditAnnonce() {
   const [profils, setProfils] = useState<Profil[]>([]);
   const [profil, setProfil] = useState('');
 
+  //fetch sur les Annonces en cours
+  const fetchlisting = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/v1/posts/user/${id}`
+      );
+      const annonces = response.data;
+      console.log(annonces);
+
+      setAnnonce(annonces);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  // useEffect pour récupérer les annonces en cours et les profils
   useEffect(() => {
-    //fetch sur les Annonces en cours
-    const fetchlisting = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/posts/user/${id}`
-        );
-        const annonces = response.data;
-        console.log(annonces);
-
-        setAnnonce(annonces);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
+    // récupération des profils
     const fetchprofil = async () => {
       const userId = localStorage.getItem('userId');
       try {
@@ -69,7 +70,6 @@ function EditAnnonce() {
   }, []);
 
   //Créer une annonce
-
   const fetchCreate = async () => {
     try {
       const response = await axios.post(
@@ -92,9 +92,9 @@ function EditAnnonce() {
       console.log(error);
     }
   };
-
+  // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     const response = await fetchCreate();
 
     if (response !== undefined) {
@@ -107,6 +107,19 @@ function EditAnnonce() {
     }
   };
 
+  // Delete une annonce
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/v1/posts/${id}`,
+        { withCredentials: true }
+      );
+      console.log('DELETE : ' + response.data);
+      fetchlisting();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className="edit">
@@ -118,7 +131,12 @@ function EditAnnonce() {
                   Title : {player.post_title}
                 </h2>
                 <button className="edit__profile-card-button">Update</button>
-                <button className="edit__profile-card-button">Delete</button>
+                <button
+                  className="edit__profile-card-button"
+                  onClick={() => handleDelete(player.post_id)}
+                >
+                  Delete
+                </button>
               </header>
               <section className="edit__profile-card-body">
                 <h3 className="edit__profile-card-description-title">
