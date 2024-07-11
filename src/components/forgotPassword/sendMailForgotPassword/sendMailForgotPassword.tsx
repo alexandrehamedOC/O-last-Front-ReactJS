@@ -4,13 +4,15 @@ import axios from 'axios';
 
 export default function SendMailForgotPassword({}) {
   const [email, setEmail] = useState('renseigner votre mail');
-  const [notification,setNotication] = useState('');
+  const [notification, setNotication] = useState('');
 
   function handleGetMail(inputValue: string) {
     setEmail(inputValue);
   }
   function handleSubmitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const notif =
+      '<div className="notification notification.success">{notification}</div>';
 
     axios
       .post('http://localhost:3000/api/v1/forgot-password', {
@@ -21,7 +23,7 @@ export default function SendMailForgotPassword({}) {
         console.log(response);
       })
       .catch(function (error) {
-        setNotication('Erreur lors de l\'envoi de l\'email. Veuillez réessayer.');
+        setNotication("Erreur lors de l'envoi de l'email. Veuillez réessayer.");
         console.log(error);
       });
   }
@@ -48,7 +50,13 @@ export default function SendMailForgotPassword({}) {
         </div>
         <button>ENVOYER</button>
       </form>
-      {notification && <div className="notification">{notification}</div>}
+      {notification && (
+        <div
+          className={`notification ${notification.includes('succès') ? 'notification--success' : 'notification--error'}`}
+        >
+          {notification}
+        </div>
+      )}
     </div>
   );
 }
