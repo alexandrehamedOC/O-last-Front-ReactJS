@@ -20,6 +20,7 @@ import FormNewPassword from './components/forgotPassword/formNewPassword/formNew
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
 import EditProfil from './components/Profil/EditProfil/EditProfil';
+import EditAnnonce from './components/Profil/EditAnnonce/EditAnnonce';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="/annonce" element={<Annonce />} />
         <Route path="/profile/:id" element={<Profil />} />
         <Route path="/editprofil/:id" element={<EditProfil />} />
+        <Route path="/editannonce/:id" element={<EditAnnonce />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<SignIn />} />
         <Route path="/mot-de-passe-oublie" element={<SendMailForgotPassword />} />
