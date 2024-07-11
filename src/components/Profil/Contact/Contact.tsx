@@ -9,10 +9,11 @@ interface User {
   discord_username: string;
 }
 function Contact({ user }: ContactProps) {
-  // const [user, setUser] = useState<User | null>(null);
+  const [showSteps, setShowSteps] = useState(false);
+
   return (
     <>
-      <h2 className="contact__title">Contact Player</h2>
+      {/* <h2 className="contact__title">Contact Player</h2> */}
       <div className="contact__content">
         <p className="contact__text">
           Vous pouvez contacter ce joueur via Discord :
@@ -20,20 +21,25 @@ function Contact({ user }: ContactProps) {
         <p className="contact__discord-username">
           <strong>{user.discord_username}</strong>
         </p>
-        <p className="contact__text">
-          Si vous ne savez pas comment, voici les étapes :
-        </p>
-        <ul className="contact__steps">
-          <li className="contact__step">Ouvrez Discord et connectez-vous.</li>
-          <li className="contact__step">Cliquez sur l'icône des amis.</li>
-          <li className="contact__step">
-            Saisissez le pseudo Discord mentionné ci-dessus.
-          </li>
-          <li className="contact__step">Envoyez une demande d'ami.</li>
-          <li className="contact__step">
-            Une fois accepté, vous pouvez envoyer un message.
-          </li>
-        </ul>
+        <button onClick={() => setShowSteps(!showSteps)}>
+          Besoin d'aide ?
+        </button>
+
+        {showSteps && (
+          <ul className="contact__steps">
+            <li className="contact__step">
+              Ouvre ton discord et connect toi !
+            </li>
+            <li className="contact__step">Cliquez sur l'icône des amis.</li>
+            <li className="contact__step">
+              Saisissez le pseudo Discord mentionné ci-dessus.
+            </li>
+            <li className="contact__step">Envoyez une demande d'ami.</li>
+            <li className="contact__step">
+              Une fois accepté, vous pouvez envoyer un message.
+            </li>
+          </ul>
+        )}
       </div>
     </>
   );
