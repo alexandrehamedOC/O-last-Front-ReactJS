@@ -7,10 +7,11 @@ import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 interface Profil {
   id: number;
   name: string;
-  game: number;
+  game_id: number;
   rank: string;
   level: number;
   description: string;
+  user_id: number;
 }
 
 interface Game {
@@ -21,52 +22,61 @@ interface Game {
 function EditProfil() {
   const { id } = useParams();
 
-  // const [deleteProfil, setDeleteProfil] = useState<Delete[]>([]);
-
   const [profil, setProfil] = useState<Profil[]>([]);
   const [games, setGames] = useState<Game[]>([]);
 
   //Préparation création de profil
   const [name, setName] = useState('');
-  const [game, setGame] = useState('');
+  const [game_id, setGame] = useState('');
   const [rank, setRank] = useState('');
   const [level, setLevel] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // to do trouver un moyen de passer des number dans l'objet
+    const id = localStorage.getItem('userId');
+    const data: Partial<Profil> = {};
+    data.user_id = Number(id);
+    if (name) {
+      data['name'] = name;
+    }
+    if (game_id) {
+      data['game_id'] = Number(game_id);
+    }
+    if (rank) {
+      data['rank'] = rank;
+    }
+    if (level) {
+      data.level = Number(level);
+    }
+    if (description) {
+      data['description'] = description;
+    }
+
+    const submitter = (e.nativeEvent as SubmitEvent)
+      .submitter as HTMLButtonElement;
+    const actionType = submitter.getAttribute('data-action');
+
+    if (actionType === 'create') {
+      handleCreate(e, data);
+    } else if (actionType === 'update') {
+      handleSubmitUpdate(e, data);
+    }
+  };
+
+  const handleCreate = async (
+    e: React.FormEvent<HTMLFormElement>,
+    data: Partial<Profil>
+  ) => {
+    e.preventDefault();
     try {
-      // stockage du token dans le local storage
-      const id = localStorage.getItem('userId');
-
-      console.log({
-        name,
-        game_id: game,
-        rank,
-        level,
-        description,
-        user_id: id,
-      });
-
       const response = await axios.post(
         `http://localhost:3000/api/v1/profil/`,
-        {
-          name,
-          game_id: game,
-          rank,
-          level,
-          description,
-          user_id: id,
-        },
+        data,
         { withCredentials: true }
       );
 
-      console.log(response.data);
-      setName('');
-      setGame('');
-      setRank('');
-      setLevel('');
-      setDescription('');
+      fecthprofil();
       return response;
     } catch (error) {
       console.log(error);
@@ -76,13 +86,13 @@ function EditProfil() {
   const fecthprofil = async () => {
     try {
       const games = await axios.get(`http://localhost:3000/api/v1/games/`);
-      console.log(games);
+
       setGames(games.data);
 
       const response = await axios.get(
         `http://localhost:3000/api/v1/profil/details/${id}`
       );
-      console.log(response.data);
+
       setProfil(response.data);
     } catch (error) {
       console.log(error);
@@ -102,7 +112,6 @@ function EditProfil() {
         { withCredentials: true }
       );
       console.log('deleted post wit ID :' + response.data);
-      console.log(id);
 
       fecthprofil();
     } catch (error) {
@@ -110,30 +119,77 @@ function EditProfil() {
     }
   };
 
-  // const handleUpdate = async (id: number) => {
-  //   // e.preventDefault();
-  //   try {
-  //     const response = await axios.patch(
-  //       `http://localhost:3000/api/v1/profil/${id}`,
-  //       { withCredentials: true }
-  //     );
-  //     console.log('updated post wit ID :' + response.data);
-  //     console.log(id);
+  const handleUpdate = async (e: React.FormEvent, profilId: Number) => {
+    const id = localStorage.getItem('userId');
 
-  //     fecthprofil();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+    const profilToUpdate = await axios.get(
+      `http://localhost:3000/api/v1/profil/details/${id}`
+    );
+
+    const profilFilter = profilToUpdate.data.filter(
+      (profil: Profil) => profil.id === Number(profilId)
+    );
+
+    const formNameUpdate = document.getElementById('name') as HTMLInputElement;
+    const formRankUpdate = document.getElementById('rank') as HTMLInputElement;
+    const formLevelUpdate = document.getElementById(
+      'level'
+    ) as HTMLInputElement;
+    const formDescriptionUpdate = document.querySelector(
+      '.edit__form-textarea'
+    ) as HTMLTextAreaElement;
+    const formProfilId = document.getElementById(
+      'profil_id'
+    ) as HTMLInputElement;
+
+    formNameUpdate.value = profilFilter[0].name;
+    formRankUpdate.value = profilFilter[0].rank;
+    formLevelUpdate.value = profilFilter[0].level;
+    formDescriptionUpdate.value = profilFilter[0].description;
+    formProfilId.value = profilFilter[0].id;
+  };
+
+  const handleSubmitUpdate = async (
+    e: React.FormEvent,
+    data: Partial<Profil>
+  ) => {
+    e.preventDefault();
+    try {
+      const profilCard = document.querySelector(
+        '.edit__card'
+      ) as HTMLDivElement;
+      const profilId = Number(profilCard.id);
+
+      const response = await axios.patch(
+        `http://localhost:3000/api/v1/profil/${profilId}`,
+        data,
+        { withCredentials: true }
+      );
+      console.log('updated profil' + id);
+
+      fecthprofil();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="edit">
       {profil.map((profils) => (
-        <section key={profils.id} className="edit__card">
+        <section
+          key={profils.id}
+          className="edit__card"
+          id={profils.id.toString()}
+        >
           <article className="edit__profile-card">
             <header className="edit__profile-card-header">
               <h2 className="edit__profile-card-title">{profils.name}</h2>
-              <button className="edit__profile-card-button">Update</button>
+              <button
+                className="edit__profile-card-button"
+                onClick={(e) => handleUpdate(e, profils.id)}
+              >
+                Update
+              </button>
               <button
                 className="edit__profile-card-button"
                 onClick={() => handleDelete(profils.id)}
@@ -143,7 +199,7 @@ function EditProfil() {
             </header>
             <section className="edit__profile-card-body">
               <h3 className="edit__profile-card-description-title">
-                {profils.game}
+                {profils.game_id}
               </h3>
               <p className="edit__profile-card-description-text">
                 {profils.description}
@@ -163,6 +219,7 @@ function EditProfil() {
       ;
       <section className="edit__form">
         <form onSubmit={handleSubmit}>
+          <input type="hidden" id="profil_id" value="" />
           <div className="edit__form-main">
             <div className="edit__form-group">
               <label htmlFor="name" className="edit__form-label">
@@ -182,8 +239,8 @@ function EditProfil() {
                 Game
               </label>
               <select
-                name="game"
-                id="game"
+                name="game_id"
+                id="game_id"
                 className="edit__form-select"
                 onChange={(e) => setGame(e.target.value)}
               >
@@ -234,8 +291,19 @@ function EditProfil() {
                 placeholder="Description"
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
-              <button className="edit__form-button" type="submit">
-                Create/ Update Profil
+              <button
+                className="create__form-button"
+                type="submit"
+                data-action="create"
+              >
+                Create Profil
+              </button>
+              <button
+                className="update__form-button"
+                type="submit"
+                data-action="update"
+              >
+                Update Profil
               </button>
             </div>
           </div>

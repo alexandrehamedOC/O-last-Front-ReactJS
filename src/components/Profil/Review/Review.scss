@@ -4,13 +4,19 @@
   max-height: 500px;
 }
 
+.rate_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .review_container {
   font-family: 'Roboto', sans-serif;
   width: 35%;
-  margin: 10px;
+  margin: 15px;
   padding: 10px;
   background-color: #f4f4f4;
-
   overflow-y: auto;
 }
 
@@ -27,12 +33,12 @@
 .review_rate-container {
   margin: 10px;
   padding: 10px;
+  width: 100%;
 }
 .review_rate {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
-  padding: 10px;
+  align-items: flex-start;
   color: $color-bg;
 }
 
@@ -44,7 +50,8 @@
   color: #f4f4f4;
 
   p {
-    margin: 25px;
+    margin: 5px;
+    text-align: left;
   }
 }
 
@@ -59,4 +66,14 @@
 .overflow-y-auto {
   overflow-y: auto;
   max-height: 500px;
+}
+
+.review-see-all-button {
+  text-align: center;
+  width: 50%;
+}
+
+.review_title button {
+  background-color: $color-bg;
+  color: #f4f4f4;
 }
