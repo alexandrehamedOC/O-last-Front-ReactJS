@@ -14,6 +14,8 @@ import Annonce from './components/Annonce/Annonce';
 import Profil from './components/Profil/Profil';
 import Login from './components/Login/Login';
 import SignIn from './components/SignIn/SignIn';
+import SendMailForgotPassword from './components/forgotPassword/sendMailForgotPassword/sendMailForgotPassword';
+import FormNewPassword from './components/forgotPassword/formNewPassword/formNewPassword';
 
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
@@ -35,6 +37,8 @@ const router = createBrowserRouter(
         <Route path="/editannonce/:id" element={<EditAnnonce />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<SignIn />} />
+        <Route path="/mot-de-passe-oublie" element={<SendMailForgotPassword />} />
+        <Route path="/nouveau-mot-de-passe" element={<FormNewPassword />}/>
       </Route>
     </>
   )
