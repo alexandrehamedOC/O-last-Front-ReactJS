@@ -4,6 +4,7 @@ import axios from 'axios';
 import './SignIn.scss';
 
 function SignIn() {
+  // Déclaration des states
   const [firstname, setFirstname] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   const [city, setCity] = useState<string>('');
@@ -13,6 +14,7 @@ function SignIn() {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
+  // Fonction pour gérer le submit du formulaire
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -29,24 +31,40 @@ function SignIn() {
     }
   };
 
+  // Fonction pour envoyer les données du formulaire à l'API
   const fetchcreate = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/api/v1/users`, {
-        firstname,
-        lastname,
-        city,
-        discord_username: pseudoDiscord,
-        email,
-        birth_date: birthDate,
-        password,
-      });
-      console.log(response.data);
+      console.log('bonjour');
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/users`,
+        {
+          firstname,
+          lastname,
+          city,
+          discord_username: pseudoDiscord,
+          email,
+          birth_date: birthDate,
+          password,
+        }
+      );
+
+      // Reset des states - Vider les champs du formulaire au clic sur le bouton
+      setFirstname('');
+      setLastname('');
+      setCity('');
+      setPseudoDiscord('');
+      setEmail('');
+      setBirthDate('');
+      setPassword('');
+      setConfirmPassword('');
       return response;
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Hook useEffect pour appeler la fonction fetchcreate au chargement de la page
   useEffect(() => {
     fetchcreate();
   }, []);

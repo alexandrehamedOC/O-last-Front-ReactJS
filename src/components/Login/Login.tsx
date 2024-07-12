@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 
 function Login() {
@@ -8,80 +9,34 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Fonction pour gérer le submit du formulaire
+  const navigate = useNavigate();
+  // Récupérer la fonction login du contexte d'authentification pour se connecter
+  const { login } = useAuth();
+
+  // Fonction pour gérer la soumission du formulaire et se connecter
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const response = await fetchpost();
-
-    if (!response) {
-      console.log('Erreur de connexion');
-    } else {
-      console.log('Connexion réussie');
-      console.log(response);
-    }
-  };
-
-  // TEST API GAMES - METHOD GET
-  const fetchget = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/api/v1/games', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchget();
-  }, []);
-
-  // TEST API LOGIN - METHOD POST
-  const fetchpost = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/login`,
+        `${import.meta.env.VITE_API_BASE_URL}/login`,
         {
-          email: email,
-          password: password,
+          email,
+          password,
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        { withCredentials: true }
       );
 
-      console.log(response.data);
-      return response.data;
+      // Récupérer le token de la réponse et se connecter
+      const userId = response.data;
+
+      // Appeler la fonction login du contexte d'authentification
+      login(userId);
+      navigate('/');
     } catch (error) {
-      console.log(error);
+      // Afficher une erreur si la connexion échoue
+      console.error('erreur de connexion');
     }
   };
-
-  useEffect(() => {
-    fetchpost();
-  }, []);
-
-  // // TEST API CHUCK NORRIS OK
-  // const fetchJoke = async () => {
-  //   try {
-  //     const chuckResponse = await axios.get(
-  //       'https://api.chucknorris.io/jokes/random'
-  //     );
-  //     console.log(chuckResponse.data.value);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchJoke();
-  // }, []);
 
   return (
     <div className="login">
@@ -122,7 +77,10 @@ function Login() {
         <p className="login__forgot-password">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
           consectetur incidunt -
-          <Link to="#" className="login__forgot-password-link">
+          <Link
+            to="/mot-de-passe-oublie"
+            className="login__forgot-password-link"
+          >
             forgot password
           </Link>
         </p>
@@ -141,7 +99,7 @@ function Login() {
             </p>
           </figcaption>
           <Link to="/inscription">
-            <button  className="login__figure-button">Créer un compte</button>
+            <button className="login__figure-button">Créer un compte</button>
           </Link>
         </figure>
       </section>
