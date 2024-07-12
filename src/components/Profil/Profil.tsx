@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import './Profil.scss';
 
 import axios from 'axios';
-import Modal from './Review/Modal/Modal';
+import Modal from '../Modal/Modal';
 
 import Review from './Review/Review';
 import Annonce from './profilAnnonce/profilAnnonce';

@@ -8,6 +8,7 @@ interface Profil {
   id: number;
   name: string;
   game_id: number;
+  game_name: string;
   rank: string;
   level: number;
   description: string;
@@ -199,7 +200,7 @@ function EditProfil() {
             </header>
             <section className="edit__profile-card-body">
               <h3 className="edit__profile-card-description-title">
-                {profils.game_id}
+                {profils.game_name}
               </h3>
               <p className="edit__profile-card-description-text">
                 {profils.description}
