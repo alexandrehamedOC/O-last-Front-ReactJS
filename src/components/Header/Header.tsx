@@ -20,12 +20,6 @@ function Header() {
       </Link>
       <nav className="header__nav">
         <ul className="nav__list">
-          {/* <li className="nav__link">
-            <Link to="/">Accueil</Link>
-          </li>
-          <li className="nav__link">
-            <Link to="/Annonce">Joueurs</Link>
-          </li> */}
           {userId ? (
             <>
               <li className="nav__link">
@@ -50,15 +44,6 @@ function Header() {
           )}
         </ul>
         <ul className="nav__list">
-          {/* <li className="nav__link">
-            <Link to="/connexion">Connexion</Link>
-          </li> */}
-          {/* <li className="nav__link">
-            <Link to="/inscription">Inscription</Link>
-          </li> */}
-          {/* <li className="nav__link">
-            <Link to="#">Deconnexion</Link>
-          </li> */}
           {userId ? (
             <li className="nav__link">
               <Link to="#" onClick={handleLogout}>

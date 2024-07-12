@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Modal from '../../Modal/Modal';
 import axios from 'axios';
 import './Review.scss';
@@ -89,7 +89,6 @@ function Review() {
     try {
       const response = await fetchCreate();
 
-      console.log('poste créée avec succées');
       return response;
     } catch (error) {
       console.error(error);
@@ -98,7 +97,6 @@ function Review() {
 
   const handleButtonClick = (e: React.FormEvent) => {
     // Perform your desired action here
-    console.log('Button was clicked!');
 
     fetchRates(20);
     document

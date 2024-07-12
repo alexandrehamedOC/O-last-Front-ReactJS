@@ -4,16 +4,6 @@ import { useAuth } from '../../../context/AuthContext';
 
 import './formAnnonce.scss';
 
-// interface Game {
-//   id: number;
-//   name: string;
-//   pegi: number;
-//   category: number;
-//   description: string;
-//   created_at: string;
-//   updated_at: string | null;
-// }
-
 interface Profil {
   id: number;
   name: string;
@@ -30,8 +20,6 @@ const FormAnnonce: React.FC = () => {
     start: '',
     end: '',
   });
-  // const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  // const [games, setGames] = useState<Game[]>([]);
 
   const [profils, setProfils] = useState<Profil[]>([]);
   const [profil, setProfil] = useState('');
@@ -50,7 +38,6 @@ const FormAnnonce: React.FC = () => {
       }
     };
     fetchprofil();
-    // fetchGames();
   }, []);
 
   const fetchCreate = async () => {
@@ -66,7 +53,6 @@ const FormAnnonce: React.FC = () => {
           profil_id: Number(profil.split(',')[0]),
           status: true,
           game_id: Number(profil.split(',')[1]),
-          // game_id: selectedGameId,
         },
         { withCredentials: true }
       );
@@ -86,7 +72,6 @@ const FormAnnonce: React.FC = () => {
       setPlatform('');
       setDescription('');
       setSchedule({ start: '', end: '' });
-      // setSelectedGameId(null);
       window.location.reload();
     } else {
       console.log('Error creating your ad');
