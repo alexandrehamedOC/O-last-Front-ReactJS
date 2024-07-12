@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import FormAnnonce from './FormAnnonce/FormAnnonce';
 import axios from 'axios';
@@ -134,16 +134,6 @@ const Annonce: React.FC = () => {
               <p>{player.post_schedule_start}</p>
               <p>{player.post_schedule_end}</p>
             </div>
-            // <div>
-            //   <p>{player.title}</p>
-            //   <p>{player.platform}</p>
-            //   <p>{player.game}</p>
-            //   <p>{player.description}</p>
-            //   <p>{player.rank}</p>
-            //   <p>{player.level}</p>
-            //   <p>{player.schedule_start}</p>
-            //   <p>{player.schedule_end}</p>
-            // </div>
           ))}
         </div>
       </div>

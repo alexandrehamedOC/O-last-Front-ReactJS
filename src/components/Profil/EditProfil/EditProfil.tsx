@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import './EditProfil.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 interface Profil {
   id: number;
   name: string;
   game_id: number;
+  game_name: string;
   rank: string;
   level: number;
   description: string;
@@ -33,7 +33,6 @@ function EditProfil() {
   const [description, setDescription] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // to do trouver un moyen de passer des number dans l'objet
     const id = localStorage.getItem('userId');
     const data: Partial<Profil> = {};
     data.user_id = Number(id);
@@ -86,13 +85,10 @@ function EditProfil() {
   const fecthprofil = async () => {
     try {
       const games = await axios.get(`http://localhost:3000/api/v1/games/`);
-
       setGames(games.data);
-
       const response = await axios.get(
         `http://localhost:3000/api/v1/profil/details/${id}`
       );
-
       setProfil(response.data);
     } catch (error) {
       console.log(error);
@@ -111,8 +107,6 @@ function EditProfil() {
         `http://localhost:3000/api/v1/profil/${id}`,
         { withCredentials: true }
       );
-      console.log('deleted post wit ID :' + response.data);
-
       fecthprofil();
     } catch (error) {
       console.log(error);
@@ -160,12 +154,11 @@ function EditProfil() {
       ) as HTMLDivElement;
       const profilId = Number(profilCard.id);
 
-      const response = await axios.patch(
+      await axios.patch(
         `http://localhost:3000/api/v1/profil/${profilId}`,
         data,
         { withCredentials: true }
       );
-      console.log('updated profil' + id);
 
       fecthprofil();
     } catch (error) {
@@ -199,7 +192,7 @@ function EditProfil() {
             </header>
             <section className="edit__profile-card-body">
               <h3 className="edit__profile-card-description-title">
-                {profils.game_id}
+                {profils.game_name}
               </h3>
               <p className="edit__profile-card-description-text">
                 {profils.description}

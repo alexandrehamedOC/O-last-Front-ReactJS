@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Contact.scss';
 
 interface ContactProps {
-  user: User; // Assurez-vous que le type User est correctement défini
+  user: User;
 }
 
 interface User {
@@ -13,7 +13,6 @@ function Contact({ user }: ContactProps) {
 
   return (
     <>
-      {/* <h2 className="contact__title">Contact Player</h2> */}
       <div className="contact__content">
         <p className="contact__text">
           Vous pouvez contacter ce joueur via Discord :

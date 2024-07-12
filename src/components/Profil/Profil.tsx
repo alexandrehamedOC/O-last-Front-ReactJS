@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import './Profil.scss';
 
 import axios from 'axios';
-import Modal from './Review/Modal/Modal';
+import Modal from '../Modal/Modal';
 
 import Review from './Review/Review';
 import Annonce from './profilAnnonce/profilAnnonce';
@@ -16,16 +16,6 @@ interface User {
   city: string;
   discord_username: string;
 }
-
-// interface Game {
-//   id: number;
-//   name: string;
-//   pegi: number;
-//   category: number;
-//   description: string;
-//   created_at: string;
-//   updated_at: string | null;
-// }
 
 interface Profil {
   id: number;
@@ -77,7 +67,6 @@ function Profil() {
       const response = await axios.get(
         `http://localhost:3000/api/v1/profil/details/${id}`
       );
-      console.log(response.data);
 
       const gameList: string[] = [];
       response.data.map((profil: Profil) => {
@@ -154,16 +143,6 @@ function Profil() {
             </div>
           ))}
         </div>
-        {/* <div className="description">
-          <h1>Description</h1>
-          <div className="description_box">
-            {profils.map((profil) => (
-              <p className="description_text" key={profil.id}>
-                {profil.description}
-              </p>
-            ))}
-          </div>
-        </div> */}
         <div className="review_annonce">
           <Review />
           <Annonce />

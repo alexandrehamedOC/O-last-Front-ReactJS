@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './profilAnnonce.scss';
 import axios from 'axios';
-import Review from '../Review/Review';
 import Annonce from '../profilAnnonce/profilAnnonce';
 
 interface User {
@@ -13,14 +12,14 @@ interface User {
   discord_username: string;
 }
 
-interface Profil {
-  id: number;
-  profil_name: string;
-  profil_description: string;
-  profil_rank: string;
-  profil_level: number;
-  game_name: string;
-}
+// interface Profil {
+//   id: number;
+//   profil_name: string;
+//   profil_description: string;
+//   profil_rank: string;
+//   profil_level: number;
+//   game_name: string;
+// }
 
 interface Annonce {
   id: number;
@@ -39,13 +38,10 @@ interface Annonce {
 }
 
 function profilAnnonce() {
-  const userId = Number(localStorage.getItem('userId'));
   const { id } = useParams();
   const [user, setUser] = useState<User | null>(null);
-  const [annonce, setAnnonce] = useState('');
   const [annonces, setAnnonces] = useState<Annonce[]>([]);
-  const [profil, setProfil] = useState('');
-  const [profils, setProfils] = useState<Profil[]>([]);
+  // const [profils, setProfils] = useState<Profil[]>([]);
 
   const fetchuser = async () => {
     try {
@@ -60,10 +56,8 @@ function profilAnnonce() {
 
   const fetchProfils = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/v1/profil/details/${id}`
-      );
-      setProfils(response.data);
+      await axios.get(`http://localhost:3000/api/v1/profil/details/${id}`);
+      // setProfils(response.data);
     } catch (error) {
       console.error(error);
     }

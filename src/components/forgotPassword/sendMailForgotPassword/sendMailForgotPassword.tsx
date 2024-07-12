@@ -11,20 +11,16 @@ export default function SendMailForgotPassword({}) {
   }
   function handleSubmitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const notif =
-      '<div className="notification notification.success">{notification}</div>';
 
     axios
       .post('http://localhost:3000/api/v1/forgot-password', {
         email: email,
       })
-      .then(function (response) {
+      .then(function () {
         setNotication('Email envoyé avec succès !');
-        console.log(response);
       })
-      .catch(function (error) {
+      .catch(function () {
         setNotication("Erreur lors de l'envoi de l'email. Veuillez réessayer.");
-        console.log(error);
       });
   }
   return (

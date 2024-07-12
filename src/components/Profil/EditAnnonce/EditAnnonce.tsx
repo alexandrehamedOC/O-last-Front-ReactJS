@@ -43,7 +43,6 @@ function EditAnnonce() {
         `http://localhost:3000/api/v1/posts/user/${id}`
       );
       const annonces = response.data;
-      console.log(annonces);
 
       setAnnonce(annonces);
     } catch (error) {
@@ -59,7 +58,7 @@ function EditAnnonce() {
         const response = await axios.get(
           `http://localhost:3000/api/v1/profil/details/${userId}`
         );
-        console.log(response.data);
+
         setProfils(response.data);
       } catch (error) {
         console.log(error);
@@ -86,7 +85,7 @@ function EditAnnonce() {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       console.log(error);
@@ -94,9 +93,7 @@ function EditAnnonce() {
   };
   // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
     const response = await fetchCreate();
-
     if (response !== undefined) {
       setTitle('');
       setPlatform('');
@@ -110,11 +107,9 @@ function EditAnnonce() {
   // Delete une annonce
   const handleDelete = async (id: number) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/v1/posts/${id}`,
-        { withCredentials: true }
-      );
-      console.log('DELETE : ' + response.data);
+      await axios.delete(`http://localhost:3000/api/v1/posts/${id}`, {
+        withCredentials: true,
+      });
       fetchlisting();
     } catch (error) {
       console.log(error);
