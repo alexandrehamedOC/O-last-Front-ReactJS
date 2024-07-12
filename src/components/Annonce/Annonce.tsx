@@ -29,6 +29,8 @@ interface Game {
 }
 
 const Annonce: React.FC = () => {
+  console.log(import.meta.env.VITE_API_BASE_URL);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -53,7 +55,9 @@ const Annonce: React.FC = () => {
 
   const fetchlisting = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/posts/`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/`
+      );
       const annonces = response.data;
       console.log(annonces);
 
@@ -67,7 +71,9 @@ const Annonce: React.FC = () => {
 
   const fetchGames = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/games');
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/games`
+      );
       setGames(response.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des jeux :', error);

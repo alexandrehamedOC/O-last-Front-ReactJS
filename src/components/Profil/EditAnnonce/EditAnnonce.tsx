@@ -41,7 +41,7 @@ function EditAnnonce() {
   const fetchlisting = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/posts/user/${id} `
+        `${import.meta.env.VITE_API_BASE_URL}/posts/user/${id} `
       );
       const annonces = response.data;
 
@@ -57,7 +57,7 @@ function EditAnnonce() {
       const userId = localStorage.getItem('userId');
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/profil/details/${userId}`
+          `${import.meta.env.VITE_API_BASE_URL}/profil/details/${userId}`
         );
 
         setProfils(response.data);
@@ -75,7 +75,7 @@ function EditAnnonce() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/posts/`,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/`,
         {
           title,
           platform,
@@ -99,7 +99,7 @@ function EditAnnonce() {
     e.preventDefault();
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/posts/${selectedAnnonce?.post_id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${selectedAnnonce?.post_id}`,
         {
           title,
           platform,
@@ -121,7 +121,6 @@ function EditAnnonce() {
 
   // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
-
     // e.preventDefault();
     let response;
     if (selectedAnnonce) {
@@ -146,7 +145,7 @@ function EditAnnonce() {
   const handleDelete = async (id: number) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/posts/${id},
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${id},
         `,
         { withCredentials: true }
       );

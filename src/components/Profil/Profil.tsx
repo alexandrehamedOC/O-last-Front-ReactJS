@@ -54,7 +54,7 @@ function Profil() {
   const fetchuser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
       );
       setUser(response.data);
     } catch (error) {
@@ -65,7 +65,7 @@ function Profil() {
   const fetchProfils = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/profil/details/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
 
       const gameList: string[] = [];

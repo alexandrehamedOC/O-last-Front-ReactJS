@@ -46,7 +46,7 @@ function profilAnnonce() {
   const fetchuser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
       );
       setUser(response.data);
     } catch (error) {
@@ -56,7 +56,9 @@ function profilAnnonce() {
 
   const fetchProfils = async () => {
     try {
-      await axios.get(`http://localhost:3000/api/v1/profil/details/${id}`);
+      await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
+      );
       // setProfils(response.data);
     } catch (error) {
       console.error(error);
@@ -66,7 +68,7 @@ function profilAnnonce() {
   const fetchPosts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/posts/user/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/posts/user/${id}`
       );
       setAnnonces(response.data);
     } catch (error) {

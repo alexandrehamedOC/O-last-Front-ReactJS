@@ -70,9 +70,11 @@ function EditProfil() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/profil/`,
+        `${import.meta.env.VITE_API_BASE_URL}/profil/`,
         data,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
 
       fecthprofil();
@@ -84,10 +86,12 @@ function EditProfil() {
 
   const fecthprofil = async () => {
     try {
-      const games = await axios.get(`http://localhost:3000/api/v1/games/`);
+      const games = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/games/`
+      );
       setGames(games.data);
       const response = await axios.get(
-        `http://localhost:3000/api/v1/profil/details/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
       setProfil(response.data);
     } catch (error) {
@@ -104,8 +108,10 @@ function EditProfil() {
     // e.preventDefault();
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/profil/${id}`,
-        { withCredentials: true }
+        `${import.meta.env.VITE_API_BASE_URL}/profil/${id}`,
+        {
+          withCredentials: true,
+        }
       );
       fecthprofil();
     } catch (error) {
@@ -117,7 +123,7 @@ function EditProfil() {
     const id = localStorage.getItem('userId');
 
     const profilToUpdate = await axios.get(
-      `http://localhost:3000/api/v1/profil/details/${id}`
+      `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
     );
 
     const profilFilter = profilToUpdate.data.filter(
@@ -155,9 +161,11 @@ function EditProfil() {
       const profilId = Number(profilCard.id);
 
       await axios.patch(
-        `http://localhost:3000/api/v1/profil/${profilId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/profil/${profilId}`,
         data,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
 
       fecthprofil();

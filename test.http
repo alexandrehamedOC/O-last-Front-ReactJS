@@ -2,7 +2,7 @@ GET https://o-last-back.vercel.app/api/v1/games
 
 
 ### Test login user
-POST http://localhost:3000/api/v1/users
+POST ${import.meta.env.VITE_API_BASE_URL}/users
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 
 ### Test login user
-POST http://localhost:3000/api/v1/login
+POST ${import.meta.env.VITE_API_BASE_URL}/login
 Content-Type: application/json
 
 {
@@ -21,6 +21,6 @@ Content-Type: application/json
 }
 
 ### delete user
-DELETE http://localhost:3000/api/v1/rates/2
+DELETE ${import.meta.env.VITE_API_BASE_URL}/rates/2
 Authorization: cookie
 

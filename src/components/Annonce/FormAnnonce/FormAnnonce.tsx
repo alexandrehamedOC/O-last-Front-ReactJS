@@ -29,7 +29,7 @@ const FormAnnonce: React.FC = () => {
       const userId = localStorage.getItem('userId');
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/profil/details/${userId}`
+          `${import.meta.env.VITE_API_BASE_URL}/profil/details/${userId}`
         );
         console.log(response.data);
         setProfils(response.data);
@@ -43,7 +43,7 @@ const FormAnnonce: React.FC = () => {
   const fetchCreate = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/posts/`,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/`,
         {
           title,
           platform,
