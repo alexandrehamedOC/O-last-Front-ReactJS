@@ -44,7 +44,7 @@ function EditAnnonce() {
         `http://localhost:3000/api/v1/posts/user/${id} `
       );
       const annonces = response.data;
-      console.log(annonces);
+
       setAnnonce(annonces);
     } catch (error) {
       console.error(error);
@@ -59,7 +59,6 @@ function EditAnnonce() {
         const response = await axios.get(
           `http://localhost:3000/api/v1/profil/details/${userId}`
         );
-        console.log(response.data);
 
         setProfils(response.data);
       } catch (error) {
@@ -73,16 +72,7 @@ function EditAnnonce() {
   //Créer une annonce
   const fetchCreate = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      title,
-      platform,
-      description,
-      schedule_start: new Date(schedule.start).toISOString(),
-      schedule_end: new Date(schedule.end).toISOString(),
-      profil_id: Number(profil.split(',')[0]),
-      status: true,
-      game_id: Number(profil.split(',')[1]),
-    });
+
     try {
       const response = await axios.post(
         `http://localhost:3000/api/v1/posts/`,
@@ -98,7 +88,7 @@ function EditAnnonce() {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       console.log(error);
@@ -131,6 +121,7 @@ function EditAnnonce() {
 
   // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
+
     // e.preventDefault();
     let response;
     if (selectedAnnonce) {
@@ -160,6 +151,7 @@ function EditAnnonce() {
         { withCredentials: true }
       );
       console.log('DELETE : ' + response.data);
+
       fetchlisting();
     } catch (error) {
       console.log(error);

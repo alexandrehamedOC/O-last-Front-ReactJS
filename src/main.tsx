@@ -14,11 +14,13 @@ import Annonce from './components/Annonce/Annonce';
 import Profil from './components/Profil/Profil';
 import Login from './components/Login/Login';
 import SignIn from './components/SignIn/SignIn';
+import SendMailForgotPassword from './components/forgotPassword/sendMailForgotPassword/sendMailForgotPassword';
+import FormNewPassword from './components/forgotPassword/formNewPassword/formNewPassword';
+import EditProfil from './components/Profil/EditProfil/EditProfil';
+import EditAnnonce from './components/Profil/EditAnnonce/EditAnnonce';
 
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
-import EditProfil from './components/Profil/EditProfil/EditProfil';
-import EditAnnonce from './components/Profil/EditAnnonce/EditAnnonce';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -35,6 +37,11 @@ const router = createBrowserRouter(
         <Route path="/editannonce/:id" element={<EditAnnonce />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<SignIn />} />
+        <Route
+          path="/mot-de-passe-oublie"
+          element={<SendMailForgotPassword />}
+        />
+        <Route path="/nouveau-mot-de-passe" element={<FormNewPassword />} />
       </Route>
     </>
   )
