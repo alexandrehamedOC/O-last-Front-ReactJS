@@ -35,15 +35,15 @@ function EditAnnonce() {
   });
   const [profils, setProfils] = useState<Profil[]>([]);
   const [profil, setProfil] = useState('');
+  const [selectedAnnonce, setSelectedAnnonce] = useState<Player | null>(null);
 
   //fetch sur les Annonces en cours
   const fetchlisting = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/posts/user/${id}`
+        `http://localhost:3000/api/v1/posts/user/${id} `
       );
       const annonces = response.data;
-      console.log(annonces);
 
       setAnnonce(annonces);
     } catch (error) {
@@ -51,15 +51,15 @@ function EditAnnonce() {
     }
   };
   // useEffect pour récupérer les annonces en cours et les profils
+
   useEffect(() => {
-    // récupération des profils
     const fetchprofil = async () => {
       const userId = localStorage.getItem('userId');
       try {
         const response = await axios.get(
           `http://localhost:3000/api/v1/profil/details/${userId}`
         );
-        console.log(response.data);
+
         setProfils(response.data);
       } catch (error) {
         console.log(error);
@@ -70,10 +70,36 @@ function EditAnnonce() {
   }, []);
 
   //Créer une annonce
-  const fetchCreate = async () => {
+  const fetchCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
       const response = await axios.post(
         `http://localhost:3000/api/v1/posts/`,
+        {
+          title,
+          platform,
+          description,
+          schedule_start: new Date(schedule.start).toISOString(),
+          schedule_end: new Date(schedule.end).toISOString(),
+          profil_id: Number(profil.split(',')[0]),
+          status: true,
+          game_id: Number(profil.split(',')[1]),
+        },
+        { withCredentials: true }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/v1/posts/${selectedAnnonce?.post_id}`,
         {
           title,
           platform,
@@ -92,34 +118,69 @@ function EditAnnonce() {
       console.log(error);
     }
   };
+
   // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
+
     // e.preventDefault();
-    const response = await fetchCreate();
+    let response;
+    if (selectedAnnonce) {
+      response = await fetchUpdate(e);
+    } else {
+      response = await fetchCreate(e);
+    }
 
     if (response !== undefined) {
       setTitle('');
       setPlatform('');
       setDescription('');
       setSchedule({ start: '', end: '' });
+      setProfil('');
+      setSelectedAnnonce(null);
+      fetchlisting();
     } else {
       console.log('error');
     }
   };
-
   // Delete une annonce
   const handleDelete = async (id: number) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/posts/${id}`,
+        `http://localhost:3000/api/v1/posts/${id},
+        `,
         { withCredentials: true }
       );
       console.log('DELETE : ' + response.data);
+
       fetchlisting();
     } catch (error) {
       console.log(error);
     }
   };
+
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const pad = (num: number) => (num < 10 ? '0' + num : num);
+    const year = d.getFullYear();
+    const month = pad(d.getMonth() + 1);
+    const day = pad(d.getDate());
+    const hours = pad(d.getHours());
+    const minutes = pad(d.getMinutes());
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
+  const handleSelectAnnonce = (annonce: Player) => {
+    setSelectedAnnonce(annonce);
+    setTitle(annonce.post_title);
+    setPlatform(annonce.post_platform);
+    setDescription(annonce.post_description);
+    setSchedule({
+      start: formatDate(new Date(annonce.post_schedule_start).toISOString()),
+      end: formatDate(new Date(annonce.post_schedule_end).toISOString()),
+    });
+    setProfil(`${annonce.profil_rank},${annonce.profil_level}`);
+  };
+
   return (
     <div>
       <div className="edit">
@@ -130,7 +191,12 @@ function EditAnnonce() {
                 <h2 className="edit__profile-card-title">
                   Title : {player.post_title}
                 </h2>
-                <button className="edit__profile-card-button">Update</button>
+                <button
+                  className="edit__profile-card-button"
+                  onClick={() => handleSelectAnnonce(player)}
+                >
+                  Update
+                </button>
                 <button
                   className="edit__profile-card-button"
                   onClick={() => handleDelete(player.post_id)}
@@ -181,7 +247,7 @@ function EditAnnonce() {
               />
             </div>
             <div className="form_group">
-              <label htmlFor="profil">Profil</label>
+              <label htmlFor="profil">Profil *required</label>
               <select
                 name="profil"
                 id="profil"
@@ -233,7 +299,7 @@ function EditAnnonce() {
                   </div>
                 </div>
                 <button className="edit__form-button" type="submit">
-                  Create/ Update ad
+                  {selectedAnnonce ? 'Update Ad' : 'Create Ad'}
                 </button>
               </div>
             </div>

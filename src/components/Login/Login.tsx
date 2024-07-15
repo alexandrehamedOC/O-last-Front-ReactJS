@@ -3,7 +3,6 @@ import './Login.scss';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
-import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 
 function Login() {
   // Déclaration des states
@@ -30,11 +29,8 @@ function Login() {
       // Récupérer le token de la réponse et se connecter
       const userId = response.data;
 
-      console.log(userId);
-
       // Appeler la fonction login du contexte d'authentification
       login(userId);
-      console.log('Login success for user:', userId);
       navigate('/');
     } catch (error) {
       // Afficher une erreur si la connexion échoue
@@ -81,7 +77,10 @@ function Login() {
         <p className="login__forgot-password">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
           consectetur incidunt -
-          <Link to="#" className="login__forgot-password-link">
+          <Link
+            to="/mot-de-passe-oublie"
+            className="login__forgot-password-link"
+          >
             forgot password
           </Link>
         </p>

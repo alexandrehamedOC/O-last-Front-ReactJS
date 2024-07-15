@@ -45,7 +45,7 @@ function SignIn() {
         birth_date: birthDate,
         password,
       });
-      console.log(response.data);
+
       // Reset des states - Vider les champs du formulaire au clic sur le bouton
       setFirstname('');
       setLastname('');
