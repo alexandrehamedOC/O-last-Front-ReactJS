@@ -1,24 +1,56 @@
 .edit {
-  border: 2px solid pink;
-  gap: 100px;
-
   &__card {
     display: flex;
     justify-content: end;
     gap: 100px;
 
     .edit__profile-card {
-      border: 2px solid purple;
       display: flex;
       width: 50vh;
     }
   }
 
   &__form {
-    border: 2px solid blue;
     display: flex;
-    justify-content: end;
     gap: 25px;
     margin-top: 25px;
+    color: black;
   }
+}
+
+.edit__form-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+form {
+  justify-content: space-between;
+  height: 100%;
+}
+
+form label {
+  color: black;
+}
+
+.schedule_inputs {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.schedule_inputs input {
+  width: 50%;
+}
+
+.edit__form-button {
+  background-color: black;
+  color: white;
+  border: none;
+  box-shadow: none;
+  padding-block: 0.3em;
+}
+
+.edit__form {
+  padding: 2em 0;
 }

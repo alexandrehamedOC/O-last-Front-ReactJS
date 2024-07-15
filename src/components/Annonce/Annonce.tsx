@@ -21,6 +21,7 @@ interface Player {
   profil_level: number;
   profil_id: number;
   game_id: number;
+  game_name: string;
 }
 
 interface Game {
@@ -129,16 +130,58 @@ const Annonce: React.FC = () => {
         <div className="grid">
           {annonce.map((player) => (
             <div
+              className="card"
               key={player.post_id}
               onClick={() => handleCardClick(player.user_id)}
             >
-              <p>{player.post_title}</p>
-              <p>{player.post_platform}</p>
-              <p>{player.post_description}</p>
-              <p>{player.profil_rank}</p>
-              <p>{player.profil_level}</p>
-              <p>{player.post_schedule_start}</p>
-              <p>{player.post_schedule_end}</p>
+              <figure className="card_platform">
+                <img
+                  src={`src/assets/img/platforms/${player.post_platform.toLowerCase()}.png`}
+                  alt=""
+                  className="card_platform_image"
+                />
+              </figure>
+              <section className="card_top">
+                <figure className="card_top_image">
+                  <img
+                    src={`src/assets/img/games-images/${player.game_name.toLowerCase().replaceAll(' ', '-')}.jpg`}
+                    alt="placeholder"
+                    className="card_image"
+                  ></img>
+                </figure>
+                <p className="card_title">{player.post_title}</p>
+                <p className="card_description">{player.post_description}</p>
+              </section>
+              <section className="card_bottom">
+                <div className="card_bottom-rank-level">
+                  <p className="card_rank">Rank: {player.profil_rank}</p>
+                  <p className="card_level">Level: {player.profil_level}</p>
+                </div>
+                <div className="card_bottom_schedule">
+                  <p className="card_schedule_start">
+                    {new Date(player.post_schedule_start).toLocaleString(
+                      'fr-FR',
+                      {
+                        day: '2-digit',
+                        month: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      }
+                    )}
+                  </p>
+                  <p className="card_schedule_end">
+                    {new Date(player.post_schedule_end).toLocaleString(
+                      'fr-FR',
+                      {
+                        day: '2-digit',
+                        month: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      }
+                    )}
+                  </p>
+                </div>
+              </section>
             </div>
           ))}
         </div>

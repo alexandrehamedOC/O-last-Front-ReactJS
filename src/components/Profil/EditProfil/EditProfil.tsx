@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import './EditProfil.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Sidebar from '../SideBar/Sidebar';
 
 interface Profil {
   id: number;
@@ -175,141 +176,150 @@ function EditProfil() {
   };
 
   return (
-    <div className="edit">
-      {profil.map((profils) => (
-        <section
-          key={profils.id}
-          className="edit__card"
-          id={profils.id.toString()}
-        >
-          <article className="edit__profile-card">
-            <header className="edit__profile-card-header">
-              <h2 className="edit__profile-card-title">{profils.name}</h2>
-              <button
-                className="edit__profile-card-button"
-                onClick={(e) => handleUpdate(e, profils.id)}
-              >
-                Update
-              </button>
-              <button
-                className="edit__profile-card-button"
-                onClick={() => handleDelete(profils.id)}
-              >
-                Delete
-              </button>
-            </header>
-            <section className="edit__profile-card-body">
-              <h3 className="edit__profile-card-description-title">
-                {profils.game_name}
-              </h3>
-              <p className="edit__profile-card-description-text">
-                {profils.description}
-              </p>
-              <div className="edit__profile-card-info">
-                <span className="edit__profile-card-info-rank">
-                  Rank : {profils.rank}
-                </span>
-                <span className="edit__profile-card-info-level">
-                  Level : {profils.level}
-                </span>
-              </div>
+    <div className="profile_container">
+      <Sidebar />
+      <div className="edit">
+        <h1 className="edit__title">Profils</h1>
+        <section className="edit__profile">
+          {profil.map((profils) => (
+            <section
+              key={profils.id}
+              className="edit__card"
+              id={profils.id.toString()}
+            >
+              <article className="edit__profile-card">
+                <header className="edit__profile-card-header">
+                  <h2 className="edit__profile-card-title">{profils.name}</h2>
+                </header>
+                <section className="edit__profile-card-body">
+                  <h3 className="edit__profile-card-description-title">
+                    {profils.game_name}
+                  </h3>
+                  <p className="edit__profile-card-description-text">
+                    {profils.description}
+                  </p>
+                  <div className="edit__profile-card-info">
+                    <span className="edit__profile-card-info-rank">
+                      Rank : {profils.rank}
+                    </span>
+                    <span className="edit__profile-card-info-level">
+                      Level : {profils.level}
+                    </span>
+                  </div>
+                </section>
+                <section className="edit__profile-card-buttons">
+                  <button
+                    className="edit__profile-card-button"
+                    onClick={(e) => handleUpdate(e, profils.id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="edit__profile-card-button"
+                    onClick={() => handleDelete(profils.id)}
+                  >
+                    Delete
+                  </button>
+                </section>
+              </article>
             </section>
-          </article>
+          ))}
         </section>
-      ))}
-      ;
-      <section className="edit__form">
-        <form onSubmit={handleSubmit}>
-          <input type="hidden" id="profil_id" value="" />
-          <div className="edit__form-main">
-            <div className="edit__form-group">
-              <label htmlFor="name" className="edit__form-label">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="edit__form-input"
-                placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
-              />
+        <section className="edit__form">
+          <form onSubmit={handleSubmit}>
+            <input type="hidden" id="profil_id" value="" />
+            <div className="edit__form-main">
+              <div className="edit__form-group">
+                <label htmlFor="name" className="edit__form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="edit__form-input"
+                  placeholder="Name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div className="edit__form-group">
+                <label htmlFor="game" className="edit__form-label">
+                  Game
+                </label>
+                <select
+                  name="game_id"
+                  id="game_id"
+                  className="edit__form-select"
+                  onChange={(e) => setGame(e.target.value)}
+                >
+                  <option value="">Select a game</option>
+                  {games.map((game) => (
+                    <option key={game.name} value={game.id}>
+                      {game.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="edit__form-group">
+                <label htmlFor="rank" className="edit__form-label">
+                  Rank
+                </label>
+                <input
+                  type="text"
+                  id="rank"
+                  className="edit__form-input"
+                  placeholder="Rank"
+                  onChange={(e) => setRank(e.target.value)}
+                />
+              </div>
+
+              <div className="edit__form-group">
+                <label htmlFor="level" className="edit__form-label">
+                  Level
+                </label>
+                <input
+                  type="text"
+                  id="level"
+                  className="edit__form-input"
+                  placeholder="Level"
+                  onChange={(e) => setLevel(e.target.value)}
+                />
+              </div>
             </div>
 
-            <div className="edit__form-group">
-              <label htmlFor="game" className="edit__form-label">
-                Game
-              </label>
-              <select
-                name="game_id"
-                id="game_id"
-                className="edit__form-select"
-                onChange={(e) => setGame(e.target.value)}
-              >
-                <option value="">Select a game</option>
-                {games.map((game) => (
-                  <option key={game.name} value={game.id}>
-                    {game.name}
-                  </option>
-                ))}
-              </select>
+            <div className="edit__form-side">
+              <div className="edit__form-group">
+                <label htmlFor="description" className="edit__form-label">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  className="edit__form-textarea"
+                  placeholder="Description"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+                <section className="edit__form-buttons">
+                  <button
+                    className="create__form-button"
+                    type="submit"
+                    data-action="create"
+                  >
+                    Create Profil
+                  </button>
+                  <button
+                    className="update__form-button"
+                    type="submit"
+                    data-action="update"
+                  >
+                    Update Profil
+                  </button>
+                </section>
+              </div>
             </div>
-
-            <div className="edit__form-group">
-              <label htmlFor="rank" className="edit__form-label">
-                Rank
-              </label>
-              <input
-                type="text"
-                id="rank"
-                className="edit__form-input"
-                placeholder="Rank"
-                onChange={(e) => setRank(e.target.value)}
-              />
-            </div>
-
-            <div className="edit__form-group">
-              <label htmlFor="level" className="edit__form-label">
-                Level
-              </label>
-              <input
-                type="text"
-                id="level"
-                className="edit__form-input"
-                placeholder="Level"
-                onChange={(e) => setLevel(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="edit__form-side">
-            <div className="edit__form-group">
-              <label htmlFor="description" className="edit__form-label">
-                Description
-              </label>
-              <textarea
-                id="description"
-                className="edit__form-textarea"
-                placeholder="Description"
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-              <button
-                className="create__form-button"
-                type="submit"
-                data-action="create"
-              >
-                Create Profil
-              </button>
-              <button
-                className="update__form-button"
-                type="submit"
-                data-action="update"
-              >
-                Update Profil
-              </button>
-            </div>
-          </div>
-        </form>
-      </section>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
