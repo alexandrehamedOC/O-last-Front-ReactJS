@@ -28,6 +28,9 @@
   button {
     background-color: $color-bg;
     color: #f4f4f4;
+    box-shadow: none;
+    border: none;
+    padding: 0.1em 0.8em;
   }
 }
 .review_rate-container {
@@ -40,6 +43,7 @@
   justify-content: space-between;
   align-items: flex-start;
   color: $color-bg;
+  flex-wrap: wrap;
 }
 
 .review_rate-description {
@@ -76,4 +80,14 @@
 .review_title button {
   background-color: $color-bg;
   color: #f4f4f4;
+}
+
+.review-see-all-button {
+  text-align: center;
+  width: 50%;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  box-shadow: none;
+  padding: 0.3em 0;
 }
