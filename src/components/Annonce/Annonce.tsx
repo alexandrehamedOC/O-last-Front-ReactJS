@@ -30,6 +30,11 @@ interface Game {
 
 const Annonce: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [annonce, setAnnonce] = useState<Player[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
+  // Je selectionne le jeu avec mon select
+  const [selectedGame, setSelectedGame] = useState<string>('');
+  const [originalAnnonces, setOriginalAnnonces] = useState<Player[]>([]);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -39,31 +44,23 @@ const Annonce: React.FC = () => {
     setModalIsOpen(false);
   };
 
-  const handleSearch = () => {
-    console.log('Recherche effectuée');
-  };
-
   const navigate = useNavigate();
 
   const handleCardClick = (user_id: number) => {
     navigate(`/profile/${user_id}`);
   };
 
-  const [annonce, setAnnonce] = useState<Player[]>([]);
-
   const fetchlisting = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/posts/`);
       const annonces = response.data;
-      console.log(annonces);
 
       setAnnonce(annonces);
+      setOriginalAnnonces(annonces);
     } catch (error) {
       console.error(error);
     }
   };
-
-  const [games, setGames] = useState<Game[]>([]);
 
   const fetchGames = async () => {
     try {
@@ -79,6 +76,24 @@ const Annonce: React.FC = () => {
     fetchGames();
   }, []);
 
+  //Filtrer par jeux
+  const handleSearch = async () => {
+    if (selectedGame) {
+      const filteredAnnonces = originalAnnonces.filter(
+        (player) =>
+          player.game_id ===
+          games.find((game) => game.name === selectedGame)?.id
+      );
+      setAnnonce(filteredAnnonces);
+    } else {
+      fetchlisting();
+    }
+  };
+
+  const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedGame(e.target.value);
+  };
+
   return (
     <div className="annonce">
       <div className="create_annonce">
@@ -89,32 +104,15 @@ const Annonce: React.FC = () => {
       </div>
       <div className="main_content">
         <div className="filters">
-          <label htmlFor="country">Pays</label>
-          <select id="country">
-            <option value="france">France</option>
-            <option value="usa">États-Unis</option>
-            <option value="germany">Allemagne</option>
-            <option value="japan">Japon</option>
-            <option value="china">Chine</option>
-          </select>
-
           <div className="form_group">
             <label htmlFor="games">Jeux</label>
-            <select id="games">
+            <select id="games" onChange={handleGameChange} value={selectedGame}>
+              <option value="">Sélectionne un jeu</option>
               {games.map((game) => (
                 <option key={game.id}>{game.name}</option>
               ))}
             </select>
           </div>
-
-          <label htmlFor="platform">Plateforme</label>
-          <select id="platform">
-            <option value="pc">PC</option>
-            <option value="ps5">PlayStation 5</option>
-            <option value="xbox">Xbox One</option>
-            <option value="switch">Nintendo Switch</option>
-            <option value="mobile">Mobile</option>
-          </select>
 
           <button className="search_button" onClick={handleSearch}>
             Search
@@ -134,16 +132,6 @@ const Annonce: React.FC = () => {
               <p>{player.post_schedule_start}</p>
               <p>{player.post_schedule_end}</p>
             </div>
-            // <div>
-            //   <p>{player.title}</p>
-            //   <p>{player.platform}</p>
-            //   <p>{player.game}</p>
-            //   <p>{player.description}</p>
-            //   <p>{player.rank}</p>
-            //   <p>{player.level}</p>
-            //   <p>{player.schedule_start}</p>
-            //   <p>{player.schedule_end}</p>
-            // </div>
           ))}
         </div>
       </div>
