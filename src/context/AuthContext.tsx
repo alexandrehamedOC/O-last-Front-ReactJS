@@ -2,18 +2,24 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 // Définir le type du contexte
-interface AuthContextType {
+export interface AuthContextType {
   userId: string | null;
   login: (userId: string) => void;
   logout: () => void;
+}
+
+interface AuthProviderProps {
+  children: React.ReactNode;
+  value?: AuthContextType; // Ajoutez cette ligne
 }
 
 // Créer un contexte pour stocker l'état de l'authentification
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Créer un composant AuthProvider pour gérer l'état de l'authentification
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AuthProvider: React.FC<AuthProviderProps> = ({
   children,
+  value,
 }) => {
   // Récupérer le token dans le localStorage
   const [userId, setUserId] = useState<string | null>(() => {
@@ -43,7 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Rendre le contexte accessible aux composants enfants
   return (
-    <AuthContext.Provider value={{ userId, login, logout }}>
+    <AuthContext.Provider value={value || { userId, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

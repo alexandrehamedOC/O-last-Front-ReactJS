@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { useAuth } from '../../context/AuthContext';
+import React from 'react';
 
 function Header() {
   const { userId, logout } = useAuth();
