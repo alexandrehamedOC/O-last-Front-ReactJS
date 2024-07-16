@@ -228,7 +228,7 @@ function EditAnnonce() {
           ))}
         </section>
         <section className="edit__form">
-          <form onSubmit={handleSubmit}>
+          <form className='edit__form_annonce' onSubmit={handleSubmit}>
             <div className="edit__form-left">
               <div className="edit__form-title">
                 <label htmlFor="title">Title</label>
