@@ -67,10 +67,10 @@ function Sidebar() {
       {userId === user.id ? (
         <>
           <p>{user.discord_username}</p>
-          <Link to={`/EditProfil/${user.id}`}>
+          <Link to={`/edit-profil/${user.id}`}>
             <button>Edit Profil</button>
           </Link>
-          <Link to={`/EditAnnonce/${user.id}`}>
+          <Link to={`/edit-annonce/${user.id}`}>
             <button>Edit Annonce</button>
           </Link>
         </>
