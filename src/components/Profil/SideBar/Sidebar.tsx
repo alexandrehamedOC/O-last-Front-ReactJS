@@ -4,6 +4,7 @@ import Modal from '../../Modal/Modal';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Contact from '../Contact/Contact';
+import Error404 from '../../error/Error404';
 
 interface User {
   id: number;
@@ -49,7 +50,11 @@ function Sidebar() {
 
   //Voir pour mettre composant erreur ou loading si pas de user trouvé
   if (!user) {
-    return <div>Erreur 404</div>;
+    return (
+      <div>
+        <Error404 />
+      </div>
+    );
   }
 
   return (
@@ -58,10 +63,10 @@ function Sidebar() {
       <p>{user.firstname}</p>
       <p>{user.lastname}</p>
       <p>{user.city}</p>
-      <p>{user.discord_username}</p>
 
       {userId === user.id ? (
         <>
+          <p>{user.discord_username}</p>
           <Link to={`/EditProfil/${user.id}`}>
             <button>Edit Profil</button>
           </Link>

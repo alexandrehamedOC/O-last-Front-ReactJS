@@ -18,7 +18,7 @@ import SendMailForgotPassword from './components/forgotPassword/sendMailForgotPa
 import FormNewPassword from './components/forgotPassword/formNewPassword/formNewPassword';
 import EditProfil from './components/Profil/EditProfil/EditProfil';
 import EditAnnonce from './components/Profil/EditAnnonce/EditAnnonce';
-import Error404 from './components/error/error404'
+import Error404 from './components/error/Error404';
 
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
