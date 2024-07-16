@@ -29,11 +29,15 @@
   color: black;
 }
 
-.edit__form_profil{
+.edit__form_profil {
   width: 100%;
   justify-content: center;
   height: 47%;
   background-color: lightgray;
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
 }
 
 .edit__title {
@@ -62,13 +66,6 @@
   margin-left: 20px;
   overflow-x: auto;
   padding-bottom: 10px;
-}
-
-form {
-  display: flex;
-  gap: 10px;
-  margin-top: 25px;
-  flex-wrap: wrap;
 }
 
 .edit__form-main {
