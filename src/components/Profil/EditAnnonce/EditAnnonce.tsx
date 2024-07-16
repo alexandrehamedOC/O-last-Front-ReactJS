@@ -149,7 +149,6 @@ function EditAnnonce() {
         `${import.meta.env.VITE_API_BASE_URL}/posts/${id}`,
         { withCredentials: true }
       );
-      console.log('DELETE : ' + response.data);
 
       fetchlisting();
     } catch (error) {
