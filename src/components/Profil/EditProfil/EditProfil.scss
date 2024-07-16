@@ -23,17 +23,17 @@
       justify-content: space-between;
     }
   }
+}
 
-  &__form {
-    width: 100%;
-    justify-content: center;
-    height: 47%;
-    background-color: lightgray;
+.edit__form-label {
+  color: black;
+}
 
-    .edit__form-label {
-      color: black;
-    }
-  }
+.edit__form_profil{
+  width: 100%;
+  justify-content: center;
+  height: 47%;
+  background-color: lightgray;
 }
 
 .edit__title {
