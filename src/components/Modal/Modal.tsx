@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import './Modal.scss';
+import React from 'react';
 
 interface ModalProps {
   show: boolean;

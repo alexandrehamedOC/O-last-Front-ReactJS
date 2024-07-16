@@ -10,7 +10,7 @@ export interface AuthContextType {
 
 interface AuthProviderProps {
   children: React.ReactNode;
-  value?: AuthContextType; // Ajoutez cette ligne
+  value?: AuthContextType;
 }
 
 // Créer un contexte pour stocker l'état de l'authentification
