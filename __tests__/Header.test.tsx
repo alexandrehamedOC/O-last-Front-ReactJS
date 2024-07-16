@@ -1,37 +1,60 @@
-//* Test de rendu de composant + interaction utilisateur
-
-// Ce test vérifie que le composant Header affiche les bons liens lorsque l'utilisateur est connecté
-import { render, screen } from '@testing-library/react';
-// MemoryRouter est un composant de react-router-dom qui permet de simuler un router pour les tests
+// __tests__/Header.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, it } from 'vitest';
 import Header from '../src/components/Header/Header';
 import { AuthProvider, AuthContextType } from '../src/context/AuthContext';
 
-describe('Header', () => {
-  it('should render correct links when logged in', () => {
-    // Mock du contexte d'authentification
-    const mockAuthContextValue: AuthContextType = {
-      // userId est une chaîne de caractères arbitraire pour simuler un utilisateur connecté
-      userId: '123',
-      // login et logout ici servent juste à éviter une erreur de typage
-      login: () => {},
-      logout: () => {},
-    };
+const mockLogout = vi.fn();
 
-    // Rendu du composant Header avec le AuthProvider et le mock du contexte
-    render(
+const renderWithAuthContext = (contextValue: AuthContextType) => {
+  return render(
+    <AuthProvider value={contextValue}>
       <MemoryRouter>
-        <AuthProvider value={mockAuthContextValue}>
-          <Header />
-        </AuthProvider>
+        <Header />
       </MemoryRouter>
-    );
+    </AuthProvider>
+  );
+};
 
-    // Assertions pour vérifier que les liens attendus sont présents dans le rendu
-    expect(screen.getByText('Accueil')).toBeInTheDocument();
-    expect(screen.getByText('Joueurs')).toBeInTheDocument();
-    expect(screen.getByText('Mon profil')).toBeInTheDocument();
-    expect(screen.getByText('Deconnexion')).toBeInTheDocument();
+describe('Header component', () => {
+  beforeEach(() => {
+    mockLogout.mockClear();
+  });
+
+  it('should render the Header with links when user is not logged in', () => {
+    renderWithAuthContext({ userId: null, login: vi.fn(), logout: mockLogout });
+
+    expect(screen.getByText(/Accueil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Joueurs/i)).toBeInTheDocument();
+    expect(screen.getByText(/Connexion/i)).toBeInTheDocument();
+    expect(screen.getByText(/Inscription/i)).toBeInTheDocument();
+  });
+
+  it('should render the Header with links when user is logged in', () => {
+    renderWithAuthContext({
+      userId: '123',
+      login: vi.fn(),
+      logout: mockLogout,
+    });
+
+    expect(screen.getByText(/Accueil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Joueurs/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mon profil/i)).toBeInTheDocument();
+    expect(screen.getByText(/Deconnexion/i)).toBeInTheDocument();
+  });
+
+  it('should call logout when Deconnexion link is clicked', () => {
+    renderWithAuthContext({
+      userId: '123',
+      login: vi.fn(),
+      logout: mockLogout,
+    });
+
+    const logoutLink = screen.getByText(/Deconnexion/i);
+    fireEvent.click(logoutLink);
+
+    expect(mockLogout).toHaveBeenCalledTimes(1);
   });
 });

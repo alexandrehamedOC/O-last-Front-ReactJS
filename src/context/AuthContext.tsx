@@ -14,7 +14,9 @@ interface AuthProviderProps {
 }
 
 // Créer un contexte pour stocker l'état de l'authentification
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 // Créer un composant AuthProvider pour gérer l'état de l'authentification
 export const AuthProvider: React.FC<AuthProviderProps> = ({

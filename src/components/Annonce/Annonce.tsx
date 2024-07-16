@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import './Annonce.scss';
 import { useEffect, useState } from 'react';
+import React from 'react';
 
 Modal.setAppElement('#root');
 
@@ -36,6 +37,7 @@ const Annonce: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   // Je selectionne le jeu avec mon select
   const [selectedGame, setSelectedGame] = useState<string>('');
+  // Sert à stocker les annonces originales pour pouvoir les filtrer
   const [originalAnnonces, setOriginalAnnonces] = useState<Player[]>([]);
 
   const openModal = () => {
