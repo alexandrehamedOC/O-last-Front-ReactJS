@@ -3,7 +3,7 @@ import './EditProfil.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Sidebar from '../SideBar/Sidebar';
-
+import backgroundImage from '../../../assets/img/background-images/Designer.jpeg';
 interface Profil {
   id: number;
   name: string;

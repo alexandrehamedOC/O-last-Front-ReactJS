@@ -32,7 +32,12 @@
     width: 100%;
     justify-content: center;
     height: 47%;
-    background-color: lightgray;
+
+    background-image: url('../../../assets/img/background-images/Designer.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 
     .edit__form-label {
       color: black;
@@ -74,9 +79,15 @@ form {
   gap: 10px;
   margin-top: 25px;
   flex-wrap: wrap;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .edit__form-main {
+  position: relative;
   height: 250px;
   width: 300px;
 }
@@ -120,7 +131,7 @@ form textarea {
 button {
   border-radius: 10px;
   --bg: #000;
-  --hover-bg: #ff90e8;
+  --hover-bg: #00ffff;
   --hover-text: #000;
   color: #fff;
   cursor: pointer;
@@ -141,5 +152,16 @@ button:active {
   box-shadow: none;
 }
 
+input {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #fff;
+}
+::placeholder {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
 @media screen and (max-width: 1024px) {
 }
