@@ -1,6 +1,7 @@
 import './App.scss';
 import logoValorant from '../../assets/img/games-logo/Valorant-logo.png';
 import logoLol from '../../assets/img/games-logo/Lol-logo.png';
+import logolMinecraft from '../../assets/img/games-logo/minecraft.png'
 import leftarrow from '../../assets/img/fleche-gauche.png';
 import rightarrow from '../../assets/img/fleche-droite.png';
 import axios from 'axios';
@@ -42,6 +43,7 @@ function App() {
           type="text"
           placeholder="Chercher un jeu ..."
         /> */}
+        <section className='searchArea'>
         <select
           name="searchBar"
           id="searchBar"
@@ -63,21 +65,58 @@ function App() {
         >
           Start !
         </button>
+        </section>
+
       </section>
+      <section className="app__pagesizer">
+
+      
       <section className="app__games">
+        <section className='element__wrapper'>
         <div className="app__games-images-container">
-          <figure className="app__games-figure">
-            <img
-              className="app_games-image"
-              src={logoValorant}
-              alt="logo Valorant"
-            />
-          </figure>
-          <figure className="app__games-figure">
+          <figure className="app__games-figure image__Home__1">
             <img
               className="app_games-image"
               src={logoLol}
+              alt="logo Valorant"
+            />
+          </figure>
+          <figure className="app__games-figure image__Home__2">
+            <img
+              className="app_games-image"
+              src={logoValorant}
               alt="logo League of Legends"
+            />
+          </figure>
+          <figure className="app__games-figure image__Home__3">
+            <img
+              className="app_games-image"
+              src={logolMinecraft}
+              alt="logo Minecraft"
+            />
+          </figure>
+        </div>
+
+        <div className='app__responsive-logo-area'>
+        <figure className="">
+            <img
+              className=""
+              src={logoLol}
+              alt="logo Valorant"
+            />
+          </figure>
+          <figure className="">
+            <img
+              className=""
+              src={logoValorant}
+              alt="logo League of Legends"
+            />
+          </figure>
+          <figure className="">
+            <img
+              className=""
+              src={logolMinecraft}
+              alt="logo Minecraft"
             />
           </figure>
         </div>
@@ -92,6 +131,7 @@ function App() {
             asperiores reiciendis harum pariatur.
           </p>
         </div>
+        </section>
       </section>
       <section className="app__step">
         <h3 className="app__step-title">Etapes pour utiliser O'Last</h3>
@@ -167,6 +207,7 @@ function App() {
           porro quidem cum at!
         </p>
         <button className="app__annonce-button">PLAY</button>
+      </section>
       </section>
     </div>
   );
