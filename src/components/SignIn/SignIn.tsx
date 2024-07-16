@@ -36,15 +36,18 @@ function SignIn() {
     try {
       console.log('bonjour');
 
-      const response = await axios.post(`http://localhost:3000/api/v1/users`, {
-        firstname,
-        lastname,
-        city,
-        discord_username: pseudoDiscord,
-        email,
-        birth_date: birthDate,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/users`,
+        {
+          firstname,
+          lastname,
+          city,
+          discord_username: pseudoDiscord,
+          email,
+          birth_date: birthDate,
+          password,
+        }
+      );
 
       // Reset des states - Vider les champs du formulaire au clic sur le bouton
       setFirstname('');

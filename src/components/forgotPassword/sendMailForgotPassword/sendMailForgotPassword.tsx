@@ -13,7 +13,7 @@ export default function SendMailForgotPassword({}) {
     event.preventDefault();
 
     axios
-      .post('http://localhost:3000/api/v1/forgot-password', {
+      .post(`${import.meta.env.VITE_API_BASE_URL}/forgot-password`, {
         email: email,
       })
       .then(function () {

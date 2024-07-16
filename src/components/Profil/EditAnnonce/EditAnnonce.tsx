@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './EditAnnonce.scss';
 import { useEffect, useState } from 'react';
+import Sidebar from '../SideBar/Sidebar';
 
 interface Player {
   post_id: number;
@@ -41,7 +42,7 @@ function EditAnnonce() {
   const fetchlisting = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/posts/user/${id} `
+        `${import.meta.env.VITE_API_BASE_URL}/posts/user/${id} `
       );
       const annonces = response.data;
 
@@ -57,7 +58,7 @@ function EditAnnonce() {
       const userId = localStorage.getItem('userId');
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/profil/details/${userId}`
+          `${import.meta.env.VITE_API_BASE_URL}/profil/details/${userId}`
         );
 
         setProfils(response.data);
@@ -75,7 +76,7 @@ function EditAnnonce() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/posts/`,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/`,
         {
           title,
           platform,
@@ -99,7 +100,7 @@ function EditAnnonce() {
     e.preventDefault();
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/v1/posts/${selectedAnnonce?.post_id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${selectedAnnonce?.post_id}`,
         {
           title,
           platform,
@@ -121,7 +122,6 @@ function EditAnnonce() {
 
   // Submit du formulaire pour créer une annonce
   const handleSubmit = async (e: React.FormEvent) => {
-
     // e.preventDefault();
     let response;
     if (selectedAnnonce) {
@@ -146,8 +146,7 @@ function EditAnnonce() {
   const handleDelete = async (id: number) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/posts/${id},
-        `,
+        `${import.meta.env.VITE_API_BASE_URL}/posts/${id}`,
         { withCredentials: true }
       );
       console.log('DELETE : ' + response.data);
@@ -182,87 +181,94 @@ function EditAnnonce() {
   };
 
   return (
-    <div>
+    <div className="profile_container">
+      <Sidebar />
       <div className="edit">
-        {annonce.map((player) => (
-          <section key={player.post_id} className="edit__card">
-            <article className="edit__profile-card">
-              <header className="edit__profile-card-header">
-                <h2 className="edit__profile-card-title">
-                  Title : {player.post_title}
-                </h2>
-                <button
-                  className="edit__profile-card-button"
-                  onClick={() => handleSelectAnnonce(player)}
-                >
-                  Update
-                </button>
-                <button
-                  className="edit__profile-card-button"
-                  onClick={() => handleDelete(player.post_id)}
-                >
-                  Delete
-                </button>
-              </header>
-              <section className="edit__profile-card-body">
-                <h3 className="edit__profile-card-description-title">
-                  platform : {player.post_platform}
-                </h3>
-                <p className="edit__profile-card-description-text">
-                  description : {player.post_description}
-                </p>
-                <div className="edit__profile-card-info">
-                  <span className="edit__profile-card-info-rank">
-                    Rank : {player.profil_rank}
-                  </span>
-                  <span className="edit__profile-card-info-level">
-                    Level : {player.profil_level}
-                  </span>
-                </div>
-              </section>
-            </article>
-          </section>
-        ))}
-        ;
+        <h1 className="edit__title">Annonces</h1>
+        <section className="edit__profile">
+          {annonce.map((player) => (
+            <section key={player.post_id} className="edit__card">
+              <article className="edit__profile-card">
+                <header className="edit__profile-card-header">
+                  <h2 className="edit__profile-card-title">
+                    {player.post_title}
+                  </h2>
+                </header>
+                <section className="edit__profile-card-body">
+                  <h3 className="edit__profile-card-description-title">
+                    platform : {player.post_platform}
+                  </h3>
+                  <p className="edit__profile-card-description-text">
+                    description : {player.post_description}
+                  </p>
+                  <div className="edit__profile-card-info">
+                    <span className="edit__profile-card-info-rank">
+                      Rank : {player.profil_rank}
+                    </span>
+                    <span className="edit__profile-card-info-level">
+                      Level : {player.profil_level}
+                    </span>
+                  </div>
+                </section>
+                <section className="edit__profile-card-buttons">
+                  <button
+                    className="edit__profile-card-button"
+                    onClick={() => handleSelectAnnonce(player)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    className="edit__profile-card-button"
+                    onClick={() => handleDelete(player.post_id)}
+                  >
+                    Delete
+                  </button>
+                </section>
+              </article>
+            </section>
+          ))}
+        </section>
         <section className="edit__form">
           <form onSubmit={handleSubmit}>
-            <div className="edit__form-title">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                id="title"
-                placeholder="Ad title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div className="edit__form-platform">
-              <label htmlFor="title">Platform</label>
-              <input
-                type="text"
-                id="title"
-                placeholder="Ad Platform"
-                value={platform}
-                onChange={(e) => setPlatform(e.target.value)}
-              />
-            </div>
-            <div className="form_group">
-              <label htmlFor="profil">Profil *required</label>
-              <select
-                name="profil"
-                id="profil"
-                onChange={(e) => setProfil(e.target.value)}
-              >
-                <option value="">Select a profil</option>
-                {profils.map((profil) => (
-                  <option
-                    key={profil.id}
-                    value={profil.id + ',' + profil.game_id}
-                  >
-                    {profil.name} : {profil.game_name}
-                  </option>
-                ))}
-              </select>
+            <div className="edit__form-left">
+              <div className="edit__form-title">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Ad title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+              <div className="edit__form-platform">
+                <label htmlFor="title">Platform</label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Ad Platform"
+                  value={platform}
+                  onChange={(e) => setPlatform(e.target.value)}
+                />
+              </div>
+              <div className="form_group">
+                <label htmlFor="profil">Profil *required</label>
+                <select
+                  name="profil"
+                  id="profil"
+                  onChange={(e) => setProfil(e.target.value)}
+                >
+                  <option value="">Select a profil</option>
+                  {profils.map((profil) => (
+                    <option
+                      key={profil.id}
+                      value={profil.id + ',' + profil.game_id}
+                    >
+                      {profil.name} : {profil.game_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className="edit__form-side">

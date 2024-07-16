@@ -21,7 +21,7 @@ interface User {
 //   game_name: string;
 // }
 
-interface Annonce {
+interface Player {
   id: number;
   user_id: number;
   post_id: number;
@@ -30,23 +30,22 @@ interface Annonce {
   post_description: string;
   post_schedule_start: number;
   post_schedule_end: number;
-  post_status: boolean;
   profil_rank: string;
   profil_level: number;
   profil_id: number;
-  game_name: number;
+  game_id: number;
+  game_name: string;
 }
 
 function profilAnnonce() {
   const { id } = useParams();
   const [user, setUser] = useState<User | null>(null);
-  const [annonces, setAnnonces] = useState<Annonce[]>([]);
-  // const [profils, setProfils] = useState<Profil[]>([]);
+  const [annonce, setAnnonce] = useState<Player[]>([]);
 
   const fetchuser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
       );
       setUser(response.data);
     } catch (error) {
@@ -54,21 +53,26 @@ function profilAnnonce() {
     }
   };
 
-  const fetchProfils = async () => {
+  const fetchlisting = async () => {
     try {
-      await axios.get(`http://localhost:3000/api/v1/profil/details/${id}`);
-      // setProfils(response.data);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/user/${id}`
+      );
+      const annonces = response.data;
+      console.log(annonces);
+
+      setAnnonce(annonces);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const fetchPosts = async () => {
+  const fetchProfils = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/v1/posts/user/${id}`
+      await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
-      setAnnonces(response.data);
+      // setProfils(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -78,7 +82,7 @@ function profilAnnonce() {
   useEffect(() => {
     fetchuser();
     fetchProfils();
-    fetchPosts();
+    fetchlisting();
   }, []);
 
   //Voir pour mettre composant erreur ou loading si pas de user trouvé
@@ -88,31 +92,50 @@ function profilAnnonce() {
 
   return (
     <div className="profilAnnonce_container">
-      {annonces.map((annonce) => (
-        <div className="annonce_box" key={annonce.post_id}>
-          <h1 className="profilAnnonce_title">{annonce.post_title}</h1>
-          <div className="profilAnnonce_games">
-            <p>{annonce.post_platform}</p>
-            <p>{annonce.game_name}</p>
-          </div>
-          <div className="profilAnnonce_description">
-            <h1>Description</h1>
-            <p className="profilAnnonce_description_text">
-              {annonce.post_description}
-            </p>
-          </div>
-          <div className="profilAnnonce_rank">
-            <p>{annonce.profil_rank}</p>
-            <p>{annonce.profil_level}</p>
-          </div>
-
-          <div className="profilAnnonce_schedule-status">
-            <p>{annonce.post_schedule_start}</p>
-            <p>{annonce.post_schedule_end}</p>
-            <div className="profilAnnonce_status">
-              <p>{annonce.post_status}</p>
+      {annonce.map((player) => (
+        <div className="card_profil_annonce" key={player.post_id}>
+          <figure className="card_platform">
+            <img
+              src={`/src/assets/img/platforms/${player.post_platform.toLowerCase()}.png`}
+              alt=""
+              className="card_platform_image"
+            />
+          </figure>
+          <section className="card_top">
+            <figure className="card_top_image">
+              <img
+                src={`/src/assets/img/games-images/${player.game_name.toLowerCase().replaceAll(' ', '-')}.jpg`}
+                alt="placeholder"
+                className="card_image"
+              ></img>
+            </figure>
+            <p className="card_title">{player.post_title}</p>
+            <p className="card_description">{player.post_description}</p>
+          </section>
+          <section className="card_bottom">
+            <div className="card_bottom-rank-level">
+              <p className="card_rank">Rank: {player.profil_rank}</p>
+              <p className="card_level">Level: {player.profil_level}</p>
             </div>
-          </div>
+            <div className="card_bottom_schedule">
+              <p className="card_schedule_start">
+                {new Date(player.post_schedule_start).toLocaleString('fr-FR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </p>
+              <p className="card_schedule_end">
+                {new Date(player.post_schedule_end).toLocaleString('fr-FR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </p>
+            </div>
+          </section>
         </div>
       ))}
     </div>

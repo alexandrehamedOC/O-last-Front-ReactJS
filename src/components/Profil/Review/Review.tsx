@@ -40,7 +40,7 @@ function Review() {
   const fetchRates = async (items: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/rates/user/${id}?itemsByPage=${items}`
+        `${import.meta.env.VITE_API_BASE_URL}/rates/user/${id}?itemsByPage=${items}`
       );
 
       setRates(response.data);
@@ -52,7 +52,7 @@ function Review() {
   const fetchprofil = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/profil/details/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
       console.log(response.data);
       setProfils(response.data);
@@ -65,7 +65,7 @@ function Review() {
     try {
       const userId = localStorage.getItem('userId');
       const reponse = await axios.post(
-        'http://localhost:3000/api/v1/rates',
+        '${import.meta.env.VITE_API_BASE_URL}/rates',
         {
           note: note,
           description: rateDescription,
