@@ -5,11 +5,15 @@
   justify-content: space-evenly;
 
   &__card {
+    font-weight: bold;
     display: flex;
     gap: 25px;
     width: 250px;
     border: 1px solid black;
-    padding: 1em;
+    border-radius: 10px;
+    padding: 0.7rem;
+
+    filter: drop-shadow(1px 2px 0.2rem gray);
 
     .edit__profile-card {
       display: flex;
@@ -50,6 +54,7 @@
 .update__form-button {
   background-color: black;
   color: antiquewhite;
+  border-radius: 10px;
   border: none;
   box-shadow: none;
   padding: 0.2em 1em;
@@ -110,6 +115,30 @@ form textarea {
   border: none;
   box-shadow: none;
   padding: 0.2em 2em;
+}
+
+button {
+  border-radius: 10px;
+  --bg: #000;
+  --hover-bg: #ff90e8;
+  --hover-text: #000;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: var(--bg);
+  transition: 0.2s;
+}
+button:hover {
+  color: var(--hover-text);
+  transform: translate(-0.25rem, -0.25rem);
+  background: var(--hover-bg);
+  box-shadow: 0.25rem 0.25rem var(--bg);
+}
+button:active {
+  transform: translate(0);
+  box-shadow: none;
 }
 
 @media screen and (max-width: 1024px) {
