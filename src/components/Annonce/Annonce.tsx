@@ -118,6 +118,12 @@ const Annonce: React.FC = () => {
     }
   };
 
+  const handleReset = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    navigate(`/Annonce`);
+  };
+
   const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const game_id = Number(e.target.value);
     setSelectedGame(game_id);
@@ -151,6 +157,9 @@ const Annonce: React.FC = () => {
             onClick={(e) => handleSearch(e, selectedGame)}
           >
             Search
+          </button>
+          <button className="reset_button" onClick={(e) => handleReset(e)}>
+            Reset
           </button>
         </div>
         <div className="grid">
