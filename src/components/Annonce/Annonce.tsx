@@ -42,6 +42,7 @@ const Annonce: React.FC = () => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const gameId = searchParams.get('game_id');
+  const [userWithProfil, setuserWithProfil] = useState<boolean>(false);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -94,9 +95,34 @@ const Annonce: React.FC = () => {
     }
   };
 
+  const fetchProfils = async () => {
+    const id = localStorage.getItem('userId');
+
+    if (!id) {
+      setuserWithProfil(false);
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
+      );
+
+      if (response.data.length === 0) setuserWithProfil(false);
+
+      setuserWithProfil(true);
+    } catch (error) {
+      console.error(
+        'Erreur lors de la récupération des profils du user:',
+        error
+      );
+    }
+  };
+
   useEffect(() => {
     fetchlisting();
     fetchGames();
+    fetchProfils();
   }, [gameId]);
 
   //Filtrer par jeux
@@ -107,11 +133,6 @@ const Annonce: React.FC = () => {
     console.log('ici', selectedGame);
 
     if (selectedGame) {
-      // const response = await axios.get(
-      //   `${import.meta.env.VITE_API_BASE_URL}/posts/?game_id=${selectedGame}`
-      // );
-
-      // setAnnonce(response.data);
       navigate(`/Annonce?game_id=${selectedGame}`);
     } else {
       await fetchlisting();
@@ -134,9 +155,11 @@ const Annonce: React.FC = () => {
     <div className="annonce">
       <div className="create_annonce">
         <img src="/AnnonceBG.jpg" alt="" className="image" />
-        <button className="create_ad_button" onClick={openModal}>
-          Créer ton annonce
-        </button>
+        {userWithProfil && (
+          <button className="create_ad_button" onClick={openModal}>
+            Crée ton annonce
+          </button>
+        )}
       </div>
       <div className="main_content">
         <div className="filters">
@@ -151,16 +174,17 @@ const Annonce: React.FC = () => {
               ))}
             </select>
           </div>
-
-          <button
-            className="search_button"
-            onClick={(e) => handleSearch(e, selectedGame)}
-          >
-            Search
-          </button>
-          <button className="reset_button" onClick={(e) => handleReset(e)}>
-            Reset
-          </button>
+          <section className="search_section_buttons">
+            <button
+              className="search_button"
+              onClick={(e) => handleSearch(e, selectedGame)}
+            >
+              Rechercher
+            </button>
+            <button className="reset_button" onClick={(e) => handleReset(e)}>
+              Réinitialiser
+            </button>
+          </section>
         </div>
         <div className="grid">
           {annonce.map((player) => (
@@ -183,9 +207,12 @@ const Annonce: React.FC = () => {
                     alt="placeholder"
                     className="card_image"
                   ></img>
+                  <p className="card_game_name">{player.game_name}</p>
                 </figure>
-                <p className="card_title">{player.post_title}</p>
-                <p className="card_description">{player.post_description}</p>
+                <section className="card_top_title-desc">
+                  <p className="card_title">{player.post_title}</p>
+                  <p className="card_description">{player.post_description}</p>
+                </section>
               </section>
               <section className="card_bottom">
                 <div className="card_bottom-rank-level">

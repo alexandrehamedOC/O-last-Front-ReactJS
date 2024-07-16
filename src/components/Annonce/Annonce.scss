@@ -55,6 +55,24 @@
         padding: 10px;
         width: 100%;
       }
+
+      .search_section_buttons {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .search_section_buttons button {
+        padding: 0.2em 1em;
+        background-color: $color-bg;
+        color: white;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+          color: $color-NeonPink;
+        }
+      }
     }
 
     .grid {
@@ -80,31 +98,27 @@
         }
       }
     }
-    .search_button {
-      margin: 25px;
+    .search_button,
+    .reset_button {
+      padding: 0.2em 1em;
     }
   }
 }
 
-@media screen and (max-width: 1320px) {
-  .annonce .main_content .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
+.card_game_name {
+  margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1110px) {
-  .annonce .main_content .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
+.card_title {
+  margin-bottom: 10px;
 }
+
 .card {
-  width: 200px;
+  width: 100%;
 }
 
 .card_top {
-  background-color: #f4f4f4;
+  background-color: #fafafa;
   color: #333;
   text-align: center;
   height: 300px;
@@ -114,14 +128,9 @@
   flex-direction: column;
 }
 
-.card_title {
-  margin-bottom: 20px;
-}
-
 .card_top_image {
   object-fit: cover;
   width: 100%;
-  height: 120px;
   margin-top: 10px;
 }
 
@@ -160,20 +169,64 @@
   justify-content: space-between;
   font-size: 0.8em;
 }
+
+@media screen and (max-width: 1320px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media screen and (max-width: 975px) {
   .annonce .create_annonce .create_ad_button {
     background-color: #1a1a1a;
     position: absolute;
     left: 50%;
-    width: 40%;
+    width: 200px;
     transform: translateX(-50%);
     color: #00ffff;
     border: none;
-    padding: 25px 35px;
-    font-size: 1.5rem;
+    padding: 15px 25px;
+    font-size: 1rem;
     cursor: pointer;
   }
+
+  .annonce .main_content {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .annonce .main_content .filters {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #1a1a1a;
+    justify-content: space-between;
+  }
+
+  .annonce .main_content .filters .form_group #games {
+    min-width: 200px;
+  }
+
+  .annonce .main_content .filters .search_section_buttons {
+    justify-content: end;
+    align-items: center;
+    align-self: center;
+    height: 33%;
+    gap: 20px;
+  }
 }
+
 @media screen and (max-width: 700px) {
   .annonce .main_content .grid {
     display: grid;
@@ -187,13 +240,16 @@
     flex-direction: column;
     align-items: center;
   }
-  .annonce .main_content .filters {
+  .annonce .main_content {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 20px;
-    background-color: #1a1a1a;
     width: 100%;
+  }
+
+  .annonce .main_content .filters {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -202,7 +258,15 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
-    padding: 20px;
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
     flex-grow: 1;
   }
 }

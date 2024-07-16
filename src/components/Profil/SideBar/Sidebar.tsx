@@ -63,15 +63,17 @@ function Sidebar() {
       {userId === user.id ? (
         <>
           <Link to={`/EditProfil/${user.id}`}>
-            <button>Edit Profil</button>
+            <button className="left-buttons">Edit Profil</button>
           </Link>
           <Link to={`/EditAnnonce/${user.id}`}>
-            <button>Edit Annonce</button>
+            <button className="left-buttons">Edit Annonce</button>
           </Link>
         </>
       ) : (
         <>
-          <button onClick={openModal}>Contact Player</button>
+          <button className="left-buttons" onClick={openModal}>
+            Contact Player
+          </button>
           <Modal show={showModal} onClose={closeModal}>
             <Contact user={user} />
           </Modal>
