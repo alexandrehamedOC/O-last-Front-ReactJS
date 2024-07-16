@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import './Annonce.scss';
 import { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -36,8 +37,11 @@ const Annonce: React.FC = () => {
   const [annonce, setAnnonce] = useState<Player[]>([]);
   const [games, setGames] = useState<Game[]>([]);
   // Je selectionne le jeu avec mon select
-  const [selectedGame, setSelectedGame] = useState<string>('');
+  const [selectedGame, setSelectedGame] = useState<number>(0);
   const [originalAnnonces, setOriginalAnnonces] = useState<Player[]>([]);
+  const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const gameId = searchParams.get('game_id');
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -54,16 +58,28 @@ const Annonce: React.FC = () => {
   };
 
   const fetchlisting = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/posts/`
-      );
-      const annonces = response.data;
+    if (gameId) {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/posts/?game_id=${gameId}`
+        );
+        setAnnonce(response.data);
+        return;
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/posts/`
+        );
+        const annonces = response.data;
 
-      setAnnonce(annonces);
-      setOriginalAnnonces(annonces);
-    } catch (error) {
-      console.error(error);
+        setAnnonce(annonces);
+        setOriginalAnnonces(annonces);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -81,24 +97,31 @@ const Annonce: React.FC = () => {
   useEffect(() => {
     fetchlisting();
     fetchGames();
-  }, []);
+  }, [gameId]);
 
   //Filtrer par jeux
-  const handleSearch = async () => {
+  const handleSearch = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    selectedGame: Number
+  ) => {
+    console.log('ici', selectedGame);
+
     if (selectedGame) {
-      const filteredAnnonces = originalAnnonces.filter(
-        (player) =>
-          player.game_id ===
-          games.find((game) => game.name === selectedGame)?.id
-      );
-      setAnnonce(filteredAnnonces);
+      // const response = await axios.get(
+      //   `${import.meta.env.VITE_API_BASE_URL}/posts/?game_id=${selectedGame}`
+      // );
+
+      // setAnnonce(response.data);
+      navigate(`/Annonce?game_id=${selectedGame}`);
     } else {
-      fetchlisting();
+      await fetchlisting();
     }
   };
 
   const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedGame(e.target.value);
+    const game_id = Number(e.target.value);
+    setSelectedGame(game_id);
+    console.log(selectedGame);
   };
 
   return (
@@ -116,12 +139,17 @@ const Annonce: React.FC = () => {
             <select id="games" onChange={handleGameChange} value={selectedGame}>
               <option value="">Sélectionne un jeu</option>
               {games.map((game) => (
-                <option key={game.id}>{game.name}</option>
+                <option value={game.id} key={game.id}>
+                  {game.name}
+                </option>
               ))}
             </select>
           </div>
 
-          <button className="search_button" onClick={handleSearch}>
+          <button
+            className="search_button"
+            onClick={(e) => handleSearch(e, selectedGame)}
+          >
             Search
           </button>
         </div>
