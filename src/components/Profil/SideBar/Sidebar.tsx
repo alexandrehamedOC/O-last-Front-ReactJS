@@ -68,15 +68,17 @@ function Sidebar() {
         <>
           <p>{user.discord_username}</p>
           <Link to={`/edit-profil/${user.id}`}>
-            <button>Edit Profil</button>
+            <button className="left-buttons">Edit Profil</button>
           </Link>
           <Link to={`/edit-annonce/${user.id}`}>
-            <button>Edit Annonce</button>
+            <button className="left-buttons">Edit Annonce</button>
           </Link>
         </>
       ) : (
         <>
-          <button onClick={openModal}>Contact Player</button>
+          <button onClick={openModal} className="left-buttons">
+            Contact Player
+          </button>
           <Modal show={showModal} onClose={closeModal}>
             <Contact user={user} />
           </Modal>
