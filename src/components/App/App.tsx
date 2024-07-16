@@ -3,18 +3,66 @@ import logoValorant from '../../assets/img/games-logo/Valorant-logo.png';
 import logoLol from '../../assets/img/games-logo/Lol-logo.png';
 import leftarrow from '../../assets/img/fleche-gauche.png';
 import rightarrow from '../../assets/img/fleche-droite.png';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function App() {
+  const [games, setGames] = useState([]);
+  const [selectedGame, setselectedGame] = useState<number>(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      const result = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/games`
+      );
+      setGames(result.data);
+    };
+    fetchGames();
+  }, []);
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const game_id = Number(event.target.value);
+    setselectedGame(game_id);
+  };
+
+  const handleGamesClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    selectedGame: Number
+  ) => {
+    navigate(`/Annonce?game_id=${selectedGame}`);
+  };
   return (
     <div className="app">
       <section className="app__searchbar">
         <h1 className="app__title">Bienvenue sur O'Last !</h1>
-        <input
+        {/* <input
           className="app__input"
           type="text"
           placeholder="Chercher un jeu ..."
-        />
-        <button className="app__button">Start !</button>
+        /> */}
+        <select
+          name="searchBar"
+          id="searchBar"
+          value={selectedGame}
+          onChange={handleSelectChange}
+        >
+          <option value="" disabled>
+            Choisir un jeu
+          </option>
+          {games.map((item: any) => (
+            <option value={item.id} key={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <button
+          className="app__button"
+          onClick={(e) => handleGamesClick(e, selectedGame)}
+        >
+          Start !
+        </button>
       </section>
       <section className="app__games">
         <div className="app__games-images-container">
