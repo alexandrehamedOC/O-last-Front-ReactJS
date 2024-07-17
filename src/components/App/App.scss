@@ -203,7 +203,7 @@
 
   .app__use {
     padding: 20px;
-    background-color: #1a1a1a;
+    background-color: white;
 
     &__container {
       max-width: 80vw;
@@ -219,12 +219,13 @@
 
     &-title {
       text-align: center;
+      margin-top: 30px;
       margin-bottom: 30px;
 
       h1 {
-        font-size: 2em;
+        font-size: 3em;
         font-weight: bold;
-        color: $color-white;
+        color: $color-alternative-purple;
       }
     }
 
@@ -289,7 +290,7 @@
     margin: 0 auto;
     font-size: 2em;
     font-weight: bold;
-    color: $color-white;
+    color: $color-alternative-purple;
     padding-bottom: 30px;
   }
   &__reviews {
@@ -312,7 +313,7 @@
   }
 
   .app__slider-container{
-    background-color: #1a1a1a;
+    background-color: $color-white;
     padding: 40px 0px 40px 0px;
     display: flex;
     flex-direction: column;
