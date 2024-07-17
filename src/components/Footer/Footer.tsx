@@ -40,7 +40,7 @@ function Footer() {
             </Link>
           </li>
           <li>
-            <Link to="/annonces">
+            <Link to="/annonce">
               <p>Recherche des joueurs</p>
             </Link>
           </li>
