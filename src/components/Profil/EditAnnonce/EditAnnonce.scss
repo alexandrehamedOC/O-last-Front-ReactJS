@@ -12,6 +12,8 @@
 
   &__form {
     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
     gap: 25px;
     margin-top: 25px;
     color: black;
@@ -56,4 +58,9 @@ form label {
 }
 .edit__form-textarea {
   resize: none;
+}
+@media screen and (max-width: 768px) {
+  .edit__form {
+    padding: 1em 0;
+  }
 }
