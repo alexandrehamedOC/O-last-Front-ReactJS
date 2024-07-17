@@ -226,7 +226,7 @@ function EditProfil() {
           ))}
         </section>
         <section className="edit__form">
-          <form onSubmit={handleSubmit}>
+          <form className="edit__form_profil" onSubmit={handleSubmit}>
             <input type="hidden" id="profil_id" value="" />
             <div className="edit__form-main">
               <div className="edit__form-group">

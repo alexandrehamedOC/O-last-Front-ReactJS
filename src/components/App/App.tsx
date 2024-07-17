@@ -31,7 +31,7 @@ function App() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     selectedGame: Number
   ) => {
-    navigate(`/Annonce?game_id=${selectedGame}`);
+    navigate(`/annonce?game_id=${selectedGame}`);
   };
   return (
     <div className="app">

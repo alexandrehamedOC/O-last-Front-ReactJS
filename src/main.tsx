@@ -1,4 +1,4 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   Route,
@@ -7,26 +7,40 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import App from './components/App/App';
-import Root from './pages/Root';
-
-import Annonce from './components/Annonce/Annonce';
-import Profil from './components/Profil/Profil';
-import Login from './components/Login/Login';
-import SignIn from './components/SignIn/SignIn';
-import SendMailForgotPassword from './components/forgotPassword/sendMailForgotPassword/sendMailForgotPassword';
-import FormNewPassword from './components/forgotPassword/formNewPassword/formNewPassword';
-import EditProfil from './components/Profil/EditProfil/EditProfil';
-import EditAnnonce from './components/Profil/EditAnnonce/EditAnnonce';
-import Error404 from './components/error/error404'
-
+// Mise en place du lazy loading
+const Root = lazy(() => import('./pages/Root'));
+const App = lazy(() => import('./components/App/App'));
+const Annonce = lazy(() => import('./components/Annonce/Annonce'));
+const Profil = lazy(() => import('./components/Profil/Profil'));
+const EditProfil = lazy(
+  () => import('./components/Profil/EditProfil/EditProfil')
+);
+const EditAnnonce = lazy(
+  () => import('./components/Profil/EditAnnonce/EditAnnonce')
+);
+const Login = lazy(() => import('./components/Login/Login'));
+const SignIn = lazy(() => import('./components/SignIn/SignIn'));
+const SendMailForgotPassword = lazy(
+  () =>
+    import(
+      './components/forgotPassword/sendMailForgotPassword/sendMailForgotPassword'
+    )
+);
+const FormNewPassword = lazy(
+  () => import('./components/forgotPassword/formNewPassword/formNewPassword')
+);
+// Import des composants ne nécessitant pas de lazy loading
+import Error404 from './components/error/Error404';
+import Loader from './components/Loader/Loader';
 import './styles/index.scss';
 import { AuthProvider } from './context/AuthContext';
 
+// Création de la racine de l'application
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+// Création du router
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -34,8 +48,8 @@ const router = createBrowserRouter(
         <Route index element={<App />} />
         <Route path="/annonce" element={<Annonce />} />
         <Route path="/profile/:id" element={<Profil />} />
-        <Route path="/editprofil/:id" element={<EditProfil />} />
-        <Route path="/editannonce/:id" element={<EditAnnonce />} />
+        <Route path="/edit-profil/:id" element={<EditProfil />} />
+        <Route path="/edit-annonce/:id" element={<EditAnnonce />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<SignIn />} />
         <Route
@@ -49,8 +63,11 @@ const router = createBrowserRouter(
   )
 );
 
+// Rendu de l'application
 root.render(
   <AuthProvider>
-    <RouterProvider router={router} />
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </AuthProvider>
 );
