@@ -30,7 +30,7 @@ function Contact({ user }: ContactProps) {
         {showSteps && (
           <ul className="contact__steps">
             <li className="contact__step">
-              1 - Ouvre ton discord et connect toi !
+              1 - Ouvre ton discord et connecte toi !
             </li>
             <li className="contact__step">2 - Clique sur l'icône des amis.</li>
             <li className="contact__step">

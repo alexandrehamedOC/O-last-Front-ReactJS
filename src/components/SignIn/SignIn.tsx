@@ -75,10 +75,10 @@ function SignIn() {
         <img src="/Inscription.jpg" alt="Placeholder" />
       </div>
       <div className="SignIn__form">
-        <h1>SIGN IN</h1>
+        <h1>Inscription</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="firstname">Firstname</label>
+            <label htmlFor="firstname">Prénom*</label>
             <input
               type="text"
               id="firstname"
@@ -88,7 +88,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="lastname">Lastname</label>
+            <label htmlFor="lastname">Nom*</label>
             <input
               type="text"
               id="lastname"
@@ -98,7 +98,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">Ville*</label>
             <input
               type="text"
               id="city"
@@ -108,7 +108,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="pseudo-discord">Discord username</label>
+            <label htmlFor="pseudo-discord">Discord username*</label>
             <input
               type="text"
               id="pseudo-discord"
@@ -118,7 +118,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email*</label>
             <input
               type="email"
               id="email"
@@ -128,7 +128,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="birth-date">Birth date</label>
+            <label htmlFor="birth-date">Date de naissance*</label>
             <input
               type="date"
               id="birth-date"
@@ -138,7 +138,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mot de passe*</label>
             <input
               type="password"
               id="password"
@@ -148,7 +148,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="confirm-password">Confirm password</label>
+            <label htmlFor="confirm-password">Confirmer le mot de passe*</label>
             <input
               type="password"
               id="confirm-password"
@@ -158,7 +158,7 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <button type="submit">SIGN IN</button>
+            <button type="submit">S'inscrire</button>
           </div>
         </form>
       </div>

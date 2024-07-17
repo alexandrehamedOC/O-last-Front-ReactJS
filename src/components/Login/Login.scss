@@ -24,7 +24,6 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 20px;
-      
 
       .login__form-label {
         margin-bottom: 10px;
@@ -41,11 +40,11 @@
         }
       }
     }
-    .login__form{
+    .login__form {
       width: 50%;
     }
 
-    .login__button__style{
+    .login__button__style {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -58,12 +57,12 @@
       cursor: pointer;
     }
 
-
     .login__forgot-password {
       margin-top: 20px;
       font-size: 0.8rem;
       font-weight: 400;
       padding: 10px;
+      text-align: center;
 
       .login__forgot-password-link {
         color: $color-DeepPurple;
@@ -115,7 +114,7 @@
   .login {
     display: flex;
     flex-direction: column;
-    }
+  }
 }
 
 //* Revoir responsive design, probleme au niveau des inputs, ils ne sont pas alignés et vont

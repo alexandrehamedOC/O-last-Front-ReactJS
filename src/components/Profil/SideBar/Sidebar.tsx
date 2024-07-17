@@ -60,7 +60,9 @@ function Sidebar() {
 
   return (
     <div className="profile_sidebar">
-      <div className="profile_picture" />
+      <figure className="profile_picture">
+        <img src="/src/assets/img/profil-picture.jpg" />
+      </figure>
       <p>{user.firstname}</p>
       <p>{user.lastname}</p>
       <p>{user.city}</p>
@@ -69,10 +71,14 @@ function Sidebar() {
         <>
           <p>{user.discord_username}</p>
           <Link to={`/edit-profil/${user.id}`}>
-            <button className="left-buttons">Edit Profil</button>
+            <button className="left-buttons">
+              <span style={{ marginRight: '10px' }}>✏️</span> Profil
+            </button>
           </Link>
           <Link to={`/edit-annonce/${user.id}`}>
-            <button className="left-buttons">Edit Annonce</button>
+            <button className="left-buttons">
+              <span style={{ marginRight: '10px' }}>✏️</span> Annonce
+            </button>
           </Link>
           {(location.pathname.includes('/edit-profil') ||
             location.pathname.includes('/edit-annonce')) && (
@@ -84,7 +90,7 @@ function Sidebar() {
       ) : (
         <>
           <button onClick={openModal} className="left-buttons">
-            Contact Player
+            Contacte {user.firstname}
           </button>
           <Modal show={showModal} onClose={closeModal}>
             <Contact user={user} />
