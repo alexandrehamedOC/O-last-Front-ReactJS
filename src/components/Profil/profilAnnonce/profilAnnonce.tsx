@@ -73,7 +73,7 @@ function profilAnnonce() {
     fetchuser();
     fetchProfils();
     fetchlisting();
-  }, []);
+  }, [id]);
 
   //Voir pour mettre composant erreur ou loading si pas de user trouvé
   if (!user) {

@@ -8,38 +8,70 @@
   width: 20%;
   padding: 20px;
   background-color: #f4f4f4;
-}
 
-.profile_sidebar p {
-  margin: 10px 0;
-}
+  p {
+    margin: 10px 0;
+  }
 
-.profile_sidebar button {
-  border-radius: 10px;
-  --bg: #000;
-  --hover-bg: #00ffff;
-  --hover-text: #000;
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid var(--bg);
-  border-radius: 4px;
-  padding: 0.8em 2em;
-  background: var(--bg);
-  transition: 0.2s;
-  width: 200px;
-  margin-bottom: 10px;
-}
+  button {
+    border-radius: 10px;
+    --bg: #000;
+    --hover-bg: #00ffff;
+    --hover-text: #000;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bg);
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+    width: 200px;
+    margin-bottom: 10px;
 
-.profile_sidebar button:hover {
-  color: var(--hover-text);
-  transform: translate(-0.25rem, -0.25rem);
-  background: var(--hover-bg);
-  box-shadow: 0.25rem 0.25rem var(--bg);
-}
+    &:hover {
+      color: var(--hover-text);
+      transform: translate(-0.25rem, -0.25rem);
+      background: var(--hover-bg);
+      box-shadow: 0.25rem 0.25rem var(--bg);
+    }
 
-.profile_sidebar button:active {
-  transform: translate(0);
-  box-shadow: none;
+    &:active {
+      transform: translate(0);
+      box-shadow: none;
+    }
+  }
+
+  // Media Query pour les petits écrans
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    p {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+
+  // Media Query pour les très petits écrans
+  @media (max-width: 480px) {
+    button {
+      width: 100%;
+      padding: 8px;
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
 }
 
 .profile_picture {

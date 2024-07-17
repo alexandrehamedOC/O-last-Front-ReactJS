@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import './Header.scss';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
 
 function Header() {
   const [isNavVisible, setIsNavVisible] = useState(false);

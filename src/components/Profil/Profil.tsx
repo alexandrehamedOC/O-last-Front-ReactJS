@@ -59,14 +59,14 @@ function Profil() {
   // useEffect pour récupérer les données du joueur
   useEffect(() => {
     fetchProfils();
-  }, []);
+  }, [id]);
 
   return (
     <div className="profile_container">
       <Sidebar />
       <div className="profile_main">
+          <h1 className='profile_main-h1'>Profils</h1>
         <div className="ranks">
-          <h1>Profils</h1>
           {profils.map((profil) => (
             <div className="ranks-list" key={profil.id}>
               <div className="left">

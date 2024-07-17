@@ -4,7 +4,6 @@ import Modal from '../../Modal/Modal';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Contact from '../Contact/Contact';
-import Error404 from '../../error/Error404';
 
 interface User {
   id: number;
@@ -47,16 +46,7 @@ function Sidebar() {
   // useEffect pour récupérer les données du joueur
   useEffect(() => {
     fetchuser();
-  }, []);
-
-  //Voir pour mettre composant erreur ou loading si pas de user trouvé
-  if (!user) {
-    return (
-      <div>
-        <Error404 />
-      </div>
-    );
-  }
+  }, [id]);
 
   return (
     <div className="profile_sidebar">
@@ -100,5 +90,6 @@ function Sidebar() {
     </div>
   );
 }
+
 
 export default Sidebar;
