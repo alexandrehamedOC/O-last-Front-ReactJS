@@ -35,7 +35,7 @@
       }
     }
     .app__title {
-      color: $color-ElectricCyan;
+      color: #ca8cea;
       font-size: 3rem;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       margin-bottom: 15px;
@@ -58,7 +58,7 @@
   }
 
   &__games {
-    background-color: $color-bg;
+    background-color:#1a1a1a; //#e998e6
     padding: 40px;
     .element__wrapper {
       display: flex;
@@ -149,7 +149,7 @@
       }
     }
   }
-/**
+  /**
   &__step {
     max-width: 1400px;
     margin: 50px auto;
@@ -246,8 +246,8 @@
       text-align: center;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
       transition:
-      transform 0.3s,
-      box-shadow 0.3s;
+        transform 0.3s,
+        box-shadow 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -286,15 +286,56 @@
     }
   }
 
-  .app__title-reviews{
+  /*Vertical dots*/
+
+  .vertical-dots {
+    margin-top: 8vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    flex-direction: column; /* Aligne les éléments en colonne */
+  
+    .dot {
+      width: 20px; /* Largeur du point */
+      height: 20px; /* Hauteur du point */
+      background-color: #e998e6; /* Couleur de fond du point */
+      border-radius: 50%; /* Forme ronde */
+      margin: 10px 0; /* Espace entre les points */
+    }
+  }
+  
+  /*image manette*/
+  .app__manette {
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+
+    &-container {
+      display: flex;
+      justify-content: center; /* Centre le contenu horizontalement */
+      align-items: center; /* Centre le contenu verticalement */
+      width: 50%; /* Assure que le conteneur prend toute la largeur */
+    }
+
+    &-image {
+      img {
+        max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de son conteneur */
+        height: auto; /* Maintient le ratio d'aspect de l'image */
+        display: block; /* Supprime l'espace blanc en dessous de l'image */
+      }
+    }
+  }
+
+  .app__title-reviews {
     margin: 0 auto;
-    font-size: 2em;
+    margin-top: 5vh;
+    font-size: 3em;
     font-weight: bold;
     color: $color-alternative-purple;
     padding-bottom: 30px;
   }
   &__reviews {
-    
     max-width: 80vw;
     margin: 50px auto;
     padding: 20px;
@@ -312,7 +353,14 @@
     }
   }
 
-  .app__slider-container{
+  #sw-js-blob-svg {
+    position: absolute;
+    z-index: 0;
+    top: 1200px;
+    width: 500px;
+  }
+
+  .app__slider-container {
     background-color: $color-white;
     padding: 40px 0px 40px 0px;
     display: flex;
@@ -326,9 +374,9 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-  
+
     &__button {
-      background-color: #000000;
+      background-color: #6164f8;
       color: $color-white;
       border: none;
       padding: 10px;
@@ -337,21 +385,21 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
-  
+
       &--prev {
         left: 0;
       }
-  
+
       &--next {
         right: 0;
       }
     }
-  
+
     &__track-container {
       overflow: hidden;
       width: 100%;
     }
-  
+
     &__track {
       display: flex;
       transition: transform 0.3s ease-in-out;
@@ -359,7 +407,7 @@
       padding: 0;
       margin: 0;
     }
-  
+
     &__slide {
       min-width: calc(100% / 3);
       box-sizing: border-box;
@@ -369,19 +417,18 @@
       border: 1px solid #eee;
       border-radius: 8px;
       margin: 0 10px;
-  
+
       h3 {
         font-size: 1.5em;
         margin-bottom: 10px;
       }
-  
+
       p {
         font-size: 1em;
         color: #666;
       }
     }
   }
-  
 
   .app__reviews-rightarrow,
   .app__reviews-leftarrow {
@@ -394,7 +441,7 @@
     max-width: 1400px;
     margin: 50px auto;
     padding: 20px;
-    background: $color-alternative-purple;
+    background: #ca8cea;
     border-radius: 10px;
     color: $color-white;
     display: flex;
@@ -423,8 +470,8 @@
   }
 }
 
-.app__annonce-container{
-  background-color: #1a1a1a;
+.app__annonce-container {
+  background-color: #6164f8;
 }
 
 @media (min-width: 301px) and (max-width: 975px) {
@@ -433,6 +480,9 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+  .element__wrapper {
+    flex-direction: column;
   }
 
   .app__games {
@@ -482,6 +532,15 @@
       width: 200px;
     }
   }
+  #sw-js-blob-svg {
+    display: none;
+  }
+  .slider__track {
+    flex-direction: column;
+  }
+  .slider__button {
+    display: none;
+  }
 }
 
 // @media screen and (max-width: 700px) {
@@ -493,6 +552,18 @@
     &figure {
       display: none;
     }
+  }
+  #sw-js-blob-svg {
+    display: none;
+  }
+  .element__wrapper {
+    flex-direction: column;
+  }
+  .slider__track {
+    flex-direction: column;
+  }
+  .slider__button {
+    display: none;
   }
 }
 
