@@ -59,7 +59,7 @@ function Profil() {
   // useEffect pour récupérer les données du joueur
   useEffect(() => {
     fetchProfils();
-  }, []);
+  }, [id]);
 
   return (
     <div className="profile_container">
