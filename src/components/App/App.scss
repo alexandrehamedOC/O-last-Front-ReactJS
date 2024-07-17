@@ -23,9 +23,9 @@
     .searchArea {
       display: flex;
       flex-direction: row;
-      width: 70%;
 
       select {
+        width: 50vw;
         background-color: #1a1a1a;
         color: $color-white;
         border: 1px solid #1a1a1a;
