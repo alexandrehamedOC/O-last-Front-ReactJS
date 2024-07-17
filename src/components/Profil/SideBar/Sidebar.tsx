@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import './Sidebar.scss';
 import Modal from '../../Modal/Modal';
 import axios from 'axios';
@@ -22,6 +22,7 @@ function Sidebar() {
   const [user, setUser] = useState<User | null>(null);
 
   const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
 
   const openModal = () => {
     setShowModal(true);
@@ -73,6 +74,12 @@ function Sidebar() {
           <Link to={`/edit-annonce/${user.id}`}>
             <button className="left-buttons">Edit Annonce</button>
           </Link>
+          {(location.pathname.includes('/edit-profil') ||
+            location.pathname.includes('/edit-annonce')) && (
+            <Link to={`/profile/${user.id}`}>
+              <button className="left-buttons">Retour profil</button>
+            </Link>
+          )}
         </>
       ) : (
         <>
