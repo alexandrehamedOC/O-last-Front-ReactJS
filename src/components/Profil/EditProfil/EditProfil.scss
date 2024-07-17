@@ -38,12 +38,14 @@
   &__form {
     width: 100%;
     justify-content: center;
-    height: 47%;
+    height: 500px;
     background-image: url('../../../assets/img/background-images/Designer.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    display: flex;
+    align-items: center;
 
     .edit__form-label {
       color: black;
@@ -54,14 +56,14 @@
     color: black;
   }
   .edit__form_profil {
-    width: 50%;
+    width: 70%;
     justify-content: center;
     background-color: transparent;
     display: flex;
-    gap: 10px;
+    gap: 50px;
     flex-wrap: wrap;
     margin: 0 auto;
-    height: 100%;
+    height: 80%;
   }
 
   .edit__profile-card-buttons button,
@@ -81,7 +83,7 @@
 
   form {
     display: flex;
-    gap: 10px;
+    gap: 50px;
     margin-top: 25px;
     flex-wrap: wrap;
     background-color: transparent;
@@ -93,16 +95,16 @@
 
   .edit__form-main {
     position: relative;
-    height: 250px;
+    height: 100%;
     width: 300px;
   }
   .edit__form-side {
-    height: 250px;
+    height: 100%;
     width: 400px;
   }
   form textarea {
     width: 100%;
-    height: 180px;
+    height: 100px;
     resize: none;
   }
   .edit__form-group {
@@ -110,6 +112,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0.5em 0;
+    gap: 5px;
   }
 
   .edit__form-select,

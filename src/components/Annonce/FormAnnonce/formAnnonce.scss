@@ -56,9 +56,9 @@ label {
   margin-bottom: 5px;
 }
 
-input[type='text'],
-textarea,
-select {
+.form_annonce [type='text'],
+.form_annonce textarea,
+.form_annonce select {
   width: 100%;
   padding: 8px;
   font-size: 14px;
@@ -96,11 +96,11 @@ select {
   color: antiquewhite;
 }
 
-::placeholder{
+::placeholder {
   color: antiquewhite;
 }
 
-.schedule_label{
+.schedule_label {
   display: flex;
   justify-content: center;
 }
@@ -110,6 +110,6 @@ select {
 }
 
 #start,
-#end{
+#end {
   background-color: $color-bg;
 }
