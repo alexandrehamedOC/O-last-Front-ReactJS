@@ -15,7 +15,7 @@
 
     .image {
       width: 100%;
-      height: 350px;
+      height: 250px;
       object-fit: cover;
     }
 
@@ -25,7 +25,7 @@
       right: 10%;
       color: $color-ElectricCyan;
       border: none;
-      padding: 25px 35px;
+      padding: 8px 10px;
       font-size: 1.5rem;
       cursor: pointer;
       &:hover {
@@ -41,20 +41,43 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 5px;
       padding: 20px;
-      background-color: $color-bg;
-      width: 250px;
+      background-color: #1a1a1a;
+      height: 100vh;
 
       label {
         margin-bottom: 5px;
-        color: $color-DeepPurple;
+        color: antiquewhite;
       }
 
       select {
+        background-color: #1a1a1a;
         padding: 10px;
         width: 100%;
       }
+
+      .search_section_buttons {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        color: antiquewhite;
+      }
+
+      .search_section_buttons button {
+        padding: 0.2em 1em;
+        background-color: $color-bg;
+        color: antiquewhite;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+          color: $color-NeonPink;
+        }
+      }
+    }
+
+    #games {
+      color: antiquewhite;
     }
 
     .grid {
@@ -80,54 +103,176 @@
         }
       }
     }
-    .search_button {
-      margin: 25px;
+    .search_button,
+    .reset_button {
+      padding: 0.2em 1em;
     }
   }
 }
+
+.card_game_name {
+  margin-bottom: 20px;
+}
+
+.card_title {
+  margin-bottom: 10px;
+}
+
+.card {
+  width: 100%;
+}
+
+.card_top {
+  background-color: #fafafa;
+  color: #333;
+  text-align: center;
+  height: 300px;
+  padding-bottom: 20px;
+  padding-inline: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card_top_image {
+  object-fit: cover;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.card_platform {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0.4em;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.card_platform_image {
+  object-fit: cover;
+}
+
+.card_bottom {
+  margin-top: 20px;
+  border-top: 1px solid lightgrey;
+  color: #333;
+  padding: 20px;
+}
+
+.card_bottom-rank-level {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_bottom-rank-level p {
+  font-size: 0.9em;
+}
+
+.card_bottom_schedule {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+@media screen and (max-width: 1320px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media screen and (max-width: 975px) {
   .annonce .create_annonce .create_ad_button {
-      background-color: #1a1a1a;
-      position: absolute;
-      left: 50%;
-      WIDTH: 40%;
-      transform: translateX(-50%);
-      color: #00ffff;
-      border: none;
-      padding: 25px 35px;
-      font-size: 1.5rem;
-      cursor: pointer;
+    background-color: #1a1a1a;
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    transform: translateX(-50%);
+    color: #00ffff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .annonce .main_content {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .annonce .main_content .filters {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    height: auto;
+    background-color: #1a1a1a;
+    justify-content: space-between;
+  }
+
+  .annonce .main_content .filters .form_group #games {
+    min-width: 200px;
+  }
+
+  .annonce .main_content .filters .search_section_buttons {
+    justify-content: end;
+    align-items: center;
+    align-self: center;
+    height: 33%;
+    gap: 20px;
   }
 }
+
 @media screen and (max-width: 700px) {
-    .annonce .main_content .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 20px;
-      flex-grow: 1;
-    }   
-    .annonce .main_content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .annonce .main_content .filters {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 20px;
-      background-color: #1a1a1a;
-      width: 100%;
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
+    flex-grow: 1;
+  }
+  .annonce .main_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .annonce .main_content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .annonce .main_content .filters {
+    display: flex;
+    flex-direction: column;
   }
 }
 
 @media screen and (max-width: 375px) {
   .annonce .main_content .grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 10px;
-      padding: 20px;
-      flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .annonce .main_content .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    flex-grow: 1;
   }
 }

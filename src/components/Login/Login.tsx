@@ -59,12 +59,12 @@ function Login() {
           </div>
           <div className="login__form-group">
             <label className="login__form-label" htmlFor="password">
-              Password
+              Mot de passe
             </label>
             <input
               className="login__form-input "
               type="password"
-              placeholder="password"
+              placeholder="mot de passe"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -75,13 +75,14 @@ function Login() {
           </div>
         </form>
         <p className="login__forgot-password">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          consectetur incidunt -
+          Vous avez oublé votre mot de passe ? Vous pouvez cliquer sur le lien
+          suivant <br />
+          et suivre les étapes pour en créer un nouveau -{' '}
           <Link
             to="/mot-de-passe-oublie"
             className="login__forgot-password-link"
           >
-            forgot password
+            mot de passe oublié.
           </Link>
         </p>
       </section>

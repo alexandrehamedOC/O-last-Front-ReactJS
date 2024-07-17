@@ -5,16 +5,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.profile_sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  width: 20%;
-  padding: 20px;
-  background-color: #f4f4f4;
-}
-
 .profile_picture {
   width: 100px;
   height: 100px;
@@ -23,24 +13,29 @@
   margin-bottom: 20px;
 }
 
-.profile_sidebar p {
-  margin: 10px 0;
-}
-
-.profile_sidebar button {
-  display: block;
-  // width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: $color-bg;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
 .profile_main {
-  width: 75%;
-  padding: 20px;
+  width: 80%;
+  padding: 50px;
+}
+
+/* .profile_main-h1 */
+
+.ranks-list {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 25px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .games {
@@ -60,11 +55,10 @@
 
 .ranks {
   display: flex;
-  flex-direction: column;
-
-  div {
-    margin-right: 10px;
-  }
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .description {
@@ -84,37 +78,34 @@
   margin-top: 25px;
 }
 
-.ranks-list {
-  display: flex;
-  padding: 0.5em 0;
+.ranks-list .left p {
+  align-items: center;
+  width: 100%;
 }
 
 .ranks-list .left {
-  display: flex;
-  width: 50%;
+  width: 60%;
 }
 
 .ranks-list .left p {
   padding: 5px 8px;
-  background-color: #cbcaca;
   border-radius: 15px;
   margin-inline: 5px;
-  width: 33%;
+  gap: 5px;
 }
 
 .ranks-list p:first-child {
+  font-size: 1.5rem;
   padding: 5px 8px;
-  background-color: #1d0101;
-  color: #fff;
+  color: $color-bg;
   border-radius: 15px;
   margin-inline: 5px;
+  align-items: center;
 }
 
 .ranks-list-desc {
-  width: 50%;
-}
-
-.ranks-list-desc {
+  width: 90%;
+  align-content: center;
   padding: 5px 8px;
   background-color: #cbcaca;
   border-radius: 15px;

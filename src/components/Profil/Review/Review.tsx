@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Modal from '../../Modal/Modal';
 import axios from 'axios';
@@ -86,6 +87,7 @@ function Review() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    // e.preventDefault();
     try {
       const response = await fetchCreate();
 
@@ -96,26 +98,24 @@ function Review() {
   };
 
   const handleButtonClick = (e: React.FormEvent) => {
-    // Perform your desired action here
-
     fetchRates(20);
-    document
-      .querySelector('.review_container')
-      ?.classList.add('overflow-y-auto');
   };
 
   return (
     <div className="review_container">
       <div className="review_title">
-        <h1>Review</h1>
+        <h1>Avis</h1>
         {userId !== Number(id) ? (
-          <button onClick={openModal}>Add review</button>
+          <button onClick={openModal}>Ajoute un avis</button>
         ) : null}
         <Modal show={showModal} onClose={closeModal}>
-          <h2>Add a review</h2>
-          <form className="form_rate" onSubmit={handleSubmit}>
-            <label htmlFor="note">Note:</label>
+          <h2 className="review__title">Ajoute un avis</h2>
+          <form className="form" onSubmit={handleSubmit}>
+            <label htmlFor="note" className="form__note-label">
+              Note :
+            </label>
             <input
+              className="form__note-input"
               type="number"
               id="note"
               name="note"
@@ -125,21 +125,29 @@ function Review() {
               onChange={(e) => setNote(Number(e.target.value))}
             />
 
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description" className="form__description-label">
+              Description :
+            </label>
             <textarea
+              className="form__description-input"
               id="description"
               name="description"
               value={rateDescription}
               onChange={(e) => setRateDescription(e.target.value)}
             ></textarea>
 
-            <label htmlFor="profil">Profil</label>
+            <label htmlFor="profil" className="form_profil-label">
+              Profil
+            </label>
             <select
+              className="form_profil-select"
               name="profil"
               id="profil"
               onChange={(e) => setProfil(e.target.value)}
             >
-              <option value="">Select a profil</option>
+              <option value="" className="form_profil-options">
+                Choisis un profil
+              </option>
               {profils.map((profil) => (
                 <option key={profil.id} value={profil.id}>
                   {profil.name} : {profil.game_name}
@@ -147,7 +155,9 @@ function Review() {
               ))}
             </select>
 
-            <button type="submit">Submit</button>
+            <button type="submit" className="form_button-submit">
+              Envoyer
+            </button>
           </form>
         </Modal>
       </div>
@@ -170,7 +180,7 @@ function Review() {
           </div>
         ))}
         <button onClick={handleButtonClick} className="review-see-all-button">
-          See all reviews
+          Voir tous les avis
         </button>
       </div>
     </div>

@@ -42,7 +42,6 @@
   display: flex;
   flex-direction: column;
   background-color: $color-bg;
-  color: $color-ElectricCyan;
   padding: 20px;
   border-radius: 10px;
 }
@@ -51,24 +50,21 @@
   margin-bottom: 15px;
 }
 
-#profil {
-  color: $color-bg;
-}
-
 label {
   color: $color-ElectricCyan;
   font-size: 16px;
   margin-bottom: 5px;
 }
 
-input[type='text'],
-textarea,
-select {
+.form_annonce [type='text'],
+.form_annonce textarea,
+.form_annonce select {
   width: 100%;
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: $color-bg;
 }
 
 .schedule_inputs {
@@ -91,9 +87,29 @@ select {
 }
 
 #title,
+#platform,
 #games,
 #description,
+#profil,
 #start,
 #end {
-  color: $color-bg;
+  color: antiquewhite;
+}
+
+::placeholder {
+  color: antiquewhite;
+}
+
+.schedule_label {
+  display: flex;
+  justify-content: center;
+}
+.schedule_inputs {
+  display: flex;
+  justify-content: center;
+}
+
+#start,
+#end {
+  background-color: $color-bg;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Contact.scss';
+import React from 'react';
 
 interface ContactProps {
   user: User;
@@ -13,29 +14,32 @@ function Contact({ user }: ContactProps) {
 
   return (
     <>
-      <div className="contact__content">
-        <p className="contact__text">
+      <div className="contact">
+        <h2 className="contact__title">
           Vous pouvez contacter ce joueur via Discord :
-        </p>
+        </h2>
         <p className="contact__discord-username">
           <strong>{user.discord_username}</strong>
         </p>
-        <button onClick={() => setShowSteps(!showSteps)}>
+        <button
+          onClick={() => setShowSteps(!showSteps)}
+          className="contact__button"
+        >
           Besoin d'aide ?
         </button>
 
         {showSteps && (
           <ul className="contact__steps">
             <li className="contact__step">
-              Ouvre ton discord et connect toi !
+              1 - Ouvre ton discord et connecte toi !
             </li>
-            <li className="contact__step">Cliquez sur l'icône des amis.</li>
+            <li className="contact__step">2 - Clique sur l'icône des amis.</li>
             <li className="contact__step">
-              Saisissez le pseudo Discord mentionné ci-dessus.
+              3 - Saisis le pseudo Discord mentionné ci-dessus.
             </li>
-            <li className="contact__step">Envoyez une demande d'ami.</li>
+            <li className="contact__step">4 - Envoie une demande d'ami.</li>
             <li className="contact__step">
-              Une fois accepté, vous pouvez envoyer un message.
+              5 - Une fois accepté, tu peux envoyer un message !
             </li>
           </ul>
         )}
