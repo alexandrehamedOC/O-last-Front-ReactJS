@@ -52,7 +52,11 @@
     }
   }
 
-  .header__nav .nav__list .nav__link:last-child {
+  .header__nav .nav__list:first-child li {
+    margin-left: 50px;
+  }
+
+  .header__nav .nav__list:last-child .nav__link:last-child {
     margin-left: 50px;
   }
 

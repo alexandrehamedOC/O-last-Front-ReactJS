@@ -156,7 +156,7 @@ const Annonce: React.FC = () => {
   return (
     <div className="annonce">
       <div className="create_annonce">
-        <img src="/AnnonceBG.jpg" alt="" className="image" />
+        <img src="/annonce-bg.jpg" alt="" className="image" loading="lazy" />
         {userWithProfil && (
           <button className="create_ad_button" onClick={openModal}>
             Crée ton annonce
