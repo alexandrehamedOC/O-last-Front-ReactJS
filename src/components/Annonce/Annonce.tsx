@@ -135,7 +135,7 @@ const Annonce: React.FC = () => {
     console.log('ici', selectedGame);
 
     if (selectedGame) {
-      navigate(`/Annonce?game_id=${selectedGame}`);
+      navigate(`/annonce?game_id=${selectedGame}`);
     } else {
       await fetchlisting();
     }
@@ -144,7 +144,7 @@ const Annonce: React.FC = () => {
   const handleReset = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    navigate(`/Annonce`);
+    navigate(`/annonce`);
   };
 
   const handleGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

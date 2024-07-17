@@ -52,6 +52,10 @@
     }
   }
 
+  .header__nav .nav__list .nav__link:last-child {
+    margin-left: 50px;
+  }
+
   .display-none {
     display: none !important;
   }
@@ -141,7 +145,7 @@
     width: 100% !important;
     position: absolute;
     left: 0 !important;
-    top: 74px;
+    top: 61px;
   }
 
   .display-false {
@@ -154,6 +158,11 @@
   .display-true {
     display: block;
   }
+
+  .header__nav .nav__list .nav__link:last-child {
+    margin-right: 50px;
+  }
+
   .header__nav .nav__list {
     display: flex;
     font-size: 1.2em;
