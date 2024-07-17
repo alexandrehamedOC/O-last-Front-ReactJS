@@ -98,20 +98,17 @@ function Review() {
 
   const handleButtonClick = (e: React.FormEvent) => {
     fetchRates(20);
-    // document
-    //   .querySelector('.review_container')
-    //   ?.classList.add('overflow-y-auto');
   };
 
   return (
     <div className="review_container">
       <div className="review_title">
-        <h1>Review</h1>
+        <h1>Avis</h1>
         {userId !== Number(id) ? (
-          <button onClick={openModal}>Add review</button>
+          <button onClick={openModal}>Ajoute un avis</button>
         ) : null}
         <Modal show={showModal} onClose={closeModal}>
-          <h2 className="review__title">Add a review</h2>
+          <h2 className="review__title">Ajoute un avis</h2>
           <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="note" className="form__note-label">
               Note :
@@ -148,7 +145,7 @@ function Review() {
               onChange={(e) => setProfil(e.target.value)}
             >
               <option value="" className="form_profil-options">
-                Select a profil
+                Choisis un profil
               </option>
               {profils.map((profil) => (
                 <option key={profil.id} value={profil.id}>
@@ -158,7 +155,7 @@ function Review() {
             </select>
 
             <button type="submit" className="form_button-submit">
-              Submit
+              Envoyer
             </button>
           </form>
         </Modal>
@@ -182,7 +179,7 @@ function Review() {
           </div>
         ))}
         <button onClick={handleButtonClick} className="review-see-all-button">
-          See all reviews
+          Voir tous les avis
         </button>
       </div>
     </div>

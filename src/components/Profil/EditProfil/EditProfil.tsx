@@ -212,13 +212,13 @@ function EditProfil() {
                     className="edit__profile-card-button"
                     onClick={(e) => handleUpdate(e, profils.id)}
                   >
-                    Update
+                    Modifier
                   </button>
                   <button
                     className="edit__profile-card-button"
                     onClick={() => handleDelete(profils.id)}
                   >
-                    Delete
+                    Effacer
                   </button>
                 </section>
               </article>
@@ -231,20 +231,20 @@ function EditProfil() {
             <div className="edit__form-main">
               <div className="edit__form-group">
                 <label htmlFor="name" className="edit__form-label">
-                  Name
+                  Nom
                 </label>
                 <input
                   type="text"
                   id="name"
                   className="edit__form-input"
-                  placeholder="Name"
+                  placeholder="Nom"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
               <div className="edit__form-group">
                 <label htmlFor="game" className="edit__form-label">
-                  Game
+                  Jeu
                 </label>
                 <select
                   name="game_id"
@@ -252,7 +252,7 @@ function EditProfil() {
                   className="edit__form-select"
                   onChange={(e) => setGame(e.target.value)}
                 >
-                  <option value="">Select a game</option>
+                  <option value="">Choisis un jeu</option>
                   {games.map((game) => (
                     <option key={game.name} value={game.id}>
                       {game.name}
@@ -305,14 +305,14 @@ function EditProfil() {
                     type="submit"
                     data-action="create"
                   >
-                    Create Profil
+                    Créé le profil
                   </button>
                   <button
                     className="update__form-button"
                     type="submit"
                     data-action="update"
                   >
-                    Update Profil
+                    Modifier le profil
                   </button>
                 </section>
               </div>

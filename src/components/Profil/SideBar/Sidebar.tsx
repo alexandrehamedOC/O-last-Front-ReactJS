@@ -48,92 +48,48 @@ function Sidebar() {
     fetchuser();
   }, [id]);
 
-  //Voir pour mettre composant erreur ou loading si pas de user trouvé
-  // if (!user) {
-  //   return <Error404 />;
-  // }
-  // if (user === null) {
-  //   return <Error404 />;
-  // }
-
   return (
     <div className="profile_sidebar">
-      {user && ( // Vérifie que user est défini
-        <>
-          <div className="profile_picture" />
-          <p>{user.firstname}</p>
-          <p>{user.lastname}</p>
-          <p>{user.city}</p>
+      <figure className="profile_picture">
+        <img src="/src/assets/img/profil-picture.jpg" />
+      </figure>
+      <p>{user.firstname}</p>
+      <p>{user.lastname}</p>
+      <p>{user.city}</p>
 
-          {userId === user.id ? (
-            <>
-              <p>{user.discord_username}</p>
-              <Link to={`/edit-profil/${user.id}`}>
-                <button className="left-buttons">Edit Profil</button>
-              </Link>
-              <Link to={`/edit-annonce/${user.id}`}>
-                <button className="left-buttons">Edit Annonce</button>
-              </Link>
-              {/* Gère le retour en utilisant la navigation précédente */}
-              {(location.pathname.includes('/edit-profil') ||
-                location.pathname.includes('/edit-annonce')) && (
-                <Link to={`/profile/${user.id}`}>
-                  <button className="left-buttons">Retour profil</button>
-                </Link>
-              )}
-            </>
-          ) : (
-            <>
-              {/* Crée un modèle et affiche le contact */}
-              <button onClick={openModal} className="left-buttons">
-                Contact Player
-              </button>
-              <Modal show={showModal} onClose={closeModal}>
-                <Contact user={user} />
-              </Modal>
-            </>
+      {userId === user.id ? (
+        <>
+          <p>{user.discord_username}</p>
+          <Link to={`/edit-profil/${user.id}`}>
+            <button className="left-buttons">
+              <span style={{ marginRight: '10px' }}>✏️</span> Profil
+            </button>
+          </Link>
+          <Link to={`/edit-annonce/${user.id}`}>
+            <button className="left-buttons">
+              <span style={{ marginRight: '10px' }}>✏️</span> Annonce
+            </button>
+          </Link>
+          {(location.pathname.includes('/edit-profil') ||
+            location.pathname.includes('/edit-annonce')) && (
+            <Link to={`/profile/${user.id}`}>
+              <button className="left-buttons">Retour profil</button>
+            </Link>
           )}
+        </>
+      ) : (
+        <>
+          <button onClick={openModal} className="left-buttons">
+            Contacte {user.firstname}
+          </button>
+          <Modal show={showModal} onClose={closeModal}>
+            <Contact user={user} />
+          </Modal>
         </>
       )}
     </div>
   );
 }
 
-//   return (
-//     <div className="profile_sidebar">
-//       <div className="profile_picture" />
-//       <p>{user.firstname}</p>
-//       <p>{user.lastname}</p>
-//       <p>{user.city}</p>
-
-//       {userId === user.id ? (
-//         <>
-//           <p>{user.discord_username}</p>
-//           <Link to={`/edit-profil/${user.id}`}>
-//             <button className="left-buttons">Edit Profil</button>
-//           </Link>
-//           <Link to={`/edit-annonce/${user.id}`}>
-//             <button className="left-buttons">Edit Annonce</button>
-//           </Link>
-//           {(location.pathname.includes('/edit-profil') ||
-//             location.pathname.includes('/edit-annonce')) && (
-//             <Link to={`/profile/${user.id}`}>
-//               <button className="left-buttons">Retour profil</button>
-//             </Link>
-//           )}
-//         </>
-//       ) : (
-//         <>
-//           <button onClick={openModal} className="left-buttons">
-//             Contact Player
-//           </button>
-//           <Modal show={showModal} onClose={closeModal}>
-//             <Contact user={user} />
-//           </Modal>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
 
 export default Sidebar;

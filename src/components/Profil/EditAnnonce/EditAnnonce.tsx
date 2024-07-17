@@ -195,7 +195,7 @@ function EditAnnonce() {
                 </header>
                 <section className="edit__profile-card-body">
                   <h3 className="edit__profile-card-description-title">
-                    platform : {player.post_platform}
+                    platforme : {player.post_platform}
                   </h3>
                   <p className="edit__profile-card-description-text">
                     description : {player.post_description}
@@ -214,13 +214,13 @@ function EditAnnonce() {
                     className="edit__profile-card-button"
                     onClick={() => handleSelectAnnonce(player)}
                   >
-                    Update
+                    Modifier
                   </button>
                   <button
                     className="edit__profile-card-button"
                     onClick={() => handleDelete(player.post_id)}
                   >
-                    Delete
+                    Effacer
                   </button>
                 </section>
               </article>
@@ -228,36 +228,36 @@ function EditAnnonce() {
           ))}
         </section>
         <section className="edit__form">
-          <form className='edit__form_annonce' onSubmit={handleSubmit}>
+          <form className="edit__form_annonce" onSubmit={handleSubmit}>
             <div className="edit__form-left">
               <div className="edit__form-title">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Titre</label>
                 <input
                   type="text"
                   id="title"
-                  placeholder="Ad title"
+                  placeholder="Ajoute un titre"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
               <div className="edit__form-platform">
-                <label htmlFor="title">Platform</label>
+                <label htmlFor="title">Plateforme</label>
                 <input
                   type="text"
                   id="title"
-                  placeholder="Ad Platform"
+                  placeholder="Ajoute une plateforme"
                   value={platform}
                   onChange={(e) => setPlatform(e.target.value)}
                 />
               </div>
               <div className="form_group">
-                <label htmlFor="profil">Profil *required</label>
+                <label htmlFor="profil">Profil *</label>
                 <select
                   name="profil"
                   id="profil"
                   onChange={(e) => setProfil(e.target.value)}
                 >
-                  <option value="">Select a profil</option>
+                  <option value="">Choisis un profil</option>
                   {profils.map((profil) => (
                     <option
                       key={profil.id}
@@ -283,7 +283,7 @@ function EditAnnonce() {
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
                 <div className="form_group">
-                  <label htmlFor="schedule">Schedule</label>
+                  <label htmlFor="schedule">Horaire</label>
                   <div className="schedule_inputs">
                     <input
                       type="datetime-local"
@@ -304,7 +304,7 @@ function EditAnnonce() {
                   </div>
                 </div>
                 <button className="edit__form-button" type="submit">
-                  {selectedAnnonce ? 'Update Ad' : 'Create Ad'}
+                  {selectedAnnonce ? 'Modifie ton annonce' : 'Créé une annonce'}
                 </button>
               </div>
             </div>

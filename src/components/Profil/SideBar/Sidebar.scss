@@ -73,3 +73,20 @@
     }
   }
 }
+
+.profile_picture {
+  margin-bottom: 20px;
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile_picture img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid #ad1db7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}

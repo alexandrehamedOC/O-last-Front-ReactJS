@@ -2,8 +2,6 @@ import './App.scss';
 import logoValorant from '../../assets/img/games-logo/Valorant-logo.png';
 import logoLol from '../../assets/img/games-logo/Lol-logo.png';
 import logolMinecraft from '../../assets/img/games-logo/minecraft.png';
-import leftarrow from '../../assets/img/fleche-gauche.png';
-import rightarrow from '../../assets/img/fleche-droite.png';
 import manette from '../../assets/img/console-de-jeu.png';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -51,11 +49,6 @@ function App() {
     <div className="app">
       <section className="app__searchbar">
         <h1 className="app__title">Bienvenue sur O'Last !</h1>
-        {/* <input
-          className="app__input"
-          type="text"
-          placeholder="Chercher un jeu ..."
-        /> */}
         <section className="searchArea">
           <label htmlFor="searchBar" className="searchBar__label">
             Choisir un jeu :
@@ -158,7 +151,7 @@ function App() {
             <div className="app__games-container">
               <h2 className="app__games-title">Jeux disponibles</h2>
               <p className="app__games-description">
-                une plateforme innovante dédiée aux passionnés de jeux vidéo,
+                Une plateforme innovante dédiée aux passionnés de jeux vidéo,
                 vous permettant de poster des annonces pour trouver d'autres
                 joueurs et jouer ensemble. Que vous soyez amateur de Minecraft,
                 League of Legends, Fortnite ou Call of Duty, notre site vous
@@ -172,13 +165,7 @@ function App() {
             </div>
           </section>
         </section>
-        {/*Old rose <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#e998e6"
-            fill-opacity="1"
-            d="M0,320L48,309.3C96,299,192,277,288,250.7C384,224,480,192,576,192C672,192,768,224,864,224C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-          ></path>
-        </svg> */}
+
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#1a1a1a"
@@ -186,45 +173,6 @@ function App() {
             d="M0,224L48,229.3C96,235,192,245,288,250.7C384,256,480,256,576,250.7C672,245,768,235,864,192C960,149,1056,75,1152,80C1248,85,1344,171,1392,213.3L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
           ></path>
         </svg>
-
-        {/*Old disoplay*/}
-        {/* <section className="app__step">
-        <h3 className="app__step-title">Etapes pour utiliser O'Last</h3>
-        <ol className="app__step-list">
-          <li className="app__step-item">
-            <div className="app__step-item-number">1</div>
-            <h4 className="app__step-item-title">Rechercher un jeu</h4>
-            <p className="app__step-item-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Excepturi sed a.
-            </p>
-          </li>
-          <li className="app__step-item">
-            <div className="app__step-item-number">2</div>
-            <h4 className="app__step-item-title">Sélectionner un jeu</h4>
-            <p className="app__step-item-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Excepturi sed a.
-            </p>
-          </li>
-          <li className="app__step-item">
-            <div className="app__step-item-number">3</div>
-            <h4 className="app__step-item-title">Trouver des joueurs</h4>
-            <p className="app__step-item-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Excepturi sed a.
-            </p>
-          </li>
-          <li className="app__step-item">
-            <div className="app__step-item-number">4</div>
-            <h4 className="app__step-item-title">Jouer !</h4>
-            <p className="app__step-item-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Excepturi sed a.
-            </p>
-          </li>
-        </ol>
-      </section> */}
 
         <section className="app__use">
           <section className="app__use-title">
@@ -236,8 +184,8 @@ function App() {
                 <div className="app__use-card-number">1</div>
                 <h3>Rechercher un jeu</h3>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Excepturi sed a.
+                  Visite notre page annonce, c'est la que toutes les annonces
+                  des joueurs sont regroupées.
                 </p>
               </section>
 
@@ -245,8 +193,8 @@ function App() {
                 <div className="app__use-card-number">2</div>
                 <h3>Sélectionner un jeu</h3>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Excepturi sed a.
+                  A l'aide de notre outil de filtre tu peux affiner ta recherche
+                  pour restreindre l'affichage des annonces sur ta séléction.
                 </p>
               </section>
 
@@ -254,8 +202,8 @@ function App() {
                 <div className="app__use-card-number">3</div>
                 <h3>Trouver un joueurs</h3>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Excepturi sed a.
+                  Si une annonce t'intéresse, tu peux cliquer est découvrir son
+                  profil et les avis des autres joueurs.
                 </p>
               </section>
 
@@ -263,8 +211,8 @@ function App() {
                 <div className="app__use-card-number">4</div>
                 <h3>Jouer !</h3>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Excepturi sed a.
+                  Son profil t'as convaincu ? Alors n'hésite pas à le contacter
+                  grâce au bouton de contact.
                 </p>
               </section>
             </section>
@@ -312,8 +260,8 @@ function App() {
                   <h3>Lorenzo</h3>
                   <p>
                     « Avant je n'avais pas d'amis et j'étais seul, pour jouer.
-                    Grâce vous j'ai pu rencontrer Yann G, et nous faisons des
-                    parties endiablé ensemble jusqu'au bout de la nuit. »
+                    Grâce à vous j'ai pu rencontrer Yann G, et nous faisons des
+                    parties endiablées ensemble jusqu'au bout de la nuit. »
                   </p>
                 </li>
                 <li className="slider__slide">
@@ -354,35 +302,6 @@ function App() {
           </section>
         </section>
 
-        {/*OLD SLIDDER <section className="app__reviews">
-          <button className="app__reviews-leftarrow">
-            <img src={leftarrow} alt="leftarrow" />
-          </button>
-          <div className="app__reviews-card">
-            <h3 className="app__reviews-username">Pseudo</h3>
-            <p className="app_reviews-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius
-              tempore inventore omnis! Quisquam, quos. Quisquam, quos.
-            </p>
-          </div>
-          <div className="app__reviews-card">
-            <h3 className="app__reviews-username">Pseudo</h3>
-            <p className="app_reviews-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius
-              tempore inventore omnis! Quisquam, quos. Quisquam, quos.
-            </p>
-          </div>
-          <div className="app__reviews-card">
-            <h3 className="app__reviews-username">Pseudo</h3>
-            <p className="app_reviews-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius
-              tempore inventore omnis! Quisquam, quos. Quisquam, quos.
-            </p>
-          </div>
-          <button className="app__reviews-rightarrow">
-            <img src={rightarrow} alt="rightarrow" />
-          </button>
-        </section> */}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#6164f8"
@@ -390,17 +309,6 @@ function App() {
             d="M0,320L48,309.3C96,299,192,277,288,250.7C384,224,480,192,576,192C672,192,768,224,864,224C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
         </svg>
-        {/* <section className="app__annonce-container">
-          <section className="app__annonce">
-            <p className="app__annonce-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
-              suscipit, magni nisi eligendi quod incidunt, accusantium obcaecati
-              dolore non aliquam magnam enim repudiandae? Ducimus temporibus
-              nostrum porro quidem cum at!
-            </p>
-            <button className="app__annonce-button">PLAY</button>
-          </section>
-        </section> */}
       </section>
     </div>
   );

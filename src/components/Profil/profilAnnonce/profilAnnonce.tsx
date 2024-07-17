@@ -12,15 +12,6 @@ interface User {
   discord_username: string;
 }
 
-// interface Profil {
-//   id: number;
-//   profil_name: string;
-//   profil_description: string;
-//   profil_rank: string;
-//   profil_level: number;
-//   game_name: string;
-// }
-
 interface Player {
   id: number;
   user_id: number;
@@ -72,7 +63,6 @@ function profilAnnonce() {
       await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
-      // setProfils(response.data);
     } catch (error) {
       console.error(error);
     }
