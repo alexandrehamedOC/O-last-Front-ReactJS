@@ -8,6 +8,7 @@ import Review from './Review/Review';
 import Annonce from './profilAnnonce/profilAnnonce';
 import { useEffect, useState } from 'react';
 import Contact from './Contact/Contact';
+import Sidebar from './SideBar/Sidebar';
 
 interface User {
   id: number;
@@ -32,35 +33,8 @@ function Profil() {
   // variable id pour récupérer l'id du joueur lors du clic sur le profil
   const { id } = useParams();
   // console.log(id);
-  const [user, setUser] = useState<User | null>(null);
-  // const [profil, setProfil] = useState('');
   const [profils, setProfils] = useState<Profil[]>([]);
   const [games, setGames] = useState<string[]>([]);
-
-  //Use state de la modal
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  // console.log(localStorage.getItem('token'));
-
-  // fonction pour récupérer les données du joueur
-  const fetchuser = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
-      );
-      setUser(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const fetchProfils = async () => {
     try {
@@ -84,52 +58,13 @@ function Profil() {
 
   // useEffect pour récupérer les données du joueur
   useEffect(() => {
-    fetchuser();
     fetchProfils();
-  }, []);
-
-  //Voir pour mettre composant erreur ou loading si pas de user trouvé
-  if (!user) {
-    return <div>Erreur 404</div>;
-  }
+  }, [id]);
 
   return (
     <div className="profile_container">
-      <div className="profile_sidebar">
-        <div className="profile_picture" />
-        <p>{user.firstname}</p>
-        <p>{user.lastname}</p>
-        <p>{user.city}</p>
-        <p>{user.discord_username}</p>
-
-        {userId === user.id ? (
-          <>
-            <Link to={`/EditProfil/${user.id}`}>
-              <button>Edit Profil</button>
-            </Link>
-            <Link to={`/EditAnnonce/${user.id}`}>
-              <button>Edit Annonce</button>
-            </Link>
-          </>
-        ) : (
-          <>
-            <button onClick={openModal}>Contact Player</button>
-            <Modal show={showModal} onClose={closeModal}>
-              <Contact user={user} />
-            </Modal>
-          </>
-        )}
-      </div>
+      <Sidebar />
       <div className="profile_main">
-        <div className="games">
-          <h1>Games played</h1>
-
-          <div className="games_list">
-            {games.map((game) => (
-              <p key={game}>{game}</p>
-            ))}
-          </div>
-        </div>
         <div className="ranks">
           <h1>Profils</h1>
           {profils.map((profil) => (

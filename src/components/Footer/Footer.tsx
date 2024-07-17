@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 function Footer() {
+  const id = localStorage.getItem('userId');
+
   return (
     <footer className="footer">
       <div className="footer__logo">O'last</div>
@@ -33,13 +35,13 @@ function Footer() {
             <h1>Players</h1>
           </li>
           <li>
-            <Link to="#">
-              <p>Créez ton profil</p>
+            <Link to={id ? `/profile/${id}` : '/login'}>
+              <p>Crée ton profil</p>
             </Link>
           </li>
           <li>
-            <Link to="#">
-              <p>Rechercher des joueurs</p>
+            <Link to="/annonce">
+              <p>Recherche des joueurs</p>
             </Link>
           </li>
         </ul>

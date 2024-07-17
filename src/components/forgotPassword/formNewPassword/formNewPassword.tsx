@@ -60,16 +60,16 @@ export default function FormNewPassword() {
   }
 
   return (
-    <div className="main__container">
-      <h1 className="main__title">Nouveau mot de passe</h1>
+    <div className="newPassword_main__container">
+      <h1 className="newPassword_main__title">Nouveau mot de passe</h1>
       <p>Définir votre nouveau mot de passe</p>
-      <form className="login__form" onSubmit={handleSubmitForm}>
-        <div className="login__form-group">
-          <label className="login__form-label" htmlFor="password">
+      <form className="newPassword_login__form" onSubmit={handleSubmitForm}>
+        <div className="newPassword_login__form-group">
+          <label className="newPassword_login__form-label" htmlFor="password">
             Nouveau mot de passe
           </label>
           <input
-            className="login__form-input"
+            className="newPassword_login__form-input"
             type="password"
             placeholder="Nouveau mot de passe"
             name="password"
@@ -77,12 +77,12 @@ export default function FormNewPassword() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="login__form-group">
-          <label className="login__form-label" htmlFor="passwordConfirm">
+        <div className="newPassword_login__form-group">
+          <label className="newPassword_login__form-label" htmlFor="passwordConfirm">
             Nouveau mot de passe (Confirmer)
           </label>
           <input
-            className="login__form-input"
+            className="newPassword_login__form-input"
             type="password"
             placeholder="Confirmer votre mot de passe"
             name="passwordConfirm"
