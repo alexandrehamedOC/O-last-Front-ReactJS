@@ -33,6 +33,10 @@
         padding-bottom: 15px;
         border-radius: 10px;
       }
+
+      .searchBar__label {
+        visibility: hidden;
+      }
     }
     .app__title {
       color: #ca8cea;
@@ -58,7 +62,7 @@
   }
 
   &__games {
-    background-color:#1a1a1a; //#e998e6
+    background-color: #1a1a1a; //#e998e6
     padding: 40px;
     .element__wrapper {
       display: flex;
@@ -295,7 +299,7 @@
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
     flex-direction: column; /* Aligne les éléments en colonne */
-  
+
     .dot {
       width: 20px; /* Largeur du point */
       height: 20px; /* Hauteur du point */
@@ -304,7 +308,7 @@
       margin: 10px 0; /* Espace entre les points */
     }
   }
-  
+
   /*image manette*/
   .app__manette {
     display: flex;

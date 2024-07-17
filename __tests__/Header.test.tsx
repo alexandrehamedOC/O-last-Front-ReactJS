@@ -31,7 +31,7 @@ describe('Header component', () => {
     renderWithAuthContext({ userId: null, login: vi.fn(), logout: mockLogout });
 
     expect(screen.getByText(/Accueil/i)).toBeInTheDocument();
-    expect(screen.getByText(/Joueurs/i)).toBeInTheDocument();
+    expect(screen.getByText(/Annonces/i)).toBeInTheDocument();
     expect(screen.getByText(/Connexion/i)).toBeInTheDocument();
     expect(screen.getByText(/Inscription/i)).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe('Header component', () => {
     });
 
     expect(screen.getByText(/Accueil/i)).toBeInTheDocument();
-    expect(screen.getByText(/Joueurs/i)).toBeInTheDocument();
+    expect(screen.getByText(/Annonces/i)).toBeInTheDocument();
     expect(screen.getByText(/Mon profil/i)).toBeInTheDocument();
     expect(screen.getByText(/Deconnexion/i)).toBeInTheDocument();
   });
