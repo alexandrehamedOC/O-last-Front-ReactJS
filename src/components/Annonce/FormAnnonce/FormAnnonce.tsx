@@ -129,7 +129,7 @@ const FormAnnonce: React.FC = () => {
       </div>
 
       <div className="form_group">
-        <label htmlFor="schedule">Schedule</label>
+        <label className='schedule_label' htmlFor="schedule">Schedule</label>
         <div className="schedule_inputs">
           <input
             type="datetime-local"

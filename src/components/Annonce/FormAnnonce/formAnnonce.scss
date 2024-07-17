@@ -42,17 +42,12 @@
   display: flex;
   flex-direction: column;
   background-color: $color-bg;
-  color: $color-ElectricCyan;
   padding: 20px;
   border-radius: 10px;
 }
 
 .form_group {
   margin-bottom: 15px;
-}
-
-#profil {
-  color: $color-bg;
 }
 
 label {
@@ -69,6 +64,7 @@ select {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: $color-bg;
 }
 
 .schedule_inputs {
@@ -91,9 +87,29 @@ select {
 }
 
 #title,
+#platform,
 #games,
 #description,
+#profil,
 #start,
 #end {
-  color: $color-bg;
+  color: antiquewhite;
+}
+
+::placeholder{
+  color: antiquewhite;
+}
+
+.schedule_label{
+  display: flex;
+  justify-content: center;
+}
+.schedule_inputs {
+  display: flex;
+  justify-content: center;
+}
+
+#start,
+#end{
+  background-color: $color-bg;
 }
