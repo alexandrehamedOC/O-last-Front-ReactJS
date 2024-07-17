@@ -43,23 +43,18 @@ const root = ReactDOM.createRoot(
 // Création du router
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<Root />}>
-        <Route index element={<App />} />
-        <Route path="/annonce" element={<Annonce />} />
-        <Route path="/profile/:id" element={<Profil />} />
-        <Route path="/edit-profil/:id" element={<EditProfil />} />
-        <Route path="/edit-annonce/:id" element={<EditAnnonce />} />
-        <Route path="/connexion" element={<Login />} />
-        <Route path="/inscription" element={<SignIn />} />
-        <Route
-          path="/mot-de-passe-oublie"
-          element={<SendMailForgotPassword />}
-        />
-        <Route path="/nouveau-mot-de-passe" element={<FormNewPassword />} />
-        <Route path="*" element={<Error404 />} />
-      </Route>
-    </>
+    <Route path="/" element={<Root />}>
+      <Route index element={<App />} />
+      <Route path="/annonce" element={<Annonce />} />
+      <Route path="/profile/:id" element={<Profil />} />
+      <Route path="/edit-profil/:id" element={<EditProfil />} />
+      <Route path="/edit-annonce/:id" element={<EditAnnonce />} />
+      <Route path="/connexion" element={<Login />} />
+      <Route path="/inscription" element={<SignIn />} />
+      <Route path="/mot-de-passe-oublie" element={<SendMailForgotPassword />} />
+      <Route path="/nouveau-mot-de-passe" element={<FormNewPassword />} />
+      <Route path="*" element={<Error404 />} />
+    </Route>
   )
 );
 
