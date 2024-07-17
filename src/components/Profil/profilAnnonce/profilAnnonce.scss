@@ -1,0 +1,97 @@
+@import '../../../styles/variables';
+
+.profilAnnonce_container {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  margin-left: 25px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.card_profil_annonce {
+  width: 25%;
+  border: solid 1px #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card_platform {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.card_platform_image {
+  width: 50px;
+  height: 50px;
+}
+
+.card_top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.card_top_image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+.card_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: $color-bg;
+}
+
+.card_description {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card_bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.card_bottom-rank-level {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.card_rank, .card_level {
+  font-size: 1rem;
+  color: #333;
+}
+
+.card_bottom_schedule {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.card_schedule_start, .card_schedule_end {
+  font-size: 0.9rem;
+  color: #666;
+}

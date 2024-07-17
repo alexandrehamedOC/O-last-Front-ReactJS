@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+//* Animation spinner
+.loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 5px solid $color-DeepPurple; /* Couleur de la bordure */
+  border-top-color: transparent; /* Couleur transparente pour le haut de la bordure */
+  animation: spin 1s linear infinite; /* Animation de rotation continue */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//* Animation Cube
+// .loader {
+//   width: 50px;
+//   height: 50px;
+//   background-color: $color-DeepPurple;
+//   margin: 1.5rem auto;
+//   animation: rotatePlane 1.5s infinite ease-in-out;
+// }
+
+// @keyframes rotatePlane {
+//   0% {
+//     transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+//   }
+//   50% {
+//     transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+//   }
+//   100% {
+//     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+//   }
+// }

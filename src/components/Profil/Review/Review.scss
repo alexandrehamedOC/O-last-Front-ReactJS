@@ -1,0 +1,153 @@
+@import '../../../styles/variables';
+
+.review_annonce {
+  width: 100%;
+  max-height: 500px;
+}
+
+.rate_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review_container {
+  font-family: 'Roboto', sans-serif;
+  width: 35%;
+  padding: 10px;
+  background-color: #f4f4f4;
+  overflow-y: auto;
+}
+
+.review_title {
+  display: flex;
+  color: $color-bg;
+  justify-content: space-around;
+
+  button {
+    background-color: $color-bg;
+    color: #f4f4f4;
+    box-shadow: none;
+    border: none;
+    padding: 0.1em 0.8em;
+    cursor: pointer;
+  }
+}
+.review_rate-container {
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+}
+.review_rate {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: $color-bg;
+  flex-wrap: wrap;
+}
+
+.review_rate-description {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  background-color: $color-bg;
+  color: #f4f4f4;
+
+  p {
+    margin: 5px;
+    text-align: left;
+  }
+}
+
+.review_stars {
+  justify-content: flex-start;
+}
+
+.review_stars span {
+  margin-inline: 5px;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.review-see-all-button {
+  text-align: center;
+  width: 50%;
+}
+
+.review_title button {
+  background-color: $color-bg;
+  color: #f4f4f4;
+}
+
+.review-see-all-button {
+  text-align: center;
+  width: 50%;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  box-shadow: none;
+  padding: 0.3em 0;
+  cursor: pointer;
+}
+
+// ------------------------------- Style du review Form -------------------------------------- //
+
+.review__title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  color: $color-DeepPurple;
+  padding: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 15px;
+
+  .form__note-input {
+    width: 45px;
+  }
+
+  label {
+    font-size: 1.2rem;
+    color: $color-DeepPurple;
+    margin-bottom: 5px;
+    display: flex;
+  }
+
+  textarea {
+    width: 100%;
+    // min-width: 200px;
+    // max-width: 400px;
+    // min-height: 100px;
+    // max-height: 200px;
+    resize: none;
+  }
+
+  .form_button-submit {
+    background-color: $color-DeepPurple;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+
+    &:hover {
+      background-color: $color-DeepPurple;
+      color: $color-DeepPurple;
+      background-color: $color-bg;
+      border: 2px solid $color-DeepPurple;
+    }
+  }
+}

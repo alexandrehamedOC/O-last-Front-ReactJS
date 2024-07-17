@@ -1,0 +1,49 @@
+@import '../../styles/variables';
+
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(#{$image-path});
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+}
+
+.error-content {
+  width: 500px;
+  padding: 30px;
+  background: $color-bg;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.error-title {
+  font-size: 6rem;
+  margin: 0;
+  color: $color-NeonPink;
+}
+
+.error-message {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  color: $color-NeonPink;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: $color-ElectricCyan;
+  background-color: $color-bg;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.home-link:hover {
+  background-color: #0056b3;
+}

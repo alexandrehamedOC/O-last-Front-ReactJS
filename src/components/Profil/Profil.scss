@@ -1,0 +1,113 @@
+@import '../../styles/variables';
+
+.profile_container {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+}
+
+.profile_picture {
+  width: 100px;
+  height: 100px;
+  background-color: $color-bg;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile_main {
+  width: 80%;
+  padding: 50px;
+}
+
+/* .profile_main-h1 */
+
+.ranks-list {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 25px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.games {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+  }
+
+  .games_list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 10px;
+  }
+}
+
+.ranks {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.description {
+  h1 {
+    text-align: center;
+  }
+
+  .description_text {
+    padding: 10px;
+    background-color: #f4f4f4;
+  }
+}
+
+.review_annonce {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+.ranks-list .left p {
+  align-items: center;
+  width: 100%;
+}
+
+.ranks-list .left {
+  width: 60%;
+}
+
+.ranks-list .left p {
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-inline: 5px;
+  gap: 5px;
+}
+
+.ranks-list p:first-child {
+  font-size: 1.5rem;
+  padding: 5px 8px;
+  color: $color-bg;
+  border-radius: 15px;
+  margin-inline: 5px;
+  align-items: center;
+}
+
+.ranks-list-desc {
+  width: 90%;
+  align-content: center;
+  padding: 5px 8px;
+  background-color: #cbcaca;
+  border-radius: 15px;
+  margin-inline: 5px;
+}

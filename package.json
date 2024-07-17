@@ -5,21 +5,33 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && tsc --project tsconfig.build.json && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix"
+    "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
+    "test": "vitest",
+    "test:verbose": "vitest run --reporter=verbose"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "pnpm": "^9.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.3.1",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/react-modal": "^3.16.3",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -30,9 +42,12 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "jsdom": "^24.1.0",
     "prettier": "^3.2.5",
+    "react-router-dom": "^6.24.0",
     "sass": "^1.62.0",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^5.3.3",
+    "vitest": "^2.0.3"
   }
 }
