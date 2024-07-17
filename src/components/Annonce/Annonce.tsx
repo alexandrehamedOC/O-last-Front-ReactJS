@@ -108,9 +108,11 @@ const Annonce: React.FC = () => {
         `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
 
-      if (response.data.length === 0) setuserWithProfil(false);
-
-      setuserWithProfil(true);
+      if (response.data.length === 0) {
+        setuserWithProfil(false);
+      } else {
+        setuserWithProfil(true);
+      }
     } catch (error) {
       console.error(
         'Erreur lors de la récupération des profils du user:',
