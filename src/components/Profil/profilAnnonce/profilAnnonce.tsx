@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './profilAnnonce.scss';
 import axios from 'axios';
+import React from 'react';
 import Annonce from '../profilAnnonce/profilAnnonce';
 
 interface User {
@@ -94,7 +95,7 @@ function profilAnnonce() {
           <section className="card_top">
             <figure className="card_top_image">
               <img
-                src={`/src/assets/img/games-images/${player.game_name.toLowerCase().replaceAll(' ', '-')}.jpg`}
+                src={`/src/assets/img/games-images/${player.game_name.toLowerCase().replace(/ /g, '-')}.jpg`}
                 alt="placeholder"
                 className="card_image"
               ></img>
