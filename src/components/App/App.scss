@@ -27,7 +27,7 @@
 
       select {
         background-color: #1a1a1a;
-        color: white;
+        color: $color-white;
         border: 1px solid #1a1a1a;
         padding-top: 15px;
         padding-bottom: 15px;
@@ -127,29 +127,29 @@
         .app__games-title {
           font-size: 2rem;
           margin-bottom: 50px;
-          color: white;
+          color: $color-white;
           font-weight: bold;
           position: relative;
           &::after {
             content: '';
             position: absolute;
-            
+
             right: 0;
             top: 50px;
             height: 1em;
             width: 30vw;
-            border-top: 1px solid white;
+            border-top: 1px solid $color-white;
             z-index: 1;
           }
         }
         .app__games-description {
           font-size: 1.2rem;
-          color: white;
+          color: $color-white;
         }
       }
     }
   }
-
+/**
   &__step {
     max-width: 1400px;
     margin: 50px auto;
@@ -199,10 +199,102 @@
         font-size: 1rem;
       }
     }
+  }**/
+
+  .app__use {
+    padding: 20px;
+    background-color: #1a1a1a;
+
+    &__container {
+      max-width: 80vw;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #d19ceb;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-title {
+      text-align: center;
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 2em;
+        font-weight: bold;
+        color: $color-white;
+      }
+    }
+
+    &__card-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+    }
+
+    &-card {
+      background-color: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 40px 20px 40px 20px;
+      flex: 1 1 calc(25% - 20px);
+      text-align: center;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+      transition:
+      transform 0.3s,
+      box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      &-number {
+        font-size: 5em;
+        font-weight: bold;
+        color: $color-white;
+        margin-bottom: 10px;
+        background-color: $color-alternative-purple;
+        border: 1px solid $color-alternative-purple;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+
+      h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: $color-alternative-purple;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1em;
+        color: #666;
+      }
+    }
   }
 
+  .app__title-reviews{
+    margin: 0 auto;
+    font-size: 2em;
+    font-weight: bold;
+    color: $color-white;
+    padding-bottom: 30px;
+  }
   &__reviews {
-    max-width: 1400px;
+    
+    max-width: 80vw;
     margin: 50px auto;
     padding: 20px;
     background: $color-bg;
@@ -215,9 +307,81 @@
       padding: 20px;
       margin: 30px;
       border-radius: 10px;
-      background: #ffc0cb;
+      background: #ffffff;
     }
   }
+
+  .app__slider-container{
+    background-color: #1a1a1a;
+    padding: 40px 0px 40px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slider {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  
+    &__button {
+      background-color: #000000;
+      color: $color-white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+  
+      &--prev {
+        left: 0;
+      }
+  
+      &--next {
+        right: 0;
+      }
+    }
+  
+    &__track-container {
+      overflow: hidden;
+      width: 100%;
+    }
+  
+    &__track {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    &__slide {
+      min-width: calc(100% / 3);
+      box-sizing: border-box;
+      padding: 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin: 0 10px;
+  
+      h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 1em;
+        color: #666;
+      }
+    }
+  }
+  
+
   .app__reviews-rightarrow,
   .app__reviews-leftarrow {
     background: none;
@@ -229,9 +393,9 @@
     max-width: 1400px;
     margin: 50px auto;
     padding: 20px;
-    background: $color-bg;
+    background: $color-alternative-purple;
     border-radius: 10px;
-    color: $color-DeepPurple;
+    color: $color-white;
     display: flex;
 
     .app__annonce-description {
@@ -248,13 +412,18 @@
       font-size: 3rem;
       border-radius: 10px;
       border: none;
+      transition: 0.3s ease-in-out;
 
       &:hover {
-        background: $color-DeepPurple;
-        color: $color-ElectricCyan;
+        background: $color-white;
+        color: $color-alternative-purple;
       }
     }
   }
+}
+
+.app__annonce-container{
+  background-color: #1a1a1a;
 }
 
 @media (min-width: 301px) and (max-width: 975px) {
@@ -266,7 +435,6 @@
   }
 
   .app__games {
-    max-width: 800px;
     display: flex;
     flex-direction: column;
   }
