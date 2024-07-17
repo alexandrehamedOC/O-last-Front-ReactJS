@@ -15,14 +15,29 @@
 }
 
 .profile_sidebar button {
-  display: block;
-  background-color: $color-bg;
+  border-radius: 10px;
+  --bg: #000;
+  --hover-bg: #00ffff;
+  --hover-text: #000;
   color: #fff;
-  border: none;
   cursor: pointer;
+  border: 1px solid var(--bg);
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: var(--bg);
+  transition: 0.2s;
+  width: 200px;
+  margin-bottom: 10px;
 }
 
-.left-buttons {
-  width: 150px;
-  padding: 10px;
+.profile_sidebar button:hover {
+  color: var(--hover-text);
+  transform: translate(-0.25rem, -0.25rem);
+  background: var(--hover-bg);
+  box-shadow: 0.25rem 0.25rem var(--bg);
+}
+
+.profile_sidebar button:active {
+  transform: translate(0);
+  box-shadow: none;
 }
