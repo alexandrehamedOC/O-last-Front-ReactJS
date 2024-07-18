@@ -101,7 +101,7 @@
   overflow-y: auto;
 }
 
-.edit__form-button {
+.edit__form-platform .edit__form-button {
   margin-top: 2em;
   display: flex;
   justify-content: space-around;
@@ -121,6 +121,10 @@ select {
   border-radius: 5px;
   color: #fff;
   padding: 0.5em;
+
+  option {
+    background: black;
+  }
 }
 
 .edit__form_annonce label {
@@ -208,7 +212,7 @@ input {
 @media screen and (max-width: 1250px) {
   .annonce_container {
     display: flex;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     flex-direction: column;
     align-items: center;
   }
@@ -232,6 +236,7 @@ input {
     overflow-x: auto;
   }
 }
+
 
 @media screen and (max-width: 1250px) {
   .edit__form_annonce {
