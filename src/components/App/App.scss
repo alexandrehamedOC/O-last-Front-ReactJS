@@ -49,6 +49,7 @@
     }
 
     .app__button {
+      width: 100px;
       border: none;
       border-radius: 10px;
       font-size: 1rem;
@@ -489,7 +490,15 @@
     gap: 20px;
   }
   .searchArea {
-    flex-direction: column;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+
+    .app__button {
+      width: 150px;
+      padding: 8px;
+      margin-top: 50px;
+    }
   }
   .element__wrapper {
     flex-direction: column;
