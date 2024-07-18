@@ -213,7 +213,11 @@ const Annonce: React.FC = () => {
                 </figure>
                 <section className="card_top_title-desc">
                   <p className="card_title">{player.post_title}</p>
-                  <p className="card_description">{player.post_description}</p>
+                  <p className="card_description">
+                    {player.post_description.length > 25
+                      ? player.post_description.substring(0, 25) + '...'
+                      : player.post_description}
+                  </p>
                 </section>
               </section>
               <section className="card_bottom">
