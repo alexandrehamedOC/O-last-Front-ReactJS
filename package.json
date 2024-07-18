@@ -18,7 +18,8 @@
     "pnpm": "^9.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "vite-plugin-html": "^3.2.2"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.3.1",
