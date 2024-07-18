@@ -6,10 +6,11 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: 75px;
   min-height: 80vh;
   &__title {
     font-size: 2rem;
+    margin: 25px;
   }
 
   &__card {
@@ -129,6 +130,10 @@
     padding: 0.5em;
   }
 
+  .edit__form-select option {
+    background-color: #000;
+  }
+
   .edit__form-buttons,
   .edit__profile-card-buttons {
     margin-top: 2em;
@@ -184,11 +189,6 @@ input {
 }
 /* Media Query pour les petits écrans */
 @media (max-width: 768px) {
-  .edit__form_profil {
-    width: 90%; /* Réduit la largeur pour mieux s'adapter aux petits écrans */
-    padding: 1rem; /* Ajoute du padding pour éviter que le contenu touche les bords */
-    gap: 20px; /* Réduit l'espacement entre les éléments */
-  }
 
   form {
     gap: 20px; /* Réduit l'espacement entre les éléments du formulaire */
@@ -200,4 +200,31 @@ input {
     width: 100%; /* Prend toute la largeur disponible en mode mobile */
     height: auto; /* Ajuste la hauteur automatiquement */
   }
+}
+@media screen and (max-width: 1250px) {
+.profile_container {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    flex-direction: column;
+    align-items: center;
+}
+.profile_sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  background-color: #f4f4f4;
+  gap: 30px;
+}
+.edit__title {
+  font-size: 2rem;
+  margin: 25px;
+  text-align: center;
+}
+.edit__profile {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+}
 }

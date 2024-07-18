@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import './SignIn.scss';
 
@@ -13,6 +14,8 @@ function SignIn() {
   const [birthDate, setBirthDate] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const navigate = useNavigate();
 
   // Fonction pour gérer le submit du formulaire
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,6 +31,10 @@ function SignIn() {
 
     if (password !== confirmPassword) {
       console.log('Les mots de passe ne correspondent pas');
+    }
+
+    if (response) {
+      navigate('/connexion');
     }
   };
 
@@ -58,6 +65,7 @@ function SignIn() {
       setBirthDate('');
       setPassword('');
       setConfirmPassword('');
+
       return response;
     } catch (error) {
       console.log(error);
@@ -78,51 +86,51 @@ function SignIn() {
         <h1>Inscription</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="firstname">Prénom*</label>
             <input
               type="text"
               id="firstname"
               name="firstname"
+              placeholder="Prénom*"
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="lastname">Nom*</label>
             <input
               type="text"
               id="lastname"
               name="lastname"
+              placeholder="Nom*"
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="city">Ville*</label>
             <input
               type="text"
               id="city"
               name="city"
+              placeholder="Ville*"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="pseudo-discord">Discord username*</label>
             <input
               type="text"
               id="pseudo-discord"
               name="pseudo-discord"
+              placeholder="Discord username*"
               value={pseudoDiscord}
               onChange={(e) => setPseudoDiscord(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email*</label>
             <input
               type="email"
               id="email"
               name="email"
+              placeholder="Email*"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -138,21 +146,21 @@ function SignIn() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Mot de passe*</label>
             <input
               type="password"
               id="password"
               name="password"
+              placeholder="Mot de passe*"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="confirm-password">Confirmer le mot de passe*</label>
             <input
               type="password"
               id="confirm-password"
               name="confirm-password"
+              placeholder="Confirmer le mot de passe*"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
