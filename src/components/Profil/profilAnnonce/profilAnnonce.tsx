@@ -85,6 +85,7 @@ function profilAnnonce() {
     <div className="profilAnnonce_container">
       {annonce.map((player) => (
         <div className="card_profil_annonce" key={player.post_id}>
+          <section className="card_top">
           <figure className="card_platform">
             <img
               src={`/platforms/${player.post_platform.toLowerCase()}.png`}
@@ -92,7 +93,6 @@ function profilAnnonce() {
               className="card_platform_image"
             />
           </figure>
-          <section className="card_top">
             <figure className="card_top_image">
               <img
                 src={`/games-images/${player.game_name.toLowerCase().replace(/ /g, '-')}.jpg`}
