@@ -13,7 +13,7 @@
     margin: 10px 0;
   }
 
-  button {
+  .left-buttons {
     border-radius: 10px;
     --bg: #000;
     --hover-bg: #00ffff;
@@ -84,9 +84,21 @@
 
 .profile_picture img {
   object-fit: cover;
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 1px solid #ad1db7;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (max-width: 1250px) {
+  .profile_sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: #f4f4f4;
+    gap: 30px;
+  }
 }

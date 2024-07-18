@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './sendMailForgotPassword.scss';
 import axios from 'axios';
+import React from 'react';
 
 export default function SendMailForgotPassword({}) {
   const [email, setEmail] = useState('renseigner votre mail');
@@ -27,7 +28,7 @@ export default function SendMailForgotPassword({}) {
     <div className="sendMail_main__container">
       <h1 className="sendMail_main__title">Mot de passe oublié</h1>
       <p>
-        Un email va vous être envoyé si vous êtes bien enregistrer dans notre
+        Un email va vous être envoyé si vous êtes bien enregistré dans notre
         base de donnée.
       </p>
       <form className="sendMail_login__form" onSubmit={handleSubmitForm}>

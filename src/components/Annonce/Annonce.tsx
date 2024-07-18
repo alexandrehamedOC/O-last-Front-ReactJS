@@ -4,7 +4,7 @@ import FormAnnonce from './FormAnnonce/FormAnnonce';
 import axios from 'axios';
 
 import './Annonce.scss';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 Modal.setAppElement('#root');
@@ -197,7 +197,7 @@ const Annonce: React.FC = () => {
             >
               <figure className="card_platform">
                 <img
-                  src={`src/assets/img/platforms/${player.post_platform.toLowerCase()}.png`}
+                  src={`/platforms/${player.post_platform.toLowerCase()}.png`}
                   alt=""
                   className="card_platform_image"
                 />
@@ -205,7 +205,7 @@ const Annonce: React.FC = () => {
               <section className="card_top">
                 <figure className="card_top_image">
                   <img
-                    src={`src/assets/img/games-images/${player.game_name.toLowerCase().replaceAll(' ', '-')}.jpg`}
+                    src={`/games-images/${player.game_name.toLowerCase().replace(/ /g, '-')}.jpg`}
                     alt="placeholder"
                     className="card_image"
                   ></img>

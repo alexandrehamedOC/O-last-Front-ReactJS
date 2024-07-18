@@ -14,7 +14,7 @@
 
 .review_container {
   font-family: 'Roboto', sans-serif;
-  width: 35%;
+  width: 50%;
   padding: 10px;
   background-color: #f4f4f4;
   overflow-y: auto;
@@ -96,12 +96,16 @@
 
 // ------------------------------- Style du review Form -------------------------------------- //
 
+// .review_title .modal-close:hover {
+//   color: #a45ddd;
+// }
+
 .review__title {
   display: flex;
   justify-content: center;
   font-size: 1.7rem;
   margin-bottom: 10px;
-  color: $color-DeepPurple;
+  color: #a45ddd;
   padding: 10px;
 }
 
@@ -111,13 +115,13 @@
   margin: 10px;
   gap: 15px;
 
-  .form__note-input {
-    width: 45px;
-  }
+  // .form__note-input {
+  //   width: 45px;
+  // }
 
   label {
     font-size: 1.2rem;
-    color: $color-DeepPurple;
+    color: #a45ddd;
     margin-bottom: 5px;
     display: flex;
   }
@@ -129,6 +133,19 @@
     // min-height: 100px;
     // max-height: 200px;
     resize: none;
+  }
+
+  .form__description-input,
+  .form_profil-select,
+  .form__note-input {
+    color: black !important;
+    border-radius: 5px;
+    border: transparent;
+    padding: 5px;
+  }
+
+  .form_profil-select {
+    padding: 8px 0;
   }
 
   .form_button-submit {
@@ -149,5 +166,23 @@
       background-color: $color-bg;
       border: 2px solid $color-DeepPurple;
     }
+  }
+}
+
+@media screen and (max-width: 975px) {
+  .review_annonce {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .review_container {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: 250vh;
+    padding: 10px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
   }
 }
