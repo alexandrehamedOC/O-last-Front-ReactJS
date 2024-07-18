@@ -112,6 +112,27 @@
   margin-inline: 5px;
 }
 
+@media screen and (max-width: 1500px) {
+  .ranks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+    .ranks-list {
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 25px;
+      width: 250px;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 0.7rem;
+  }
+  
+}
+
+
 @media screen and (max-width: 1250px) {
     .profile_sidebar {
       display: flex;
