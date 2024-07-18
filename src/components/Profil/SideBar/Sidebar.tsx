@@ -18,7 +18,7 @@ function Sidebar() {
 
   const { id } = useParams();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>();
 
   const [showModal, setShowModal] = useState(false);
   const location = useLocation();
