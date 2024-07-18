@@ -4,8 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Assure une hauteur minimale de 100% de la hauteur de la fenêtre */
-
+  min-height: 100vh;
   .login {
     max-width: 1200px;
     margin: 50px auto;
@@ -132,31 +131,3 @@
     }
   }
 }
-
-//   .login {
-//     display: flex;
-//     flex-direction: column;
-
-//     &__connexion {
-//       border-right: none;
-//     }
-//   }
-// }
-
-//* Revoir responsive design, probleme au niveau des inputs, ils ne sont pas alignés et vont
-//* en dehors de la page sur la droite côté navigateur
-
-// @media screen and (max-width: 300px) {
-//   .login__form {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-
-//     .login__form-input {
-//       width: 20vh;
-//     }
-//   }
-//   .login__form-input {
-//     width: 40vh;
-//   }
-// }
