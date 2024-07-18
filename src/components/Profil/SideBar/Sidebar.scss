@@ -90,3 +90,15 @@
   border: 1px solid #ad1db7;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
+
+@media screen and (max-width: 1250px) {
+  .profile_sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: #f4f4f4;
+    gap: 30px;
+  }
+}
