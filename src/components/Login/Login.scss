@@ -53,7 +53,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 20px;
         padding: 10px 20px;
         background-color: $color-DeepPurple;
         color: $color-bg;
@@ -63,7 +63,7 @@
       }
 
       .login__forgot-password {
-        margin-top: 20px;
+        margin: 20px 10px 0 0;
         font-size: 0.8rem;
         font-weight: 400;
         padding: 10px;
@@ -103,7 +103,7 @@
         }
 
         .login__figure-button {
-          margin-top: 20px;
+          // margin-top: 20px;
           padding: 10px 20px;
           background-color: $color-DeepPurple;
           color: $color-bg;
@@ -117,11 +117,31 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .login {
-    display: flex;
-    flex-direction: column;
+  .login-container {
+    .login {
+      flex-direction: column;
+
+      &__connexion {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .login__forgot-password {
+        margin: 20px 0 20px 0;
+      }
+    }
   }
 }
+
+//   .login {
+//     display: flex;
+//     flex-direction: column;
+
+//     &__connexion {
+//       border-right: none;
+//     }
+//   }
+// }
 
 //* Revoir responsive design, probleme au niveau des inputs, ils ne sont pas alignés et vont
 //* en dehors de la page sur la droite côté navigateur
