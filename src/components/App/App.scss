@@ -23,6 +23,7 @@
     .searchArea {
       display: flex;
       flex-direction: row;
+      height: 60px;
 
       select {
         width: 50vw;
@@ -363,7 +364,7 @@
     position: absolute;
     z-index: 0;
     top: 150px;
-    left:0px;
+    left: 0px;
     width: 500px;
   }
 
