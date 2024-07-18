@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 
@@ -91,8 +91,8 @@ function Login() {
         <figure className="login__figure">
           <img
             className="login__figure-img"
-            src="https://picsum.photos/200/300"
-            alt="Inscription"
+            src="/Inscription.jpg"
+            alt="inscription"
           />
           <figcaption className="login__figure-caption">
             <p className="login__figure-text">

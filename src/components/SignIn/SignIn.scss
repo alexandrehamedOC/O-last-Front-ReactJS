@@ -8,12 +8,17 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   gap: 100px;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .SignIn__img {
   width: 25%;
   background-color: #d3d3d3;
   border-radius: 10px;
+  height: 80%;
+  min-width: 350px;
+  align-self: center;
 }
 
 .SignIn__img img {
@@ -24,10 +29,11 @@
 
 .SignIn__form {
   width: 25%;
+  min-width: 350px;
   padding: 0 20px;
 }
 
-.SignIn__form form{
+.SignIn__form form {
   display: flex;
   gap: 10px;
   margin-top: 25px;
@@ -41,7 +47,7 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .form-group label {
@@ -52,9 +58,10 @@
 
 .form-group input {
   width: calc(100% - 20px);
-  padding: 8px;
+  padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  color: gray;
 }
 
 .form-group button {
@@ -71,20 +78,20 @@
   color: $color-DeepPurple;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="date"] {
+.form-group input[type='text'],
+.form-group input[type='email'],
+.form-group input[type='password'],
+.form-group input[type='date'] {
   width: 100%;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 1000px) {
-  .SignIn__img{
+  .SignIn__img {
     display: none;
   }
 
-  .SignIn__form{
+  .SignIn__form {
     width: 100%;
   }
 }
