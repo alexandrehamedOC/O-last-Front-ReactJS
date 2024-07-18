@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 import './Footer.scss';
 
@@ -35,7 +36,7 @@ function Footer() {
             <h1>Players</h1>
           </li>
           <li>
-            <Link to={id ? `/profile/${id}` : '/login'}>
+            <Link to={id ? `/profile/${id}` : '/connexion'}>
               <p>Crée ton profil</p>
             </Link>
           </li>
