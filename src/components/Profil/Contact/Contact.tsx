@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Contact.scss';
+import React from 'react';
 
 interface ContactProps {
   user: User;
