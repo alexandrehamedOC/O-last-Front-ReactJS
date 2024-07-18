@@ -27,11 +27,13 @@
 
       select {
         width: 50vw;
+        min-width: 200px;
         background-color: #1a1a1a;
         color: $color-white;
         border: 1px solid #1a1a1a;
         padding-top: 15px;
         padding-bottom: 15px;
+        padding-left: 15px;
         border-radius: 10px;
       }
 
@@ -49,7 +51,7 @@
     }
 
     .app__button {
-      width: 10vh;
+      width: 100px;
       border: none;
       border-radius: 10px;
       font-size: 1rem;
@@ -490,7 +492,15 @@
     gap: 20px;
   }
   .searchArea {
-    flex-direction: column;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+
+    .app__button {
+      width: 150px;
+      padding: 8px;
+      margin-top: 50px;
+    }
   }
   .element__wrapper {
     flex-direction: column;

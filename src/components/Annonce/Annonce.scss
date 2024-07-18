@@ -36,9 +36,8 @@
 
   .main_content {
     display: flex;
-    min-height: 100vh;
     height: auto;
-
+    min-height: 1080px;
     .filters {
       display: flex;
       flex-direction: column;
