@@ -96,6 +96,10 @@
   gap: 1.5em;
 }
 
+.edit__form-left .form_group select option {
+  background-color: black;
+}
+
 .edit__form-left div {
   display: flex;
   flex-direction: column;
@@ -220,7 +224,7 @@ input {
 @media screen and (max-width: 1250px) {
   .profile_container {
     display: flex;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     flex-direction: column;
     align-items: center;
   }
