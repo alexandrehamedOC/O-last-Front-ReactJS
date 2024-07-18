@@ -53,10 +53,7 @@ function Sidebar() {
       {user && (
         <>
           <figure className="profile_picture">
-            <img
-              src="/src/assets/img/profil-picture.jpg"
-              alt="Profile Picture"
-            />
+            <img src="/profil-picture.jpg" alt="Profile Picture" />
           </figure>
           <p>{user.firstname}</p>
           <p>{user.lastname}</p>
