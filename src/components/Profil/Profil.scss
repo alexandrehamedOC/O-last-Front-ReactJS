@@ -113,27 +113,56 @@
 }
 
 @media screen and (max-width: 1250px) {
-  .ranks{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .profile_sidebar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      background-color: #f4f4f4;
+      gap: 30px;
+    }
+  .profile_container {
+      display: flex;
+      font-family: "Roboto", sans-serif;
+      flex-direction: column;
+      align-items: center;
   }
-  .profile_main h1{
+  .edit__title {
     font-size: 2rem;
+    margin: 25px;
     text-align: center;
   }
-  .review_annonce{
+  .edit__profile {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 25px;
+    overflow-x: auto;
   }
-  .review_container{
-    height: 100vh;
+  .ranks{
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+    justify-items: center;
   }
-  .profilAnnonce_container{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+
+  .profile_main-h1{
+    text-align: center;
   }
-}
+  }
+
+  @media screen and (max-width: 975px) {
+    .left p:first-child {
+      font-size: 13px;
+      
+    }
+    .ranks-list{
+      text-align: center;
+      font-size: 10px;
+      gap: 10px;
+      align-items: center;
+    }
+    .profilAnnonce_container{
+      display: flex; 
+      flex-direction: column;
+    }
+
+  }

@@ -223,30 +223,24 @@ input {
     font-family: "Roboto", sans-serif;
     flex-direction: column;
     align-items: center;
-}
-.profile_sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  background-color: #f4f4f4;
-  gap: 30px;
-}
-.edit__title {
-  font-size: 2rem;
-  margin: 25px;
-  text-align: center;
-}
-.edit__profile {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto;
-}
-}
-
-@media screen and (max-width: 768px) {
-  .edit__form {
-    padding: 1em 0;
+  }
+  .profile_sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: #f4f4f4;
+    gap: 30px;
+  }
+  .edit__title {
+    font-size: 2rem;
+    margin: 25px;
+    text-align: center;
+  }
+  .edit__profile {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
   }
 }

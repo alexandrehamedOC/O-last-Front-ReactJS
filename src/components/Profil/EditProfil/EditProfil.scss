@@ -185,11 +185,6 @@ input {
 }
 /* Media Query pour les petits écrans */
 @media (max-width: 768px) {
-  .edit__form_profil {
-    width: 90%; /* Réduit la largeur pour mieux s'adapter aux petits écrans */
-    padding: 1rem; /* Ajoute du padding pour éviter que le contenu touche les bords */
-    gap: 20px; /* Réduit l'espacement entre les éléments */
-  }
 
   form {
     gap: 20px; /* Réduit l'espacement entre les éléments du formulaire */
@@ -229,10 +224,3 @@ input {
   overflow-x: auto;
 }
 }
-
-@media screen and (max-width: 768px) {
-  .edit__form {
-    padding: 1em 0;
-  }
-}
-
