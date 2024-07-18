@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 
 import Review from './Review/Review';
 import Annonce from './profilAnnonce/profilAnnonce';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Contact from './Contact/Contact';
 import Sidebar from './SideBar/Sidebar';
 
@@ -42,15 +42,7 @@ function Profil() {
         `${import.meta.env.VITE_API_BASE_URL}/profil/details/${id}`
       );
 
-      const gameList: string[] = [];
-      response.data.map((profil: Profil) => {
-        gameList.push(profil.game_name);
-      });
-
-      const gameListUnique: string[] = [...new Set(gameList)];
-
       setProfils(response.data);
-      setGames(gameListUnique);
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +57,7 @@ function Profil() {
     <div className="profile_container">
       <Sidebar />
       <div className="profile_main">
-          <h1 className='profile_main-h1'>Profils</h1>
+        <h1 className="profile_main-h1">Profils</h1>
         <div className="ranks">
           {profils.map((profil) => (
             <div className="ranks-list" key={profil.id}>

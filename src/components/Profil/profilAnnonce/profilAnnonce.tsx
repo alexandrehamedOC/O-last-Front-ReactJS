@@ -87,7 +87,7 @@ function profilAnnonce() {
         <div className="card_profil_annonce" key={player.post_id}>
           <figure className="card_platform">
             <img
-              src={`/src/assets/img/platforms/${player.post_platform.toLowerCase()}.png`}
+              src={`/platforms/${player.post_platform.toLowerCase()}.png`}
               alt=""
               className="card_platform_image"
             />
@@ -95,7 +95,7 @@ function profilAnnonce() {
           <section className="card_top">
             <figure className="card_top_image">
               <img
-                src={`/src/assets/img/games-images/${player.game_name.toLowerCase().replace(/ /g, '-')}.jpg`}
+                src={`/games-images/${player.game_name.toLowerCase().replace(/ /g, '-')}.jpg`}
                 alt="placeholder"
                 className="card_image"
               ></img>
