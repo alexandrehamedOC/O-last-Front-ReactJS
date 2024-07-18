@@ -57,14 +57,13 @@
     color: black;
   }
   .edit__form_profil {
-    width: 70%;
     justify-content: center;
     background-color: transparent;
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
     margin: 0 auto;
-    height: 80%;
+    height: 75%;
     max-height: 80vh;
     overflow-y: auto;
   }
@@ -187,20 +186,7 @@ input {
   text-decoration: none;
   font-weight: 600;
 }
-/* Media Query pour les petits écrans */
-@media (max-width: 768px) {
 
-  form {
-    gap: 20px; /* Réduit l'espacement entre les éléments du formulaire */
-    padding: 1rem; /* Ajoute du padding pour une meilleure lisibilité sur mobile */
-  }
-
-  .edit__form-main,
-  .edit__form-side {
-    width: 100%; /* Prend toute la largeur disponible en mode mobile */
-    height: auto; /* Ajuste la hauteur automatiquement */
-  }
-}
 @media screen and (max-width: 1250px) {
 .profile_container {
     display: flex;
@@ -228,3 +214,9 @@ input {
   overflow-x: auto;
 }
 }
+
+@media screen and (max-width: 1250px) {
+  .edit .edit__form_profil{
+    height: 100%;
+  }
+  }
