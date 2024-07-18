@@ -36,6 +36,7 @@
 
       .searchBar__label {
         visibility: hidden;
+        width: 1px;
       }
     }
     .app__title {
@@ -43,6 +44,7 @@
       font-size: 3rem;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       margin-bottom: 15px;
+      text-align: center;
     }
 
     .app__button {
@@ -486,6 +488,9 @@
     align-items: center;
     gap: 20px;
   }
+  .searchArea {
+    flex-direction: column;
+  }
   .element__wrapper {
     flex-direction: column;
   }
@@ -552,6 +557,9 @@
 // }
 
 @media (min-width: 0px) and (max-width: 300px) {
+  .searchArea {
+    flex-direction: column;
+  }
   .app__games-images-container {
     display: none;
     &figure {
